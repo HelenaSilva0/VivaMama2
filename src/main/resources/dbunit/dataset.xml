@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<dataset>
+    <USUARIO NOME="Ciclano da Silva" EMAIL="ciclano@gmail.com" SENHA="teste" TIPO="PACIENTE" DTYPE="Paciente"/>
+    <PACIENTE ID="1" DT_NASCIMENTO="2004-04-23" HISTORICOFAMILIAR="Sem histórico familiar."/>
+</dataset>-->
+<dataset>
+    <USUARIO NOME="Ciclano da Silva" DTYPE="Paciente" EMAIL="ciclano@gmail.com" SENHA="teste" TIPO="PACIENTE"/>
+    <PACIENTE ID="1" DT_NASCIMENTO="2004-04-23" HISTORICOFAMILIAR="Sem histórico familiar."/>
+    <USUARIO NOME="Fulano da Silva" DTYPE="Medico" EMAIL="fulano@gmail.com" SENHA="teste" TIPO="MEDICO"/>
+    <MEDICO ID="2" CRM="1234456" ESPECIALIDADE="mastologista"/>
+</dataset>
