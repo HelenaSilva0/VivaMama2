@@ -1,22 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--<dataset>
-    <USUARIO NOME="Ciclano da Silva" EMAIL="ciclano@gmail.com" SENHA="teste" TIPO="PACIENTE" DTYPE="Paciente"/>
+     inserção da entidade usuário do tipo paciente 
+    <USUARIO NOME="Ciclano da Silva" DTYPE="Paciente" EMAIL="ciclano@gmail.com" SENHA="teste" TIPO="PACIENTE"/>
     <PACIENTE ID="1" DT_NASCIMENTO="2004-04-23" HISTORICOFAMILIAR="Sem histórico familiar."/>
+    
+     inserção da entidade usuário do tipo medico 
+    <USUARIO NOME="Fulano da Silva" DTYPE="Medico" EMAIL="fulano@gmail.com" SENHA="teste" TIPO="MEDICO"/>
+    <MEDICO ID="2" CRM="1234456" ESPECIALIDADE="mastologista"/>
+    
+     conversa com id=1 entre usuario 1 (paciente) e usuario 2 (medico) 
+    <CONVERSA ASSUNTO="Conversa inicial" CRIADO_EM="2025-11-01 10:00:00" ATIVA="true"/>
+    <CONVERSA_PARTICIPANTES CONVERSA_ID="1" USUARIO_ID="1"/>
+    <CONVERSA_PARTICIPANTES CONVERSA_ID="1" USUARIO_ID="2"/>
+
+     mensagem com id=1 na conversa 1 
+    <MENSAGEM CONVERSA_ID="1" REMETENTE_ID="2" TEXTO="Olá, seus exames chegaram. Podemos conversar?" ENVIADO_EM="2025-11-01 10:02:00" LIDA="false" NOME_ANEXO="[NULL]"/>
 </dataset>-->
+
 <dataset>
     <!-- inserção da entidade usuário do tipo paciente -->
     <USUARIO NOME="Ciclano da Silva" DTYPE="Paciente" EMAIL="ciclano@gmail.com" SENHA="teste" TIPO="PACIENTE"/>
     <PACIENTE ID="1" DT_NASCIMENTO="2004-04-23" HISTORICOFAMILIAR="Sem histórico familiar."/>
-    
+
     <!-- inserção da entidade usuário do tipo medico -->
     <USUARIO NOME="Fulano da Silva" DTYPE="Medico" EMAIL="fulano@gmail.com" SENHA="teste" TIPO="MEDICO"/>
     <MEDICO ID="2" CRM="1234456" ESPECIALIDADE="mastologista"/>
-    
+
     <!-- conversa com id=1 entre usuario 1 (paciente) e usuario 2 (medico) -->
     <CONVERSA ASSUNTO="Conversa inicial" CRIADO_EM="2025-11-01 10:00:00" ATIVA="true"/>
     <CONVERSA_PARTICIPANTES CONVERSA_ID="1" USUARIO_ID="1"/>
     <CONVERSA_PARTICIPANTES CONVERSA_ID="1" USUARIO_ID="2"/>
 
     <!-- mensagem com id=1 na conversa 1 -->
-    <MENSAGEM CONVERSA_ID="1" REMETENTE_ID="2" TEXTO="Olá, seus exames chegaram. Podemos conversar?" ENVIADO_EM="2025-11-01 10:02:00" LIDA="false" NOME_ANEXO="[NULL]"/>
+    <MENSAGEM CONVERSA_ID="1" REMETENTE_ID="2" TEXTO="Olá, seus exames chegaram. Podemos conversar?" ENVIADO_EM="2025-11-01 10:02:00" LIDA="false"/>
 </dataset>
+

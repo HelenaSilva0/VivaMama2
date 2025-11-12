@@ -6,11 +6,14 @@ package com.vivamamadsc.vivamamadsc;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 import java.util.Date;
 import static junit.framework.Assert.assertNotNull;
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -20,28 +23,37 @@ import org.junit.Test;
 public class MensagemTest {
 
     private static EntityManagerFactory emf;
-    private EntityManager em;
-
+    private static EntityManager em;
+    private EntityTransaction et;
+    
+    @BeforeClass
+    public static void setUpClass() {
+        emf = Persistence.createEntityManagerFactory("vivamamadsc");
+        DbUnitUtil.inserirDados();
+    }
+    
+    @AfterClass
+    public static void tearDownClass() {
+        emf.close();
+    }
+    
     @Before
     public void setUp() {
-        if (emf == null) {
-            emf = Persistence.createEntityManagerFactory("vivamamadsc");
-        }
         em = emf.createEntityManager();
-
-        // insere o dataset (se ainda não inserido)
-        DbUnitUtil.inserirDados();
+        et = em.getTransaction();
+        et.begin();
     }
 
     @After
     public void tearDown() {
-        if (em != null && em.isOpen()) em.close();
+        if (!et.getRollbackOnly()) {
+            et.commit();
+        }
+        em.close();
     }
 
     @Test
     public void testPersistenciaMensagem() {
-        em.getTransaction().begin();
-
         // cria uma conversa (ou busca existente)
         Conversa conv = em.find(Conversa.class, 1L);
         if (conv == null) {
@@ -66,7 +78,7 @@ public class MensagemTest {
         m.setLida(false);
 
         em.persist(m);
-        em.getTransaction().commit();
+        em.flush();
 
         assertNotNull("Mensagem deve receber id após persistir", m.getId());
         assertNotNull("Mensagem deve estar associada a uma conversa", m.getConversa());

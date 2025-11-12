@@ -6,11 +6,14 @@ package com.vivamamadsc.vivamamadsc;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertTrue;
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -20,43 +23,57 @@ import org.junit.Test;
 public class ConversaTest {
 
     private static EntityManagerFactory emf;
-    private EntityManager em;
+    private static EntityManager em;
+    private EntityTransaction et;
+    
 
+    @BeforeClass
+    public static void setUpClass() {
+        emf = Persistence.createEntityManagerFactory("vivamamadsc");
+        DbUnitUtil.inserirDados();
+    }
+    
+    @AfterClass
+    public static void tearDownClass() {
+        emf.close();
+    }
+    
     @Before
     public void setUp() {
-        // cria factory uma única vez (pode mover para @BeforeClass se preferir)
-        if (emf == null) {
-            emf = Persistence.createEntityManagerFactory("vivamamadsc");
-        }
         em = emf.createEntityManager();
-
-        // garante que dataset.xml foi inserido
-        DbUnitUtil.inserirDados();
+        et = em.getTransaction();
+        et.begin();
     }
 
     @After
     public void tearDown() {
-        if (em != null && em.isOpen()) em.close();
+        if (!et.getRollbackOnly()) {
+            et.commit();
+        }
+        em.close();
     }
 
     @Test
     public void testPersistenciaConversa() {
-        em.getTransaction().begin();
-
         // buscar participantes existentes (ex.: paciente id=1 e medico id=2)
         Usuario u1 = em.find(Usuario.class, 1L);
         Usuario u2 = em.find(Usuario.class, 2L);
 
         Conversa c = new Conversa();
         c.setAssunto("Dúvida sobre mamografia");
-        if (u1 != null) c.adicionarParticipante(u1);
-        if (u2 != null) c.adicionarParticipante(u2);
-
+        if (u1 != null) {
+            c.adicionarParticipante(u1);
+        }
+        if (u2 != null) {
+            c.adicionarParticipante(u2);
+        }
+      
         em.persist(c);
-        em.getTransaction().commit();
+        em.flush();
 
         assertNotNull("Conversa deve ter id após persistir", c.getId());
         assertTrue("Conversa deve ter pelo menos 1 participante", c.getParticipantes().size() >= 1);
+        
     }
 
     @Test
