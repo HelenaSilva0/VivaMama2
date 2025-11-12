@@ -6,6 +6,8 @@
     <class>com.vivamamadsc.vivamamadsc.Usuario</class>
     <class>com.vivamamadsc.vivamamadsc.Paciente</class>
     <class>com.vivamamadsc.vivamamadsc.Medico</class>
+    <class>com.vivamamadsc.vivamamadsc.Conversa</class>
+    <class>com.vivamamadsc.vivamamadsc.Mensagem</class>
     <properties>
       <property name="jakarta.persistence.jdbc.url" value="jdbc:derby://localhost:1527/vivamamadsc;create=true"/>
       <property name="jakarta.persistence.jdbc.user" value="vivamama"/>
