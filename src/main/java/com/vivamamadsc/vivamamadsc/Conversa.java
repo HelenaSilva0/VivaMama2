@@ -14,6 +14,9 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -29,9 +32,12 @@ public class Conversa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // assunto opcional
+    @NotBlank(message = "Assunto é obrigatório")
+    @Size(max = 200, message = "Assunto deve ter no máximo 200 caracteres")
+    @Column(name = "ASSUNTO", nullable = false, length = 200)
     private String assunto;
 
+    @NotNull(message = "Data de criação é obrigatória")
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "criado_em", nullable = false)
     private Date criadoEm = new Date();

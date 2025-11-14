@@ -14,6 +14,9 @@ import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import java.util.Date;
 
 /**
@@ -28,15 +31,18 @@ public class Mensagem {
     private Long id;
 
     // conversa que contém a mensagem
+    @NotNull(message = "Conversa é obrigatória")
     @ManyToOne(optional = false)
     @JoinColumn(name = "conversa_id", nullable = false)
     private Conversa conversa;
 
     // remetente (pode ser Paciente ou Medico pois é Usuario)
+    @NotNull(message = "Remetente é obrigatório")
     @ManyToOne(optional = false)
     @JoinColumn(name = "remetente_id", nullable = false)
     private Usuario remetente;
 
+    @NotBlank(message = "Texto da mensagem é obrigatório")
     @Lob
     @Column(name = "texto", columnDefinition = "CLOB")
     private String texto;
@@ -48,6 +54,7 @@ public class Mensagem {
     @Column(name = "lida", nullable = false)
     private boolean lida = false;
 
+    @Size(max = 255, message = "Nome do anexo deve ter no máximo 255 caracteres")
     @Column(name = "nome_anexo")
     private String nomeAnexo;
 

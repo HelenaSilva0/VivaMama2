@@ -6,16 +6,21 @@ package com.vivamamadsc.vivamamadsc;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
-public class Medico extends Usuario {// colocar o descriminator
-
-    // Colocar o tamanho das strings
-    @Column(unique = true, nullable = false)
+public class Medico extends Usuario {
+ 
+    @NotBlank(message = "CRM é obrigatório")
+    @Size(max = 20, message = "CRM deve ter no máximo 20 caracteres")
+    @Column(name = "CRM", unique = true, nullable = false, length = 20)
     private String crm;
 
     // Separar o atributo especialidade numa classe para criar o relacionamento many to many
-    @Column(name = "ESPECIALIDADE")
+    @NotBlank(message = "Especialidade é obrigatória")
+    @Size(max = 100, message = "Especialidade deve ter no máximo 100 caracteres")
+    @Column(name = "ESPECIALIDADE", nullable = false, length = 100)
     private String especialidade;
 
     public Medico() {
