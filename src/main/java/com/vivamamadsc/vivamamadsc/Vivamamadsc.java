@@ -27,7 +27,7 @@ public class Vivamamadsc {
 
         try {
             Long idPaciente = persistirPaciente();
-            
+
             Especialidade oncologia = new Especialidade();
             oncologia.setNome("Oncologia");
             persistir(oncologia);
@@ -38,7 +38,7 @@ public class Vivamamadsc {
             Set<Especialidade> especialidades = new HashSet<>();
             especialidades.add(oncologia);
             especialidades.add(mastologia);
-            
+
             Long idMedico = persistirMedico(especialidades);
 
             consultarPaciente(idPaciente);
@@ -55,7 +55,7 @@ public class Vivamamadsc {
         return persistir(p);
     }
 
-    private static Long persistirMedico(Set<Especialidade> especialidades) throws IOException{
+    private static Long persistirMedico(Set<Especialidade> especialidades) throws IOException {
         Medico m = new Medico();
         preencherMedico(m, especialidades);
         return persistir(m);
@@ -93,7 +93,7 @@ public class Vivamamadsc {
         p.setCpf("98765432100");
         p.setEmail("fulano@gmail.com");
         p.setSenha("senha");
-        p.setHistoricoFamiliar(" avo com cancer de mama.");
+//        p.setHistoricoFamiliar(" avo com cancer de mama.");
         p.setDataNascimento(new GregorianCalendar(2004, Calendar.APRIL, 23).getTime());
     }
 
@@ -126,8 +126,14 @@ public class Vivamamadsc {
                       nascimento={3}
                       historicoFamiliar={4}
                     """,
-                    new Object[]{p.getId(), p.getNome(), p.getEmail(),
-                        p.getCpf(), p.getDataNascimento(), p.getHistoricoFamiliar()});
+                    new Object[]{
+                        p.getId(),
+                        p.getNome(),
+                        p.getEmail(),
+                        p.getCpf(),
+                        p.getDataNascimento(),
+//                        p.getHistoricoFamiliar()
+                    });
         } finally {
             em.close();
         }
@@ -141,7 +147,7 @@ public class Vivamamadsc {
             if (m == null) {
                 LOG.log(Level.WARNING, "Medico id={0} não encontrado.", id);
                 return;
-            }            
+            }
             LOG.log(Level.INFO, """
                     Medico:
                       id={0}

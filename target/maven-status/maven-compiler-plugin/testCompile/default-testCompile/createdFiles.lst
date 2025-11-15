@@ -1,5 +1,6 @@
 com\vivamamadsc\vivamamadsc\MensagemTest.class
+com\vivamamadsc\vivamamadsc\PacienteTest.class
+com\vivamamadsc\vivamamadsc\ExameTest.class
 com\vivamamadsc\vivamamadsc\ConversaTest.class
 com\vivamamadsc\vivamamadsc\DbUnitUtil.class
-com\vivamamadsc\vivamamadsc\PacienteTest.class
 com\vivamamadsc\vivamamadsc\MedicoTest.class

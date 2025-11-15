@@ -78,7 +78,7 @@ public class MedicoTest {
     public void testConsultaPorId() {
         Medico medico = em.find(Medico.class, 2L);
 //        assertNotNull(medico.getId());
-        assertEquals("1234456", medico.getCrm());
+        assertEquals("123456", medico.getCrm());
     }
 }
 
