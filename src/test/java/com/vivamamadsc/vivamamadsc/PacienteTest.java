@@ -70,6 +70,7 @@ public class PacienteTest {
     private Paciente criarUsuario() {
         Paciente paciente = new Paciente();
         paciente.setNome("Beltrano da Silva");
+        paciente.setCpf("12345678777");
         paciente.setEmail("beltrano@gmail.com");
         paciente.setSenha("teste");
         paciente.setTipo(TipoUsuario.PACIENTE);

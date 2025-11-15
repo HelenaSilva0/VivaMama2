@@ -10,8 +10,11 @@ import jakarta.persistence.Persistence;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 public class Vivamamadsc {
 
@@ -24,7 +27,19 @@ public class Vivamamadsc {
 
         try {
             Long idPaciente = persistirPaciente();
-            Long idMedico = persistirMedico();
+            
+            Especialidade oncologia = new Especialidade();
+            oncologia.setNome("Oncologia");
+            persistir(oncologia);
+            Especialidade mastologia = new Especialidade();
+            mastologia.setNome("Mastologia");
+            persistir(mastologia);
+
+            Set<Especialidade> especialidades = new HashSet<>();
+            especialidades.add(oncologia);
+            especialidades.add(mastologia);
+            
+            Long idMedico = persistirMedico(especialidades);
 
             consultarPaciente(idPaciente);
             consultarMedico(idMedico);
@@ -40,12 +55,12 @@ public class Vivamamadsc {
         return persistir(p);
     }
 
-    private static Long persistirMedico() throws IOException{
+    private static Long persistirMedico(Set<Especialidade> especialidades) throws IOException{
         Medico m = new Medico();
-        preencherMedico(m);
+        preencherMedico(m, especialidades);
         return persistir(m);
     }
-    
+
     private static <T> Long persistir(T entidade) {
         EntityManager em = null;
         EntityTransaction tx = null;
@@ -73,52 +88,24 @@ public class Vivamamadsc {
         }
     }
 
-    /*Paciente p = new Paciente();
-        preencherPaciente(p);
-        //EntityManagerFactory emf = null;
-        EntityManager em = null;
-        EntityTransaction et = null;
-        try {
-
-            //emf = Persistence.createEntityManagerFactory("vivamamadsc");
-            em = emf.createEntityManager();
-            et = em.getTransaction();
-            et.begin();
-            em.persist(p);
-            et.commit();
-        } catch (Exception ex) {
-            if (et != null && et.isActive) {
-                et.rollback();
-            }
-            throw ex;
-        } finally {
-            if (em != null) {
-                em.close();
-            }
-        }
-    }*/
-
- /* private static void preencherUsuario(Usuario usuario) {
-        usuario.setNome("Fulano da Silva");
-        usuario.setEmail("fulano@gmail.com");
-        usuario.setSenha("teste"); 
-        usuario.setDataNascimento(new Date());
-       
-    }*/
     private static void preencherPaciente(Paciente p) throws IOException {
         p.setNome("Fulano da Silva");
+        p.setCpf("98765432100");
         p.setEmail("fulano@gmail.com");
         p.setSenha("senha");
         p.setHistoricoFamiliar(" avo com cancer de mama.");
         p.setDataNascimento(new GregorianCalendar(2004, Calendar.APRIL, 23).getTime());
     }
 
-    private static void preencherMedico(Medico m) throws IOException {
+    private static void preencherMedico(Medico m, Set<Especialidade> especialidades) throws IOException {
         m.setNome("Dra. Maria");
+        m.setCpf("12345678901");
         m.setEmail("medicofulano@gmail.com");
         m.setSenha("senha");
         m.setCrm("123456");
-        m.setEspecialidade("mastologia");
+        for (Especialidade e : especialidades) {
+            m.adicionarEspecialidade(e);
+        }
     }
 
     private static void consultarPaciente(Long id) {
@@ -134,12 +121,13 @@ public class Vivamamadsc {
                     Paciente:
                       id={0}
                       nome={1}
-                      email={2}
+                      email={2} 
+                      cpf={3}   
                       nascimento={3}
                       historicoFamiliar={4}
                     """,
                     new Object[]{p.getId(), p.getNome(), p.getEmail(),
-                        p.getDataNascimento(), p.getHistoricoFamiliar()});
+                        p.getCpf(), p.getDataNascimento(), p.getHistoricoFamiliar()});
         } finally {
             em.close();
         }
@@ -153,17 +141,18 @@ public class Vivamamadsc {
             if (m == null) {
                 LOG.log(Level.WARNING, "Medico id={0} não encontrado.", id);
                 return;
-            }
+            }            
             LOG.log(Level.INFO, """
                     Medico:
                       id={0}
                       nome={1}
                       email={2}
+                      cpf={3}
                       crm={3}
-                      especialidade={4}
+                      especialidades={5}
                     """,
                     new Object[]{m.getId(), m.getNome(), m.getEmail(),
-                        m.getCrm(), m.getEspecialidade()});
+                        m.getCpf(), m.getCrm(), m.getEspecialidades()});
         } finally {
             em.close();
         }

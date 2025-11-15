@@ -56,14 +56,17 @@ public class MedicoTest {
 
     @Test
     public void testPersistenciaMedico() {
+        Especialidade esp = new Especialidade();
+        esp.setNome("Mastologia");
+        em.persist(esp);
+        
         Medico medico = new Medico();
         medico.setNome("Dr. João Lima");
+        medico.setCpf("12345678901");
         medico.setEmail("joao.lima@clinica.com");
         medico.setSenha("senha123");
         medico.setCrm("PE12345");
-        medico.setEspecialidade("Pediatria");
-        //medico.setTelefone("(81) 98888-7777");
-        //medico.setHorarioAtendimento("Seg a Sex - 8h às 17h");
+        medico.adicionarEspecialidade(esp);
 
         em.persist(medico);
         em.flush();

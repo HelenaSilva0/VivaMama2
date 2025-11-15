@@ -15,6 +15,7 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -30,7 +31,12 @@ public abstract class Usuario {
     @Size(max = 150, message = "Nome deve ter no máximo 150 caracteres")
     @Column(nullable = false, length = 150)
     private String nome;
-
+    
+    @NotBlank(message = "CPF é obrigatório")
+    @Pattern(regexp = "\\d{11}", message = "CPF deve conter exatamente 11 dígitos numéricos")
+    @Column(name = "CPF", unique = true, nullable = false, length = 11)
+    private String cpf;
+    
     @NotBlank(message = "E-mail é obrigatório")
     @Email(message = "E-mail inválido")
     @Size(max = 150, message = "E-mail deve ter no máximo 150 caracteres")
@@ -61,6 +67,14 @@ public abstract class Usuario {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+    
+    public String getCpf() {
+        return cpf;
+    }
+    
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public String getEmail() {

@@ -19,12 +19,16 @@
 
 <dataset>
     <!-- inserção da entidade usuário do tipo paciente -->
-    <USUARIO NOME="Ciclano da Silva" DTYPE="Paciente" EMAIL="ciclano@gmail.com" SENHA="teste" TIPO="PACIENTE"/>
+    <USUARIO NOME="Ciclano da Silva" CPF="11111111111" DTYPE="Paciente" EMAIL="ciclano@gmail.com" SENHA="teste" TIPO="PACIENTE"/>
     <PACIENTE ID="1" DT_NASCIMENTO="2004-04-23" HISTORICOFAMILIAR="Sem histórico familiar."/>
 
     <!-- inserção da entidade usuário do tipo medico -->
-    <USUARIO NOME="Fulano da Silva" DTYPE="Medico" EMAIL="fulano@gmail.com" SENHA="teste" TIPO="MEDICO"/>
-    <MEDICO ID="2" CRM="1234456" ESPECIALIDADE="mastologista"/>
+    <USUARIO NOME="Fulano da Silva" CPF="22222222222" DTYPE="Medico" EMAIL="fulano@gmail.com" SENHA="teste" TIPO="MEDICO"/>
+    <MEDICO ID="2" CRM="1234456" />
+    
+    <ESPECIALIDADE ID="2" NOME="mastologista"/>
+    
+    <MEDICO_ESPECIALIDADE MEDICO_ID="2" ESPECIALIDADE_ID="2"/>
 
     <!-- conversa com id=1 entre usuario 1 (paciente) e usuario 2 (medico) -->
     <CONVERSA ASSUNTO="Conversa inicial" CRIADO_EM="2025-11-01 10:00:00" ATIVA="true"/>

@@ -6,22 +6,29 @@ package com.vivamamadsc.vivamamadsc;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Medico extends Usuario {
- 
+
     @NotBlank(message = "CRM é obrigatório")
     @Size(max = 20, message = "CRM deve ter no máximo 20 caracteres")
     @Column(name = "CRM", unique = true, nullable = false, length = 20)
     private String crm;
 
-    // Separar o atributo especialidade numa classe para criar o relacionamento many to many
-    @NotBlank(message = "Especialidade é obrigatória")
-    @Size(max = 100, message = "Especialidade deve ter no máximo 100 caracteres")
-    @Column(name = "ESPECIALIDADE", nullable = false, length = 100)
-    private String especialidade;
+    @ManyToMany
+    @JoinTable(
+            name = "MEDICO_ESPECIALIDADE",
+            joinColumns = @JoinColumn(name = "MEDICO_ID"),
+            inverseJoinColumns = @JoinColumn(name = "ESPECIALIDADE_ID")
+    )
+    private Set<Especialidade> especialidades = new HashSet<>();
 
     public Medico() {
         setTipo(TipoUsuario.MEDICO);
@@ -35,12 +42,20 @@ public class Medico extends Usuario {
         this.crm = crm;
     }
 
-    public String getEspecialidade() {
-        return especialidade;
+    public Set<Especialidade> getEspecialidades() {
+        return especialidades;
     }
 
-    public void setEspecialidade(String especialidade) {
-        this.especialidade = especialidade;
+    public void setEspecialidades(Set<Especialidade> especialidades) {
+        this.especialidades = especialidades;
+    }
+
+    public void adicionarEspecialidade(Especialidade esp) {
+        this.especialidades.add(esp);
+    }
+
+    public void removerEspecialidade(Especialidade esp) {
+        this.especialidades.remove(esp);
     }
 
 }
