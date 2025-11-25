@@ -56,39 +56,49 @@ public class MedicoTest {
 
     @Test
     public void testPersistenciaMedico() {
+        Medico medico = new Medico();
+        medico.setNome("Dra. Ana");
+        medico.setEmail("ana@teste.com");
+        medico.setSenha("123456");
+        medico.setCpf("33333333333");
+
+        Crm crm = new Crm();
+        crm.setNumero("SP123456");
+        crm.setEstado("SP");
+        crm.setMedico(medico);
+
+        medico.setCrm(crm);
+
+//        assertNotNull(medico.getId());
+
         Especialidade esp = new Especialidade();
         esp.setNome("Mastologia");
         em.persist(esp);
-        
-        Usuario usuario = new Usuario();
-        usuario.setNome("Dr. João Lima");
-        usuario.setCpf("12345678901");
-        usuario.setEmail("joao.lima@clinica.com");
-        usuario.setSenha("senha123");
-        usuario.setTipo(TipoUsuario.MEDICO);
-        
-        Medico medico = new Medico();
-        
-        medico.setCrm("PE12345");
-        
-        medico.setUsuario(usuario);
-        usuario.setMedico(medico);
-        
+//        
+//        Medico medico = new Medico();
+//        medico.setNome("Dr. João Lima");
+//        medico.setCpf("12345678901");
+//        medico.setEmail("joao.lima@clinica.com");
+//        medico.setSenha("senha123");
+//        medico.setCrm("PE12345");
         medico.addEspecialidade(esp);
+//
+//        em.persist(medico);
+//        em.flush();
+//
 
         em.persist(medico);
-        em.flush();
 
-        assertNotNull(medico.getUsuario());
-        assertNotNull(medico.getUsuario().getId());
-        assertEquals(usuario.getId(), medico.getUsuario().getId());
+        em.flush();
+        em.clear();
+        
+        assertNotNull(medico.getId());
     }
 
     @Test
     public void testConsultaPorId() {
         Medico medico = em.find(Medico.class, 2L);
-        //assertNotNull(medico);
-        assertEquals("123456", medico.getCrm());
+        assertNotNull(medico.getId());
+        assertEquals("SP123456", medico.getCrm().getNumero());
     }
 }
-

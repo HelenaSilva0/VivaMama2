@@ -15,6 +15,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  *
@@ -80,7 +81,7 @@ public class Exame {
     public Paciente getPaciente() {
         return paciente;
     }
-    
+
     void setPaciente(Paciente paciente) {
         this.paciente = paciente;
     }
@@ -88,7 +89,7 @@ public class Exame {
     public void addPaciente(Paciente paciente) {
         this.paciente = paciente;
     }
-    
+
     public void removePaciente() {
         this.paciente = null;
     }
@@ -100,17 +101,28 @@ public class Exame {
     public void setImagem(byte[] imagem) {
         this.imagem = imagem;
     }
-    @Override
-public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof Exame)) return false;
-    Exame other = (Exame) o;
-    if (this.id == null || other.id == null) return false;
-    return this.id.equals(other.id);
-}
 
-@Override
-public int hashCode() {
-    return (id != null ? id.hashCode() : 0);
-}
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 37 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Exame other = (Exame) obj;
+        return Objects.equals(this.id, other.id);
+    }
+    
+    
 }

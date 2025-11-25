@@ -4,7 +4,6 @@
  */
 package com.vivamamadsc.vivamamadsc;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -12,8 +11,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -21,14 +20,14 @@ import jakarta.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
-@Table(name = "USUARIO")
-public class Usuario {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Usuario {
 // adicionar cpf e modificar o teste de mensagem
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @NotBlank(message = "Nome é obrigatório")
     @Size(max = 150, message = "Nome deve ter no máximo 150 caracteres")
     @Column(nullable = false, length = 150)
@@ -53,15 +52,6 @@ public class Usuario {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private TipoUsuario tipo;
-    
-    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Paciente paciente;
-    
-    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Medico medico;
-    
-    public Usuario() {
-    }
 
     public Long getId() {
         return id;
@@ -111,48 +101,28 @@ public class Usuario {
     public void setTipo(TipoUsuario tipo) {
         this.tipo = tipo;
     }
-    
-    public Paciente getPaciente() {
-        return paciente;
-    }
-
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
-        if (paciente != null && paciente.getUsuario() != this) {
-            paciente.setUsuario(this);
-        }
-    }
-
-    public Medico getMedico() {
-        return medico;
-    }
-
-    public void setMedico(Medico medico) {
-        this.medico = medico;
-        if (medico != null && medico.getUsuario() != this) {
-            medico.setUsuario(this);
-        }
-    }
-    
-    @Override
-    public boolean equals(Object o) {
-        if (this == o){ 
-            return true;
-        }
-    if (!(o instanceof Usuario)){
-        return false;
-        }
-    Usuario other = (Usuario) o;
-        if (this.id == null || other.id == null) {
-            return false;
-        }
-
-        return this.id.equals(other.id); 
-    }
 
     @Override
     public int hashCode() {
-        return (id != null ? id.hashCode() : 0);
+        int hash = 7;
+        hash = 41 * hash + Objects.hashCode(this.id);
+        return hash;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Usuario other = (Usuario) obj;
+        return Objects.equals(this.id, other.id);
+    }
+    
+    
 }

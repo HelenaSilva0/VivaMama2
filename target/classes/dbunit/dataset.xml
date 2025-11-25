@@ -22,13 +22,13 @@
     <USUARIO 
         NOME="Ciclano da Silva" 
         CPF="11111111111" 
-     
+        DTYPE="Paciente" 
         EMAIL="ciclano@gmail.com" 
-        SENHA="teste123" 
+        SENHA="teste" 
         TIPO="PACIENTE"
     />
     <PACIENTE 
-        USUARIO_ID="1" 
+        ID="1" 
         DT_NASCIMENTO="2004-04-23" 
         HISTORICOFAMILIAR="Sem histórico familiar."
         HISTORICO_FAMILIAR_PDF="MTIzNDU="
@@ -38,15 +38,15 @@
     <USUARIO 
         NOME="Fulano da Silva" 
         CPF="22222222222" 
-      
+        DTYPE="Medico" 
         EMAIL="fulano@gmail.com" 
-        SENHA="teste123" 
+        SENHA="teste" 
         TIPO="MEDICO"
     />
-    <MEDICO 
-        USUARIO_ID="2" 
-        CRM="123456"
-    />
+    <MEDICO ID="2" />
+    
+    <CRM NUMERO="SP123456" ESTADO="SP" MEDICO_ID="2"/>
+    <!--<CRM ID="2" NUMERO="SP789102" ESTADO="SP" MEDICO_ID="2"/>-->
     
     <!-- ESPECIALIDADES -->
     <ESPECIALIDADE NOME="ginecologista"/>

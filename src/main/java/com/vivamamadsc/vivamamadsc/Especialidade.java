@@ -21,7 +21,6 @@ import java.util.Objects;
  *
  * @author helena
  */
-
 @Entity
 @Table(name = "ESPECIALIDADE")
 public class Especialidade {
@@ -30,13 +29,11 @@ public class Especialidade {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    
     @NotBlank(message = "Nome da especialidade é obrigatório")
     @Size(max = 100, message = "Nome da especialidade deve ter no máximo 100 caracteres")
     @Column(name = "NOME", nullable = false, length = 100)
     private String nome;
 
-   
     @ManyToMany(mappedBy = "especialidades")
     private List<Medico> medicos = new ArrayList<>();
 
@@ -57,33 +54,41 @@ public class Especialidade {
     }
 
     public void addMedico(Medico medico) {
-        if (medico == null) return;
+        if (medico == null) {
+            return;
+        }
         if (!medicos.contains(medico)) {
             medicos.add(medico);
         }
     }
 
     public void removeMedico(Medico medico) {
-        if (medico == null) return;
+        if (medico == null) {
+            return;
+        }
         medicos.remove(medico);
-    }
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Especialidade)) {
-            return false;
-        }
-        Especialidade other = (Especialidade) o;
-        if (this.id == null || other.id == null) {
-            return false;
-        }
-        return this.id.equals(other.id);
     }
 
     @Override
     public int hashCode() {
-        return (id != null ? id.hashCode() : 0);
+        int hash = 7;
+        hash = 17 * hash + Objects.hashCode(this.id);
+        return hash;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Especialidade other = (Especialidade) obj;
+        return Objects.equals(this.id, other.id);
+    }
+
 }

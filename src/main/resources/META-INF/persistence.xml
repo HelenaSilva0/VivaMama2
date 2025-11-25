@@ -10,6 +10,7 @@
     <class>com.vivamamadsc.vivamamadsc.Mensagem</class>
     <class>com.vivamamadsc.vivamamadsc.Especialidade</class>
     <class>com.vivamamadsc.vivamamadsc.Exame</class>
+    <class>com.vivamamadsc.vivamamadsc.Crm</class>
 
     <properties>
       <property name="jakarta.persistence.jdbc.url" value="jdbc:derby://localhost:1527/vivamamadsc;create=true"/>

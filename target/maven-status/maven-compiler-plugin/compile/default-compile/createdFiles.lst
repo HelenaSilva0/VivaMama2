@@ -2,6 +2,7 @@ com\vivamamadsc\vivamamadsc\Exame.class
 com\vivamamadsc\vivamamadsc\TipoUsuario.class
 com\vivamamadsc\vivamamadsc\Paciente.class
 com\vivamamadsc\vivamamadsc\Usuario.class
+com\vivamamadsc\vivamamadsc\Crm.class
 com\vivamamadsc\vivamamadsc\Especialidade.class
 com\vivamamadsc\vivamamadsc\Mensagem.class
 com\vivamamadsc\vivamamadsc\Medico.class

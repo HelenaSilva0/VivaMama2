@@ -19,6 +19,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -48,50 +49,80 @@ public class Conversa {
     // participantes: muitos-para-muitos com Usuario
     @ManyToMany
     @JoinTable(
-        name = "CONVERSA_PARTICIPANTES",
-        joinColumns = @JoinColumn(name = "conversa_id"),
-        inverseJoinColumns = @JoinColumn(name = "usuario_id")
+            name = "CONVERSA_PARTICIPANTES",
+            joinColumns = @JoinColumn(name = "conversa_id"),
+            inverseJoinColumns = @JoinColumn(name = "usuario_id")
     )
     private Set<Usuario> participantes = new HashSet<>();
 
     // construtores, getters e setters
-    public Conversa() {}
+    public Conversa() {
+    }
 
-    public Long getId() { return id; }
+    public Long getId() {
+        return id;
+    }
 
-    public String getAssunto() { return assunto; }
-    public void setAssunto(String assunto) { this.assunto = assunto; }
+    public String getAssunto() {
+        return assunto;
+    }
 
-    public Date getCriadoEm() { return criadoEm; }
-    public void setCriadoEm(Date criadoEm) { this.criadoEm = criadoEm; }
+    public void setAssunto(String assunto) {
+        this.assunto = assunto;
+    }
 
-    public boolean isAtiva() { return ativa; }
-    public void setAtiva(boolean ativa) { this.ativa = ativa; }
+    public Date getCriadoEm() {
+        return criadoEm;
+    }
 
-    public Set<Usuario> getParticipantes() { return participantes; }
-    public void setParticipantes(Set<Usuario> participantes) { this.participantes = participantes; }
+    public void setCriadoEm(Date criadoEm) {
+        this.criadoEm = criadoEm;
+    }
 
-    public void adicionarParticipante(Usuario u) { this.participantes.add(u); }
-    public void removerParticipante(Usuario u) { this.participantes.remove(u); }
-    
-    @Override
+    public boolean isAtiva() {
+        return ativa;
+    }
 
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Conversa)) {
-            return false;
-        }
-        Conversa other = (Conversa) o;
-        if (this.id == null || other.id == null) {
-            return false;
-        }
-        return this.id.equals(other.id);
+    public void setAtiva(boolean ativa) {
+        this.ativa = ativa;
+    }
+
+    public Set<Usuario> getParticipantes() {
+        return participantes;
+    }
+
+    public void setParticipantes(Set<Usuario> participantes) {
+        this.participantes = participantes;
+    }
+
+    public void adicionarParticipante(Usuario u) {
+        this.participantes.add(u);
+    }
+
+    public void removerParticipante(Usuario u) {
+        this.participantes.remove(u);
     }
 
     @Override
     public int hashCode() {
-        return (id != null ? id.hashCode() : 0);
+        int hash = 3;
+        hash = 79 * hash + Objects.hashCode(this.id);
+        return hash;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Conversa other = (Conversa) obj;
+        return Objects.equals(this.id, other.id);
+    }
+
 }

@@ -29,7 +29,7 @@ public class EspecialidadeTest {
     @BeforeClass
     public static void setUpClass() {
         emf = Persistence.createEntityManagerFactory("vivamamadsc");
-        DbUnitUtil.inserirDados(); // carrega o dataset XML
+        DbUnitUtil.inserirDados(); 
     }
 
     @AfterClass
@@ -68,7 +68,7 @@ public class EspecialidadeTest {
     
     @Test
     public void testConsultaEspecialidadePorId() {
-        Especialidade esp = em.find(Especialidade.class, 2L); // deve ser "mastologista"
+        Especialidade esp = em.find(Especialidade.class, 2L); 
 
         assertNotNull(esp);
         assertEquals("mastologista", esp.getNome());
@@ -76,16 +76,16 @@ public class EspecialidadeTest {
     
     @Test
     public void testMedicosDaEspecialidade() {
-        Especialidade esp = em.find(Especialidade.class, 2L); // "mastologista"
+        Especialidade esp = em.find(Especialidade.class, 2L); 
         assertNotNull(esp);
 
         // Carrega a lista de médicos associados
         assertNotNull(esp.getMedicos());
-        assertTrue(esp.getMedicos().size() > 0);
+        assertTrue(!esp.getMedicos().isEmpty());
 
         Medico medico = esp.getMedicos().get(0);
         assertNotNull(medico);
-        assertEquals("123456", medico.getCrm());
+        assertEquals("SP123456", medico.getCrm().getNumero());
     }
     
 }

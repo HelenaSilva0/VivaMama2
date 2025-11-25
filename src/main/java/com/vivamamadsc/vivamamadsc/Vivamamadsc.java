@@ -14,7 +14,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 public class Vivamamadsc {
 
@@ -31,7 +30,6 @@ public class Vivamamadsc {
             Especialidade oncologia = new Especialidade();
             oncologia.setNome("Oncologia");
             persistir(oncologia);
-            
             Especialidade mastologia = new Especialidade();
             mastologia.setNome("Mastologia");
             persistir(mastologia);
@@ -51,21 +49,15 @@ public class Vivamamadsc {
 
     private static Long persistirPaciente() throws IOException {
 
-        Usuario u = new Usuario();
         Paciente p = new Paciente();
-        preencherPaciente(u, p);
-        u.setPaciente(p);                 // seta o paciente dentro do usuário
-        u.setTipo(TipoUsuario.PACIENTE);
-        return persistir(u);
+        preencherPaciente(p);
+        return persistir(p);
     }
 
     private static Long persistirMedico(Set<Especialidade> especialidades) throws IOException {
-        Usuario u = new Usuario();
         Medico m = new Medico();
-        preencherMedico(u, m, especialidades);
-        u.setMedico(m);
-        u.setTipo(TipoUsuario.MEDICO);
-        return persistir(u);
+        preencherMedico(m, especialidades);
+        return persistir(m);
     }
 
     private static <T> Long persistir(T entidade) {
@@ -95,23 +87,22 @@ public class Vivamamadsc {
         }
     }
 
-    private static void preencherPaciente(Usuario u, Paciente p) throws IOException {
-        u.setNome("Fulano da Silva");
-        u.setCpf("98765432100");
-        u.setEmail("fulano@gmail.com");
-        u.setSenha("senha");
+    private static void preencherPaciente(Paciente p) throws IOException {
+        p.setNome("Fulano da Silva");
+        p.setCpf("98765432100");
+        p.setEmail("fulano@gmail.com");
+        p.setSenha("senha");
 //        p.setHistoricoFamiliar(" avo com cancer de mama.");
         p.setDataNascimento(new GregorianCalendar(2004, Calendar.APRIL, 23).getTime());
-        p.setUsuario(u);
     }
 
-    private static void preencherMedico(Usuario u, Medico m, Set<Especialidade> especialidades) throws IOException {
-        u.setNome("Dra. Maria");
-        u.setCpf("12345678901");
-        u.setEmail("medicofulano@gmail.com");
-        u.setSenha("senha");
-        m.setCrm("123456");
-        m.setUsuario(u);
+    private static void preencherMedico(Medico m, Set<Especialidade> especialidades) throws IOException {
+        
+        m.setNome("Dra. Maria");
+        m.setCpf("12345678901");
+        m.setEmail("medicofulano@gmail.com");
+        m.setSenha("senha");
+//        m.setCrm("123456");
         for (Especialidade e : especialidades) {
             m.addEspecialidade(e);
         }
@@ -126,9 +117,6 @@ public class Vivamamadsc {
                 LOG.log(Level.WARNING, "Paciente id={0} não encontrado.", id);
                 return;
             }
-            
-            Usuario u = p.getUsuario();
-            
             LOG.log(Level.INFO, """
                     Paciente:
                       id={0}
@@ -140,11 +128,11 @@ public class Vivamamadsc {
                     """,
                     new Object[]{
                         p.getId(),
-                        u != null ? u.getNome() : null,
-                        u != null ? u.getEmail() : null,
-                        u != null ? u.getCpf() : null,
+                        p.getNome(),
+                        p.getEmail(),
+                        p.getCpf(),
                         p.getDataNascimento(),
-                        p.getHistoricoFamiliar()
+//                        p.getHistoricoFamiliar()
                     });
         } finally {
             em.close();
@@ -160,16 +148,6 @@ public class Vivamamadsc {
                 LOG.log(Level.WARNING, "Medico id={0} não encontrado.", id);
                 return;
             }
-            
-             Usuario u = m.getUsuario();
-             
-             String especialidadesStr = m.getEspecialidades() == null
-                    ? ""
-                    : m.getEspecialidades()
-                        .stream()
-                        .map(Especialidade::getNome)
-                        .collect(Collectors.joining(", "));
-            
             LOG.log(Level.INFO, """
                     Medico:
                       id={0}
@@ -179,14 +157,8 @@ public class Vivamamadsc {
                       crm={3}
                       especialidades={5}
                     """,
-                    new Object[]{
-                       m.getId(),
-                        u != null ? u.getNome() : null,
-                        u != null ? u.getEmail() : null,
-                        u != null ? u.getCpf() : null,
-                        m.getCrm(),
-                        especialidadesStr
-                    });
+                    new Object[]{m.getId(), m.getNome(), m.getEmail(),
+                        m.getCpf(), m.getCrm(), m.getEspecialidades()});
         } finally {
             em.close();
         }
