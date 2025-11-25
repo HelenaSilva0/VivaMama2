@@ -136,19 +136,23 @@ public class Usuario {
     
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
+        if (this == o){ 
             return true;
         }
-        if (!(o instanceof Usuario)) {
+    if (!(o instanceof Usuario)){
+        return false;
+        }
+    Usuario other = (Usuario) o;
+        if (this.id == null || other.id == null) {
             return false;
         }
-        Usuario usuario = (Usuario) o;
-        return Objects.equals(id, usuario.id);
+
+        return this.id.equals(other.id); 
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return (id != null ? id.hashCode() : 0);
     }
 
 }

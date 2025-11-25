@@ -90,16 +90,23 @@ public class Medico {
             esp.removeMedico(this);
         }
     }
- @Override
+    @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Medico)) return false;
-        Medico medico = (Medico) o;
-        return Objects.equals(id, medico.id);
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Medico)) {
+            return false;
+        }
+        Medico other = (Medico) o;
+        if (this.id == null || other.id == null) {
+            return false;
+        }
+        return this.id.equals(other.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return (id != null ? id.hashCode() : 0);
     }
 }

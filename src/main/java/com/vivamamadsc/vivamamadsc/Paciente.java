@@ -107,5 +107,25 @@ public class Paciente {
         exames.remove(exame);
         exame.removePaciente();
     }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Paciente)) {
+            return false;
+        }
+        Paciente other = (Paciente) o;
+        if (this.id == null || other.id == null) {
+            return false;
+        }
+        return this.id.equals(other.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return (id != null ? id.hashCode() : 0);
+    }
 
 }

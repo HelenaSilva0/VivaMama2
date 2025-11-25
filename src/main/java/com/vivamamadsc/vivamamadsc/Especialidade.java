@@ -69,14 +69,21 @@ public class Especialidade {
     }
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Especialidade)) return false;
-        Especialidade that = (Especialidade) o;
-        return Objects.equals(id, that.id);
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Especialidade)) {
+            return false;
+        }
+        Especialidade other = (Especialidade) o;
+        if (this.id == null || other.id == null) {
+            return false;
+        }
+        return this.id.equals(other.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return (id != null ? id.hashCode() : 0);
     }
 }

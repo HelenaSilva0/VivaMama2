@@ -100,4 +100,17 @@ public class Exame {
     public void setImagem(byte[] imagem) {
         this.imagem = imagem;
     }
+    @Override
+public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof Exame)) return false;
+    Exame other = (Exame) o;
+    if (this.id == null || other.id == null) return false;
+    return this.id.equals(other.id);
+}
+
+@Override
+public int hashCode() {
+    return (id != null ? id.hashCode() : 0);
+}
 }

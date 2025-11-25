@@ -73,4 +73,25 @@ public class Conversa {
 
     public void adicionarParticipante(Usuario u) { this.participantes.add(u); }
     public void removerParticipante(Usuario u) { this.participantes.remove(u); }
+    
+    @Override
+
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Conversa)) {
+            return false;
+        }
+        Conversa other = (Conversa) o;
+        if (this.id == null || other.id == null) {
+            return false;
+        }
+        return this.id.equals(other.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return (id != null ? id.hashCode() : 0);
+    }
 }
