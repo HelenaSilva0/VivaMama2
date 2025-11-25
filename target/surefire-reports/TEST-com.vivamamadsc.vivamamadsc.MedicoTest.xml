@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.vivamamadsc.vivamamadsc.MedicoTest" time="0.512" tests="2" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.vivamamadsc.vivamamadsc.MedicoTest" time="0.455" tests="2" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="23"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="user.country" value="BR"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-23\bin"/>
-    <property name="sun.java.command" value="C:\Users\necta\AppData\Local\Temp\surefire4539705608862635058\surefirebooter-20251115173809446_3.jar C:\Users\necta\AppData\Local\Temp\surefire4539705608862635058 2025-11-15T17-38-09_310-jvmRun1 surefire-20251115173809446_1tmp surefire_0-20251115173809446_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\necta\AppData\Local\Temp\surefire71913199560843292\surefirebooter-20251125155220820_3.jar C:\Users\necta\AppData\Local\Temp\surefire71913199560843292 2025-11-25T15-52-20_668-jvmRun1 surefire-20251125155220820_1tmp surefire_0-20251125155220820_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\AHelenaOficial\estudos\NetBeansProjects\VivaMama2\target\test-classes;C:\AHelenaOficial\estudos\NetBeansProjects\VivaMama2\target\classes;C:\Users\necta\.m2\repository\org\eclipse\persistence\eclipselink\4.0.4\eclipselink-4.0.4.jar;C:\Users\necta\.m2\repository\jakarta\persistence\jakarta.persistence-api\3.1.0\jakarta.persistence-api-3.1.0.jar;C:\Users\necta\.m2\repository\jakarta\xml\bind\jakarta.xml.bind-api\4.0.2\jakarta.xml.bind-api-4.0.2.jar;C:\Users\necta\.m2\repository\com\sun\xml\bind\jaxb-xjc\4.0.5\jaxb-xjc-4.0.5.jar;C:\Users\necta\.m2\repository\com\sun\xml\bind\jaxb-core\4.0.5\jaxb-core-4.0.5.jar;C:\Users\necta\.m2\repository\org\eclipse\angus\angus-activation\2.0.2\angus-activation-2.0.2.jar;C:\Users\necta\.m2\repository\jakarta\activation\jakarta.activation-api\2.1.3\jakarta.activation-api-2.1.3.jar;C:\Users\necta\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.jpa\4.0.4\org.eclipse.persistence.jpa-4.0.4.jar;C:\Users\necta\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.asm\9.7.0\org.eclipse.persistence.asm-9.7.0.jar;C:\Users\necta\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.core\4.0.4\org.eclipse.persistence.core-4.0.4.jar;C:\Users\necta\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.jpa.jpql\4.0.4\org.eclipse.persistence.jpa.jpql-4.0.4.jar;C:\Users\necta\.m2\repository\org\apache\derby\derbyclient\10.16.1.1\derbyclient-10.16.1.1.jar;C:\Users\necta\.m2\repository\org\apache\derby\derbyshared\10.16.1.1\derbyshared-10.16.1.1.jar;C:\Users\necta\.m2\repository\org\apache\derby\derbytools\10.16.1.1\derbytools-10.16.1.1.jar;C:\Users\necta\.m2\repository\org\apache\derby\derby\10.17.1.0\derby-10.17.1.0.jar;C:\Users\necta\.m2\repository\org\mindrot\jbcrypt\0.4\jbcrypt-0.4.jar;C:\Users\necta\.m2\repository\jakarta\validation\jakarta.validation-api\3.0.2\jakarta.validation-api-3.0.2.jar;C:\Users\necta\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\necta\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\necta\.m2\repository\org\dbunit\dbunit\2.8.0\dbunit-2.8.0.jar;C:\Users\necta\.m2\repository\org\slf4j\slf4j-api\1.7.25\slf4j-api-1.7.25.jar;C:\Users\necta\.m2\repository\org\yaml\snakeyaml\2.2\snakeyaml-2.2.jar;C:\Users\necta\.m2\repository\org\postgresql\postgresql\42.3.1\postgresql-42.3.1.jar;C:\Users\necta\.m2\repository\org\checkerframework\checker-qual\3.5.0\checker-qual-3.5.0.jar;C:\Users\necta\.m2\repository\com\oracle\database\jdbc\ojdbc8\19.3.0.0\ojdbc8-19.3.0.0.jar;C:\Users\necta\.m2\repository\com\oracle\database\jdbc\ucp\19.3.0.0\ucp-19.3.0.0.jar;C:\Users\necta\.m2\repository\com\oracle\database\security\oraclepki\19.3.0.0\oraclepki-19.3.0.0.jar;C:\Users\necta\.m2\repository\com\oracle\database\security\osdt_cert\19.3.0.0\osdt_cert-19.3.0.0.jar;C:\Users\necta\.m2\repository\com\oracle\database\security\osdt_core\19.3.0.0\osdt_core-19.3.0.0.jar;C:\Users\necta\.m2\repository\com\oracle\database\ha\simplefan\19.3.0.0\simplefan-19.3.0.0.jar;C:\Users\necta\.m2\repository\com\oracle\database\ha\ons\19.3.0.0\ons-19.3.0.0.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\necta\AppData\Local\Temp\surefire4539705608862635058\surefirebooter-20251115173809446_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\necta\AppData\Local\Temp\surefire71913199560843292\surefirebooter-20251125155220820_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="23.0.2+7-58"/>
@@ -59,119 +59,122 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="67.0"/>
   </properties>
-  <testcase name="testPersistenciaMedico" classname="com.vivamamadsc.vivamamadsc.MedicoTest" time="0.019">
-    <system-out><![CDATA[[EL Fine]: moxy: 2025-11-15 17:38:12.164--Thread(Thread[#1,main,5,main])--SAXParserFactory instance: com.sun.org.apache.xerces.internal.jaxp.SAXParserFactoryImpl@5ea502e0
-[EL Fine]: server: 2025-11-15 17:38:12.172--Thread(Thread[#1,main,5,main])--Configured server platform: org.eclipse.persistence.platform.server.NoServerPlatform
-[EL Config]: metadata: 2025-11-15 17:38:12.192--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The access type for the persistent class [class com.vivamamadsc.vivamamadsc.Usuario] is set to [FIELD].
-[EL Config]: metadata: 2025-11-15 17:38:12.194--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The access type for the persistent class [class com.vivamamadsc.vivamamadsc.Paciente] is set to [FIELD].
-[EL Config]: metadata: 2025-11-15 17:38:12.195--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The target entity (reference) class for the one to many mapping element [field exames] is being defaulted to: class com.vivamamadsc.vivamamadsc.Exame.
-[EL Config]: metadata: 2025-11-15 17:38:12.195--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The access type for the persistent class [class com.vivamamadsc.vivamamadsc.Exame] is set to [FIELD].
-[EL Config]: metadata: 2025-11-15 17:38:12.196--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The target entity (reference) class for the many to one mapping element [field paciente] is being defaulted to: class com.vivamamadsc.vivamamadsc.Paciente.
-[EL Config]: metadata: 2025-11-15 17:38:12.196--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The access type for the persistent class [class com.vivamamadsc.vivamamadsc.Medico] is set to [FIELD].
-[EL Config]: metadata: 2025-11-15 17:38:12.196--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The target entity (reference) class for the many to many mapping element [field especialidades] is being defaulted to: class com.vivamamadsc.vivamamadsc.Especialidade.
-[EL Config]: metadata: 2025-11-15 17:38:12.196--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The access type for the persistent class [class com.vivamamadsc.vivamamadsc.Mensagem] is set to [FIELD].
-[EL Config]: metadata: 2025-11-15 17:38:12.196--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The target entity (reference) class for the many to one mapping element [field remetente] is being defaulted to: class com.vivamamadsc.vivamamadsc.Usuario.
-[EL Config]: metadata: 2025-11-15 17:38:12.197--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The target entity (reference) class for the many to one mapping element [field conversa] is being defaulted to: class com.vivamamadsc.vivamamadsc.Conversa.
-[EL Config]: metadata: 2025-11-15 17:38:12.197--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The access type for the persistent class [class com.vivamamadsc.vivamamadsc.Conversa] is set to [FIELD].
-[EL Config]: metadata: 2025-11-15 17:38:12.197--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The target entity (reference) class for the many to many mapping element [field participantes] is being defaulted to: class com.vivamamadsc.vivamamadsc.Usuario.
-[EL Config]: metadata: 2025-11-15 17:38:12.197--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The access type for the persistent class [class com.vivamamadsc.vivamamadsc.Especialidade] is set to [FIELD].
-[EL Config]: metadata: 2025-11-15 17:38:12.197--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The target entity (reference) class for the many to many mapping element [field medicos] is being defaulted to: class com.vivamamadsc.vivamamadsc.Medico.
-[EL Config]: metadata: 2025-11-15 17:38:12.198--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The alias name for the entity class [class com.vivamamadsc.vivamamadsc.Paciente] is being defaulted to: Paciente.
-[EL Config]: metadata: 2025-11-15 17:38:12.198--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The alias name for the entity class [class com.vivamamadsc.vivamamadsc.Usuario] is being defaulted to: Usuario.
-[EL Config]: metadata: 2025-11-15 17:38:12.198--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The table name for entity [class com.vivamamadsc.vivamamadsc.Usuario] is being defaulted to: USUARIO.
-[EL Config]: metadata: 2025-11-15 17:38:12.198--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The discriminator column name for the root inheritance class [com.vivamamadsc.vivamamadsc.Usuario] is being defaulted to: DTYPE.
-[EL Config]: metadata: 2025-11-15 17:38:12.198--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The column name for element [senha] is being defaulted to: SENHA.
-[EL Config]: metadata: 2025-11-15 17:38:12.199--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The column name for element [tipo] is being defaulted to: TIPO.
-[EL Config]: metadata: 2025-11-15 17:38:12.199--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The column name for element [nome] is being defaulted to: NOME.
-[EL Config]: metadata: 2025-11-15 17:38:12.2--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The column name for element [id] is being defaulted to: ID.
-[EL Config]: metadata: 2025-11-15 17:38:12.2--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The column name for element [email] is being defaulted to: EMAIL.
-[EL Config]: metadata: 2025-11-15 17:38:12.2--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The table name for entity [class com.vivamamadsc.vivamamadsc.Paciente] is being defaulted to: PACIENTE.
-[EL Config]: metadata: 2025-11-15 17:38:12.2--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The primary key column name for the inheritance class [class com.vivamamadsc.vivamamadsc.Paciente] is being defaulted to: ID.
-[EL Config]: metadata: 2025-11-15 17:38:12.2--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The foreign key column name for the inheritance class [com.vivamamadsc.vivamamadsc.Paciente] is being defaulted to: ID.
-[EL Config]: metadata: 2025-11-15 17:38:12.201--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The alias name for the entity class [class com.vivamamadsc.vivamamadsc.Exame] is being defaulted to: Exame.
-[EL Config]: metadata: 2025-11-15 17:38:12.201--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The table name for entity [class com.vivamamadsc.vivamamadsc.Exame] is being defaulted to: EXAME.
-[EL Config]: metadata: 2025-11-15 17:38:12.201--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The column name for element [tipo] is being defaulted to: TIPO.
-[EL Config]: metadata: 2025-11-15 17:38:12.201--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The column name for element [id] is being defaulted to: ID.
-[EL Config]: metadata: 2025-11-15 17:38:12.201--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The alias name for the entity class [class com.vivamamadsc.vivamamadsc.Medico] is being defaulted to: Medico.
-[EL Config]: metadata: 2025-11-15 17:38:12.201--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The table name for entity [class com.vivamamadsc.vivamamadsc.Medico] is being defaulted to: MEDICO.
-[EL Config]: metadata: 2025-11-15 17:38:12.201--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The primary key column name for the inheritance class [class com.vivamamadsc.vivamamadsc.Medico] is being defaulted to: ID.
-[EL Config]: metadata: 2025-11-15 17:38:12.202--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The foreign key column name for the inheritance class [com.vivamamadsc.vivamamadsc.Medico] is being defaulted to: ID.
-[EL Config]: metadata: 2025-11-15 17:38:12.202--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The alias name for the entity class [class com.vivamamadsc.vivamamadsc.Mensagem] is being defaulted to: Mensagem.
-[EL Config]: metadata: 2025-11-15 17:38:12.202--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The table name for entity [class com.vivamamadsc.vivamamadsc.Mensagem] is being defaulted to: MENSAGEM.
-[EL Config]: metadata: 2025-11-15 17:38:12.202--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The column name for element [id] is being defaulted to: ID.
-[EL Config]: metadata: 2025-11-15 17:38:12.202--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The alias name for the entity class [class com.vivamamadsc.vivamamadsc.Conversa] is being defaulted to: Conversa.
-[EL Config]: metadata: 2025-11-15 17:38:12.202--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The table name for entity [class com.vivamamadsc.vivamamadsc.Conversa] is being defaulted to: CONVERSA.
-[EL Config]: metadata: 2025-11-15 17:38:12.202--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The column name for element [id] is being defaulted to: ID.
-[EL Config]: metadata: 2025-11-15 17:38:12.202--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The alias name for the entity class [class com.vivamamadsc.vivamamadsc.Especialidade] is being defaulted to: Especialidade.
-[EL Config]: metadata: 2025-11-15 17:38:12.202--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The table name for entity [class com.vivamamadsc.vivamamadsc.Especialidade] is being defaulted to: ESPECIALIDADE.
-[EL Config]: metadata: 2025-11-15 17:38:12.202--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The column name for element [id] is being defaulted to: ID.
-[EL Config]: metadata: 2025-11-15 17:38:12.203--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The primary key column name for the mapping element [field paciente] is being defaulted to: ID.
-[EL Config]: metadata: 2025-11-15 17:38:12.203--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The source primary key column name for the many to many mapping [field especialidades] is being defaulted to: ID.
-[EL Config]: metadata: 2025-11-15 17:38:12.203--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The target primary key column name for the many to many mapping [field especialidades] is being defaulted to: ID.
-[EL Config]: metadata: 2025-11-15 17:38:12.204--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The primary key column name for the mapping element [field remetente] is being defaulted to: ID.
-[EL Config]: metadata: 2025-11-15 17:38:12.204--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The primary key column name for the mapping element [field conversa] is being defaulted to: ID.
-[EL Config]: metadata: 2025-11-15 17:38:12.204--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The source primary key column name for the many to many mapping [field participantes] is being defaulted to: ID.
-[EL Config]: metadata: 2025-11-15 17:38:12.204--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--The target primary key column name for the many to many mapping [field participantes] is being defaulted to: ID.
-[EL Info]: 2025-11-15 17:38:12.207--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--EclipseLink, version: Eclipse Persistence Services - 4.0.4.v202407190748-059428cdd2583c46f1f3e50d235854840a6fa9a7
-[EL Fine]: connection: 2025-11-15 17:38:12.207--ServerSession(1144897090)--Connection(1094199074)--Thread(Thread[#1,main,5,main])--connecting(DatabaseLogin(
+  <testcase name="testPersistenciaMedico" classname="com.vivamamadsc.vivamamadsc.MedicoTest" time="0.012">
+    <system-out><![CDATA[[EL Fine]: moxy: 2025-11-25 15:52:23.579--Thread(Thread[#1,main,5,main])--SAXParserFactory instance: com.sun.org.apache.xerces.internal.jaxp.SAXParserFactoryImpl@4362d7df
+[EL Fine]: server: 2025-11-25 15:52:23.582--Thread(Thread[#1,main,5,main])--Configured server platform: org.eclipse.persistence.platform.server.NoServerPlatform
+[EL Config]: metadata: 2025-11-25 15:52:23.604--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The access type for the persistent class [class com.vivamamadsc.vivamamadsc.Paciente] is set to [FIELD].
+[EL Config]: metadata: 2025-11-25 15:52:23.605--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The target entity (reference) class for the one to one mapping element [field usuario] is being defaulted to: class com.vivamamadsc.vivamamadsc.Usuario.
+[EL Config]: metadata: 2025-11-25 15:52:23.606--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The target entity (reference) class for the one to many mapping element [field exames] is being defaulted to: class com.vivamamadsc.vivamamadsc.Exame.
+[EL Config]: metadata: 2025-11-25 15:52:23.606--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The access type for the persistent class [class com.vivamamadsc.vivamamadsc.Exame] is set to [FIELD].
+[EL Config]: metadata: 2025-11-25 15:52:23.607--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The target entity (reference) class for the many to one mapping element [field paciente] is being defaulted to: class com.vivamamadsc.vivamamadsc.Paciente.
+[EL Config]: metadata: 2025-11-25 15:52:23.607--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The access type for the persistent class [class com.vivamamadsc.vivamamadsc.Usuario] is set to [FIELD].
+[EL Config]: metadata: 2025-11-25 15:52:23.607--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The target entity (reference) class for the one to one mapping element [field paciente] is being defaulted to: class com.vivamamadsc.vivamamadsc.Paciente.
+[EL Config]: metadata: 2025-11-25 15:52:23.607--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The target entity (reference) class for the one to one mapping element [field medico] is being defaulted to: class com.vivamamadsc.vivamamadsc.Medico.
+[EL Config]: metadata: 2025-11-25 15:52:23.607--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The access type for the persistent class [class com.vivamamadsc.vivamamadsc.Medico] is set to [FIELD].
+[EL Config]: metadata: 2025-11-25 15:52:23.607--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The target entity (reference) class for the many to many mapping element [field especialidades] is being defaulted to: class com.vivamamadsc.vivamamadsc.Especialidade.
+[EL Config]: metadata: 2025-11-25 15:52:23.607--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The target entity (reference) class for the one to one mapping element [field usuario] is being defaulted to: class com.vivamamadsc.vivamamadsc.Usuario.
+[EL Config]: metadata: 2025-11-25 15:52:23.607--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The access type for the persistent class [class com.vivamamadsc.vivamamadsc.Mensagem] is set to [FIELD].
+[EL Config]: metadata: 2025-11-25 15:52:23.608--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The target entity (reference) class for the many to one mapping element [field remetente] is being defaulted to: class com.vivamamadsc.vivamamadsc.Usuario.
+[EL Config]: metadata: 2025-11-25 15:52:23.608--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The target entity (reference) class for the many to one mapping element [field conversa] is being defaulted to: class com.vivamamadsc.vivamamadsc.Conversa.
+[EL Config]: metadata: 2025-11-25 15:52:23.608--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The access type for the persistent class [class com.vivamamadsc.vivamamadsc.Conversa] is set to [FIELD].
+[EL Config]: metadata: 2025-11-25 15:52:23.608--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The target entity (reference) class for the many to many mapping element [field participantes] is being defaulted to: class com.vivamamadsc.vivamamadsc.Usuario.
+[EL Config]: metadata: 2025-11-25 15:52:23.608--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The access type for the persistent class [class com.vivamamadsc.vivamamadsc.Especialidade] is set to [FIELD].
+[EL Config]: metadata: 2025-11-25 15:52:23.608--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The target entity (reference) class for the many to many mapping element [field medicos] is being defaulted to: class com.vivamamadsc.vivamamadsc.Medico.
+[EL Config]: metadata: 2025-11-25 15:52:23.608--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The alias name for the entity class [class com.vivamamadsc.vivamamadsc.Paciente] is being defaulted to: Paciente.
+[EL Config]: metadata: 2025-11-25 15:52:23.609--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The column name for element [id] is being defaulted to: ID.
+[EL Config]: metadata: 2025-11-25 15:52:23.609--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The alias name for the entity class [class com.vivamamadsc.vivamamadsc.Exame] is being defaulted to: Exame.
+[EL Config]: metadata: 2025-11-25 15:52:23.609--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The table name for entity [class com.vivamamadsc.vivamamadsc.Exame] is being defaulted to: EXAME.
+[EL Config]: metadata: 2025-11-25 15:52:23.609--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The column name for element [tipo] is being defaulted to: TIPO.
+[EL Config]: metadata: 2025-11-25 15:52:23.61--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The column name for element [id] is being defaulted to: ID.
+[EL Config]: metadata: 2025-11-25 15:52:23.61--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The alias name for the entity class [class com.vivamamadsc.vivamamadsc.Usuario] is being defaulted to: Usuario.
+[EL Config]: metadata: 2025-11-25 15:52:23.61--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The column name for element [senha] is being defaulted to: SENHA.
+[EL Config]: metadata: 2025-11-25 15:52:23.61--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The column name for element [tipo] is being defaulted to: TIPO.
+[EL Config]: metadata: 2025-11-25 15:52:23.61--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The column name for element [nome] is being defaulted to: NOME.
+[EL Config]: metadata: 2025-11-25 15:52:23.61--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The column name for element [id] is being defaulted to: ID.
+[EL Config]: metadata: 2025-11-25 15:52:23.61--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The column name for element [email] is being defaulted to: EMAIL.
+[EL Config]: metadata: 2025-11-25 15:52:23.61--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The alias name for the entity class [class com.vivamamadsc.vivamamadsc.Medico] is being defaulted to: Medico.
+[EL Config]: metadata: 2025-11-25 15:52:23.611--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The column name for element [id] is being defaulted to: ID.
+[EL Config]: metadata: 2025-11-25 15:52:23.611--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The alias name for the entity class [class com.vivamamadsc.vivamamadsc.Mensagem] is being defaulted to: Mensagem.
+[EL Config]: metadata: 2025-11-25 15:52:23.611--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The table name for entity [class com.vivamamadsc.vivamamadsc.Mensagem] is being defaulted to: MENSAGEM.
+[EL Config]: metadata: 2025-11-25 15:52:23.611--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The column name for element [id] is being defaulted to: ID.
+[EL Config]: metadata: 2025-11-25 15:52:23.611--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The alias name for the entity class [class com.vivamamadsc.vivamamadsc.Conversa] is being defaulted to: Conversa.
+[EL Config]: metadata: 2025-11-25 15:52:23.611--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The table name for entity [class com.vivamamadsc.vivamamadsc.Conversa] is being defaulted to: CONVERSA.
+[EL Config]: metadata: 2025-11-25 15:52:23.611--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The column name for element [id] is being defaulted to: ID.
+[EL Config]: metadata: 2025-11-25 15:52:23.611--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The alias name for the entity class [class com.vivamamadsc.vivamamadsc.Especialidade] is being defaulted to: Especialidade.
+[EL Config]: metadata: 2025-11-25 15:52:23.611--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The column name for element [id] is being defaulted to: ID.
+[EL Config]: metadata: 2025-11-25 15:52:23.612--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The primary key column name for the mapping element [field usuario] is being defaulted to: ID.
+[EL Config]: metadata: 2025-11-25 15:52:23.612--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The primary key column name for the mapping element [field usuario] is being defaulted to: ID.
+[EL Config]: metadata: 2025-11-25 15:52:23.612--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The primary key column name for the mapping element [field paciente] is being defaulted to: USUARIO_ID.
+[EL Config]: metadata: 2025-11-25 15:52:23.612--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The source primary key column name for the many to many mapping [field especialidades] is being defaulted to: USUARIO_ID.
+[EL Config]: metadata: 2025-11-25 15:52:23.612--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The target primary key column name for the many to many mapping [field especialidades] is being defaulted to: ID.
+[EL Config]: metadata: 2025-11-25 15:52:23.612--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The primary key column name for the mapping element [field remetente] is being defaulted to: ID.
+[EL Config]: metadata: 2025-11-25 15:52:23.612--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The primary key column name for the mapping element [field conversa] is being defaulted to: ID.
+[EL Config]: metadata: 2025-11-25 15:52:23.613--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The source primary key column name for the many to many mapping [field participantes] is being defaulted to: ID.
+[EL Config]: metadata: 2025-11-25 15:52:23.613--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--The target primary key column name for the many to many mapping [field participantes] is being defaulted to: ID.
+[EL Info]: 2025-11-25 15:52:23.615--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--EclipseLink, version: Eclipse Persistence Services - 4.0.4.v202407190748-059428cdd2583c46f1f3e50d235854840a6fa9a7
+[EL Fine]: connection: 2025-11-25 15:52:23.615--ServerSession(1713605602)--Connection(1677543539)--Thread(Thread[#1,main,5,main])--connecting(DatabaseLogin(
 	platform=>DerbyPlatform
 	user name=> "vivamama"
 	datasource URL=> "jdbc:derby://localhost:1527/vivamamadsc;create=true"
 ))
-[EL Config]: connection: 2025-11-15 17:38:12.21--ServerSession(1144897090)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--Connected: jdbc:derby://localhost:1527/vivamamadsc;create=true
+[EL Config]: connection: 2025-11-25 15:52:23.62--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--Connected: jdbc:derby://localhost:1527/vivamamadsc;create=true
 	User: vivamama
 	Database: Apache Derby  Version: 10.16.1.1 - (1901046)
 	Driver: Apache Derby Network Client JDBC Driver  Version: 10.16.1.1 - (1901046)
-[EL Fine]: connection: 2025-11-15 17:38:12.214--ServerSession(1144897090)--Thread(Thread[#1,main,5,main])--/file:/C:/AHelenaOficial/estudos/NetBeansProjects/VivaMama2/target/classes/_vivamamadsc login successful
-[EL Fine]: sql: 2025-11-15 17:38:12.216--ServerSession(1144897090)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--ALTER TABLE PACIENTE DROP CONSTRAINT FK_PACIENTE_ID
-[EL Fine]: sql: 2025-11-15 17:38:12.219--ServerSession(1144897090)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--ALTER TABLE MEDICO DROP CONSTRAINT FK_MEDICO_ID
-[EL Fine]: sql: 2025-11-15 17:38:12.221--ServerSession(1144897090)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--ALTER TABLE MENSAGEM DROP CONSTRAINT MENSAGEMconversaid
-[EL Fine]: sql: 2025-11-15 17:38:12.227--ServerSession(1144897090)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--ALTER TABLE MENSAGEM DROP CONSTRAINT MNSAGEMremetenteid
-[EL Fine]: sql: 2025-11-15 17:38:12.234--ServerSession(1144897090)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--ALTER TABLE EXAME DROP CONSTRAINT EXAME_PACIENTE_ID
-[EL Fine]: sql: 2025-11-15 17:38:12.239--ServerSession(1144897090)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--ALTER TABLE MEDICO_ESPECIALIDADE DROP CONSTRAINT MDCSPCIALIDADEMDCD
-[EL Fine]: sql: 2025-11-15 17:38:12.251--ServerSession(1144897090)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--ALTER TABLE MEDICO_ESPECIALIDADE DROP CONSTRAINT MDCSPCLDADESPCLDDD
-[EL Fine]: sql: 2025-11-15 17:38:12.257--ServerSession(1144897090)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--ALTER TABLE CONVERSA_PARTICIPANTES DROP CONSTRAINT CNVRSPRTCPNTcnvrsd
-[EL Fine]: sql: 2025-11-15 17:38:12.262--ServerSession(1144897090)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--ALTER TABLE CONVERSA_PARTICIPANTES DROP CONSTRAINT CNVRSPRTCPANTESsrd
-[EL Fine]: sql: 2025-11-15 17:38:12.271--ServerSession(1144897090)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--DROP TABLE USUARIO
-[EL Fine]: sql: 2025-11-15 17:38:12.287--ServerSession(1144897090)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--DROP TABLE PACIENTE
-[EL Fine]: sql: 2025-11-15 17:38:12.297--ServerSession(1144897090)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--DROP TABLE MEDICO
-[EL Fine]: sql: 2025-11-15 17:38:12.311--ServerSession(1144897090)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--DROP TABLE CONVERSA
-[EL Fine]: sql: 2025-11-15 17:38:12.32--ServerSession(1144897090)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--DROP TABLE MENSAGEM
-[EL Fine]: sql: 2025-11-15 17:38:12.329--ServerSession(1144897090)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--DROP TABLE ESPECIALIDADE
-[EL Fine]: sql: 2025-11-15 17:38:12.339--ServerSession(1144897090)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--DROP TABLE EXAME
-[EL Fine]: sql: 2025-11-15 17:38:12.351--ServerSession(1144897090)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--DROP TABLE MEDICO_ESPECIALIDADE
-[EL Fine]: sql: 2025-11-15 17:38:12.362--ServerSession(1144897090)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--DROP TABLE CONVERSA_PARTICIPANTES
-[EL Fine]: sql: 2025-11-15 17:38:12.372--ServerSession(1144897090)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--CREATE TABLE USUARIO (ID BIGINT GENERATED BY DEFAULT AS IDENTITY NOT NULL, DTYPE VARCHAR(31), CPF VARCHAR(11) NOT NULL UNIQUE, EMAIL VARCHAR(150) NOT NULL UNIQUE, NOME VARCHAR(150) NOT NULL, SENHA VARCHAR(60) NOT NULL, TIPO VARCHAR(20) NOT NULL, PRIMARY KEY (ID))
-[EL Fine]: sql: 2025-11-15 17:38:12.391--ServerSession(1144897090)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--CREATE TABLE PACIENTE (ID BIGINT NOT NULL, DT_NASCIMENTO DATE, HISTORICOFAMILIAR CLOB(2147483647), HISTORICO_FAMILIAR_PDF BLOB(2147483647), PRIMARY KEY (ID))
-[EL Fine]: sql: 2025-11-15 17:38:12.403--ServerSession(1144897090)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--CREATE TABLE MEDICO (ID BIGINT NOT NULL, CRM VARCHAR(20) NOT NULL UNIQUE, PRIMARY KEY (ID))
-[EL Fine]: sql: 2025-11-15 17:38:12.421--ServerSession(1144897090)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--CREATE TABLE CONVERSA (ID BIGINT GENERATED BY DEFAULT AS IDENTITY NOT NULL, ASSUNTO VARCHAR(200) NOT NULL, ativa SMALLINT DEFAULT 0 NOT NULL, criado_em TIMESTAMP NOT NULL, PRIMARY KEY (ID))
-[EL Fine]: sql: 2025-11-15 17:38:12.432--ServerSession(1144897090)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--CREATE TABLE MENSAGEM (ID BIGINT GENERATED BY DEFAULT AS IDENTITY NOT NULL, anexo BLOB, enviado_em TIMESTAMP NOT NULL, lida SMALLINT DEFAULT 0 NOT NULL, nome_anexo VARCHAR(255), texto CLOB, conversa_id BIGINT NOT NULL, remetente_id BIGINT NOT NULL, PRIMARY KEY (ID))
-[EL Fine]: sql: 2025-11-15 17:38:12.442--ServerSession(1144897090)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--CREATE TABLE ESPECIALIDADE (ID BIGINT GENERATED BY DEFAULT AS IDENTITY NOT NULL, NOME VARCHAR(100) NOT NULL, PRIMARY KEY (ID))
-[EL Fine]: sql: 2025-11-15 17:38:12.453--ServerSession(1144897090)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--CREATE TABLE EXAME (ID BIGINT GENERATED BY DEFAULT AS IDENTITY NOT NULL, DATA_EXAME DATE NOT NULL, IMAGEM BLOB(2147483647), RESULTADO_RESUMO VARCHAR(500), TIPO VARCHAR(100) NOT NULL, PACIENTE_ID BIGINT NOT NULL, PRIMARY KEY (ID))
-[EL Fine]: sql: 2025-11-15 17:38:12.467--ServerSession(1144897090)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--CREATE TABLE MEDICO_ESPECIALIDADE (MEDICO_ID BIGINT NOT NULL, ESPECIALIDADE_ID BIGINT NOT NULL, PRIMARY KEY (MEDICO_ID, ESPECIALIDADE_ID))
-[EL Fine]: sql: 2025-11-15 17:38:12.477--ServerSession(1144897090)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--CREATE TABLE CONVERSA_PARTICIPANTES (conversa_id BIGINT NOT NULL, usuario_id BIGINT NOT NULL, PRIMARY KEY (conversa_id, usuario_id))
-[EL Fine]: sql: 2025-11-15 17:38:12.487--ServerSession(1144897090)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--ALTER TABLE PACIENTE ADD CONSTRAINT FK_PACIENTE_ID FOREIGN KEY (ID) REFERENCES USUARIO (ID)
-[EL Fine]: sql: 2025-11-15 17:38:12.489--ServerSession(1144897090)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--ALTER TABLE MEDICO ADD CONSTRAINT FK_MEDICO_ID FOREIGN KEY (ID) REFERENCES USUARIO (ID)
-[EL Fine]: sql: 2025-11-15 17:38:12.491--ServerSession(1144897090)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--ALTER TABLE MENSAGEM ADD CONSTRAINT MENSAGEMconversaid FOREIGN KEY (conversa_id) REFERENCES CONVERSA (ID)
-[EL Fine]: sql: 2025-11-15 17:38:12.497--ServerSession(1144897090)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--ALTER TABLE MENSAGEM ADD CONSTRAINT MNSAGEMremetenteid FOREIGN KEY (remetente_id) REFERENCES USUARIO (ID)
-[EL Fine]: sql: 2025-11-15 17:38:12.504--ServerSession(1144897090)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--ALTER TABLE EXAME ADD CONSTRAINT EXAME_PACIENTE_ID FOREIGN KEY (PACIENTE_ID) REFERENCES USUARIO (ID)
-[EL Fine]: sql: 2025-11-15 17:38:12.511--ServerSession(1144897090)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--ALTER TABLE MEDICO_ESPECIALIDADE ADD CONSTRAINT MDCSPCIALIDADEMDCD FOREIGN KEY (MEDICO_ID) REFERENCES USUARIO (ID)
-[EL Fine]: sql: 2025-11-15 17:38:12.518--ServerSession(1144897090)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--ALTER TABLE MEDICO_ESPECIALIDADE ADD CONSTRAINT MDCSPCLDADESPCLDDD FOREIGN KEY (ESPECIALIDADE_ID) REFERENCES ESPECIALIDADE (ID)
-[EL Fine]: sql: 2025-11-15 17:38:12.524--ServerSession(1144897090)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--ALTER TABLE CONVERSA_PARTICIPANTES ADD CONSTRAINT CNVRSPRTCPNTcnvrsd FOREIGN KEY (conversa_id) REFERENCES CONVERSA (ID)
-[EL Fine]: sql: 2025-11-15 17:38:12.531--ServerSession(1144897090)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--ALTER TABLE CONVERSA_PARTICIPANTES ADD CONSTRAINT CNVRSPRTCPANTESsrd FOREIGN KEY (usuario_id) REFERENCES USUARIO (ID)
-[EL Fine]: sql: 2025-11-15 17:38:12.651--ClientSession(1356236848)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--INSERT INTO ESPECIALIDADE (NOME) VALUES (?)
+[EL Fine]: connection: 2025-11-25 15:52:23.624--ServerSession(1713605602)--Thread(Thread[#1,main,5,main])--/file:/C:/AHelenaOficial/estudos/NetBeansProjects/VivaMama2/target/classes/_vivamamadsc login successful
+[EL Fine]: sql: 2025-11-25 15:52:23.626--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--ALTER TABLE PACIENTE DROP CONSTRAINT PACIENTEUSUARIO_ID
+[EL Fine]: sql: 2025-11-25 15:52:23.629--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--ALTER TABLE MEDICO DROP CONSTRAINT MEDICO_USUARIO_ID
+[EL Fine]: sql: 2025-11-25 15:52:23.631--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--ALTER TABLE MENSAGEM DROP CONSTRAINT MENSAGEMconversaid
+[EL Fine]: sql: 2025-11-25 15:52:23.638--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--ALTER TABLE MENSAGEM DROP CONSTRAINT MNSAGEMremetenteid
+[EL Fine]: sql: 2025-11-25 15:52:23.645--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--ALTER TABLE EXAME DROP CONSTRAINT EXAME_PACIENTE_ID
+[EL Fine]: sql: 2025-11-25 15:52:23.651--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--ALTER TABLE MEDICO_ESPECIALIDADE DROP CONSTRAINT MDCSPCIALIDADEMDCD
+[EL Fine]: sql: 2025-11-25 15:52:23.66--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--ALTER TABLE MEDICO_ESPECIALIDADE DROP CONSTRAINT MDCSPCLDADESPCLDDD
+[EL Fine]: sql: 2025-11-25 15:52:23.667--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--ALTER TABLE CONVERSA_PARTICIPANTES DROP CONSTRAINT CNVRSPRTCPNTcnvrsd
+[EL Fine]: sql: 2025-11-25 15:52:23.673--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--ALTER TABLE CONVERSA_PARTICIPANTES DROP CONSTRAINT CNVRSPRTCPANTESsrd
+[EL Fine]: sql: 2025-11-25 15:52:23.679--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--DROP TABLE USUARIO
+[EL Fine]: sql: 2025-11-25 15:52:23.697--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--DROP TABLE PACIENTE
+[EL Fine]: sql: 2025-11-25 15:52:23.709--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--DROP TABLE MEDICO
+[EL Fine]: sql: 2025-11-25 15:52:23.724--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--DROP TABLE CONVERSA
+[EL Fine]: sql: 2025-11-25 15:52:23.734--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--DROP TABLE MENSAGEM
+[EL Fine]: sql: 2025-11-25 15:52:23.743--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--DROP TABLE ESPECIALIDADE
+[EL Fine]: sql: 2025-11-25 15:52:23.753--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--DROP TABLE EXAME
+[EL Fine]: sql: 2025-11-25 15:52:23.76--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--DROP TABLE MEDICO_ESPECIALIDADE
+[EL Fine]: sql: 2025-11-25 15:52:23.769--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--DROP TABLE CONVERSA_PARTICIPANTES
+[EL Fine]: sql: 2025-11-25 15:52:23.777--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--CREATE TABLE USUARIO (ID BIGINT GENERATED BY DEFAULT AS IDENTITY NOT NULL, CPF VARCHAR(11) NOT NULL UNIQUE, EMAIL VARCHAR(150) NOT NULL UNIQUE, NOME VARCHAR(150) NOT NULL, SENHA VARCHAR(60) NOT NULL, TIPO VARCHAR(20) NOT NULL, PRIMARY KEY (ID))
+[EL Fine]: sql: 2025-11-25 15:52:23.796--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--CREATE TABLE PACIENTE (DT_NASCIMENTO DATE, HISTORICOFAMILIAR CLOB(2147483647), HISTORICO_FAMILIAR_PDF BLOB(2147483647), USUARIO_ID BIGINT NOT NULL, PRIMARY KEY (USUARIO_ID))
+[EL Fine]: sql: 2025-11-25 15:52:23.806--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--CREATE TABLE MEDICO (CRM VARCHAR(20) NOT NULL UNIQUE, USUARIO_ID BIGINT NOT NULL, PRIMARY KEY (USUARIO_ID))
+[EL Fine]: sql: 2025-11-25 15:52:23.822--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--CREATE TABLE CONVERSA (ID BIGINT GENERATED BY DEFAULT AS IDENTITY NOT NULL, ASSUNTO VARCHAR(200) NOT NULL, ativa SMALLINT DEFAULT 0 NOT NULL, criado_em TIMESTAMP NOT NULL, PRIMARY KEY (ID))
+[EL Fine]: sql: 2025-11-25 15:52:23.833--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--CREATE TABLE MENSAGEM (ID BIGINT GENERATED BY DEFAULT AS IDENTITY NOT NULL, anexo BLOB, enviado_em TIMESTAMP NOT NULL, lida SMALLINT DEFAULT 0 NOT NULL, nome_anexo VARCHAR(255), texto CLOB, conversa_id BIGINT NOT NULL, remetente_id BIGINT NOT NULL, PRIMARY KEY (ID))
+[EL Fine]: sql: 2025-11-25 15:52:23.843--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--CREATE TABLE ESPECIALIDADE (ID BIGINT GENERATED BY DEFAULT AS IDENTITY NOT NULL, NOME VARCHAR(100) NOT NULL, PRIMARY KEY (ID))
+[EL Fine]: sql: 2025-11-25 15:52:23.852--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--CREATE TABLE EXAME (ID BIGINT GENERATED BY DEFAULT AS IDENTITY NOT NULL, DATA_EXAME DATE NOT NULL, IMAGEM BLOB(2147483647), RESULTADO_RESUMO VARCHAR(500), TIPO VARCHAR(100) NOT NULL, PACIENTE_ID BIGINT NOT NULL, PRIMARY KEY (ID))
+[EL Fine]: sql: 2025-11-25 15:52:23.862--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--CREATE TABLE MEDICO_ESPECIALIDADE (MEDICO_ID BIGINT NOT NULL, ESPECIALIDADE_ID BIGINT NOT NULL, PRIMARY KEY (MEDICO_ID, ESPECIALIDADE_ID))
+[EL Fine]: sql: 2025-11-25 15:52:23.872--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--CREATE TABLE CONVERSA_PARTICIPANTES (conversa_id BIGINT NOT NULL, usuario_id BIGINT NOT NULL, PRIMARY KEY (conversa_id, usuario_id))
+[EL Fine]: sql: 2025-11-25 15:52:23.882--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--ALTER TABLE PACIENTE ADD CONSTRAINT PACIENTEUSUARIO_ID FOREIGN KEY (USUARIO_ID) REFERENCES USUARIO (ID)
+[EL Fine]: sql: 2025-11-25 15:52:23.885--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--ALTER TABLE MEDICO ADD CONSTRAINT MEDICO_USUARIO_ID FOREIGN KEY (USUARIO_ID) REFERENCES USUARIO (ID)
+[EL Fine]: sql: 2025-11-25 15:52:23.887--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--ALTER TABLE MENSAGEM ADD CONSTRAINT MENSAGEMconversaid FOREIGN KEY (conversa_id) REFERENCES CONVERSA (ID)
+[EL Fine]: sql: 2025-11-25 15:52:23.894--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--ALTER TABLE MENSAGEM ADD CONSTRAINT MNSAGEMremetenteid FOREIGN KEY (remetente_id) REFERENCES USUARIO (ID)
+[EL Fine]: sql: 2025-11-25 15:52:23.901--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--ALTER TABLE EXAME ADD CONSTRAINT EXAME_PACIENTE_ID FOREIGN KEY (PACIENTE_ID) REFERENCES PACIENTE (USUARIO_ID)
+[EL Fine]: sql: 2025-11-25 15:52:23.908--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--ALTER TABLE MEDICO_ESPECIALIDADE ADD CONSTRAINT MDCSPCIALIDADEMDCD FOREIGN KEY (MEDICO_ID) REFERENCES MEDICO (USUARIO_ID)
+[EL Fine]: sql: 2025-11-25 15:52:23.915--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--ALTER TABLE MEDICO_ESPECIALIDADE ADD CONSTRAINT MDCSPCLDADESPCLDDD FOREIGN KEY (ESPECIALIDADE_ID) REFERENCES ESPECIALIDADE (ID)
+[EL Fine]: sql: 2025-11-25 15:52:23.924--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--ALTER TABLE CONVERSA_PARTICIPANTES ADD CONSTRAINT CNVRSPRTCPNTcnvrsd FOREIGN KEY (conversa_id) REFERENCES CONVERSA (ID)
+[EL Fine]: sql: 2025-11-25 15:52:23.931--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--ALTER TABLE CONVERSA_PARTICIPANTES ADD CONSTRAINT CNVRSPRTCPANTESsrd FOREIGN KEY (usuario_id) REFERENCES USUARIO (ID)
+[EL Fine]: sql: 2025-11-25 15:52:24.037--ClientSession(681747431)--Connection(504478805)--Thread(Thread[#1,main,5,main])--INSERT INTO ESPECIALIDADE (NOME) VALUES (?)
 	bind => [Mastologia]
-[EL Fine]: sql: 2025-11-15 17:38:12.655--ClientSession(1356236848)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--INSERT INTO USUARIO (CPF, EMAIL, NOME, SENHA, TIPO, DTYPE) VALUES (?, ?, ?, ?, ?, ?)
-	bind => [12345678901, joao.lima@clinica.com, Dr. João Lima, senha123, MEDICO, Medico]
-[EL Fine]: sql: 2025-11-15 17:38:12.658--ClientSession(1356236848)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--INSERT INTO MEDICO (CRM, ID) VALUES (?, ?)
+[EL Fine]: sql: 2025-11-25 15:52:24.046--ClientSession(681747431)--Connection(504478805)--Thread(Thread[#1,main,5,main])--INSERT INTO USUARIO (CPF, EMAIL, NOME, SENHA, TIPO) VALUES (?, ?, ?, ?, ?)
+	bind => [12345678901, joao.lima@clinica.com, Dr. João Lima, senha123, MEDICO]
+[EL Fine]: sql: 2025-11-25 15:52:24.048--ClientSession(681747431)--Connection(504478805)--Thread(Thread[#1,main,5,main])--INSERT INTO MEDICO (CRM, USUARIO_ID) VALUES (?, ?)
 	bind => [PE12345, 3]
-[EL Fine]: sql: 2025-11-15 17:38:12.662--ClientSession(1356236848)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--INSERT INTO MEDICO_ESPECIALIDADE (ESPECIALIDADE_ID, MEDICO_ID) VALUES (?, ?)
+[EL Fine]: sql: 2025-11-25 15:52:24.05--ClientSession(681747431)--Connection(504478805)--Thread(Thread[#1,main,5,main])--INSERT INTO MEDICO_ESPECIALIDADE (ESPECIALIDADE_ID, MEDICO_ID) VALUES (?, ?)
 	bind => [3, 3]
 ]]></system-out>
   </testcase>
-  <testcase name="testConsultaPorId" classname="com.vivamamadsc.vivamamadsc.MedicoTest" time="0.006">
-    <system-out><![CDATA[[EL Fine]: sql: 2025-11-15 17:38:12.668--ServerSession(1144897090)--Connection(2108440536)--Thread(Thread[#1,main,5,main])--SELECT t0.ID, t0.DTYPE, t0.CPF, t0.EMAIL, t0.NOME, t0.SENHA, t0.TIPO, t1.ID, t1.CRM FROM USUARIO t0, MEDICO t1 WHERE ((t0.ID = ?) AND ((t1.ID = t0.ID) AND (t0.DTYPE = ?)))
-	bind => [2, Medico]
+  <testcase name="testConsultaPorId" classname="com.vivamamadsc.vivamamadsc.MedicoTest" time="0.013">
+    <system-out><![CDATA[[EL Fine]: sql: 2025-11-25 15:52:24.056--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--SELECT CRM, USUARIO_ID FROM MEDICO WHERE (USUARIO_ID = ?)
+	bind => [2]
+[EL Fine]: sql: 2025-11-25 15:52:24.06--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--SELECT ID, CPF, EMAIL, NOME, SENHA, TIPO FROM USUARIO WHERE (ID = ?)
+	bind => [2]
+[EL Fine]: sql: 2025-11-25 15:52:24.063--ServerSession(1713605602)--Connection(504478805)--Thread(Thread[#1,main,5,main])--SELECT DT_NASCIMENTO, HISTORICOFAMILIAR, HISTORICO_FAMILIAR_PDF, USUARIO_ID FROM PACIENTE WHERE (USUARIO_ID = ?)
+	bind => [2]
 ]]></system-out>
   </testcase>
 </testsuite>

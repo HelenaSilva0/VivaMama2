@@ -60,24 +60,34 @@ public class MedicoTest {
         esp.setNome("Mastologia");
         em.persist(esp);
         
+        Usuario usuario = new Usuario();
+        usuario.setNome("Dr. João Lima");
+        usuario.setCpf("12345678901");
+        usuario.setEmail("joao.lima@clinica.com");
+        usuario.setSenha("senha123");
+        usuario.setTipo(TipoUsuario.MEDICO);
+        
         Medico medico = new Medico();
-        medico.setNome("Dr. João Lima");
-        medico.setCpf("12345678901");
-        medico.setEmail("joao.lima@clinica.com");
-        medico.setSenha("senha123");
+        
         medico.setCrm("PE12345");
-        medico.adicionarEspecialidade(esp);
+        
+        medico.setUsuario(usuario);
+        usuario.setMedico(medico);
+        
+        medico.addEspecialidade(esp);
 
         em.persist(medico);
         em.flush();
 
-        assertNotNull(medico.getId());
+        assertNotNull(medico.getUsuario());
+        assertNotNull(medico.getUsuario().getId());
+        assertEquals(usuario.getId(), medico.getUsuario().getId());
     }
 
     @Test
     public void testConsultaPorId() {
         Medico medico = em.find(Medico.class, 2L);
-//        assertNotNull(medico.getId());
+        //assertNotNull(medico);
         assertEquals("123456", medico.getCrm());
     }
 }

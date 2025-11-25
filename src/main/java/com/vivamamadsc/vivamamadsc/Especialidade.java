@@ -10,10 +10,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -21,6 +23,7 @@ import java.util.Set;
  */
 
 @Entity
+@Table(name = "ESPECIALIDADE")
 public class Especialidade {
 
     @Id
@@ -35,7 +38,7 @@ public class Especialidade {
 
    
     @ManyToMany(mappedBy = "especialidades")
-    private Set<Medico> medicos = new HashSet<>();
+    private List<Medico> medicos = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -49,11 +52,31 @@ public class Especialidade {
         this.nome = nome;
     }
 
-    public Set<Medico> getMedicos() {
+    public List<Medico> getMedicos() {
         return medicos;
     }
 
-    public void setMedicos(Set<Medico> medicos) {
-        this.medicos = medicos;
+    public void addMedico(Medico medico) {
+        if (medico == null) return;
+        if (!medicos.contains(medico)) {
+            medicos.add(medico);
+        }
+    }
+
+    public void removeMedico(Medico medico) {
+        if (medico == null) return;
+        medicos.remove(medico);
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Especialidade)) return false;
+        Especialidade that = (Especialidade) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

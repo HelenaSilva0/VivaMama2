@@ -56,50 +56,60 @@ public class PacienteTest {
 
     @Test
     public void persistirUsuario() {
-        Paciente usuario = criarUsuario("beltrano@gmail.com", "12345678777");
-
-        em.persist(usuario);
+        Usuario usuario = criarUsuario("beltrano@gmail.com", "12345678777");
+        Paciente paciente = usuario.getPaciente();
+        
+        em.persist(paciente);
         em.flush(); //forÃ§a que a persistÃªncia realizada vÃ¡ para o banco neste momento.
-
-        assertNotNull(usuario.getId());
-        assertNotNull(usuario.getHistoricoFamiliarPdf());
+        
+        assertNotNull(paciente.getUsuario());
+        assertNotNull(paciente.getUsuario().getId());
+        assertNotNull(paciente.getHistoricoFamiliarPdf());
         assertEquals("12345",
-                new String(usuario.getHistoricoFamiliarPdf(), StandardCharsets.UTF_8));
+                new String(paciente.getHistoricoFamiliarPdf(), StandardCharsets.UTF_8));
     }
 
     @Test
     public void consultarUsuario() {
         Paciente paciente = em.find(Paciente.class, 1L);
-        assertEquals("ciclano@gmail.com", paciente.getEmail());
-        assertEquals("Ciclano da Silva", paciente.getNome());
+        //assertNotNull(paciente);
+        
+         Usuario u = paciente.getUsuario();
+       // assertNotNull(u);
+
+        assertEquals("ciclano@gmail.com", u.getEmail());
+        assertEquals("Ciclano da Silva", u.getNome());
     }
 
     @Test
     public void persistirPacienteComPdfDeArquivo() throws Exception {
-        Paciente paciente = criarUsuario("birigui@teste.com", "09876543219");
-
-        // carrega o PDF da pasta src/test/resources/pdf
+        Usuario usuario = criarUsuario("birigui@teste.com", "09876543219");
+        Paciente paciente = usuario.getPaciente();
+        
+// carrega o PDF da pasta src/test/resources/pdf
         byte[] pdfBytes = loadResource("/pdf/historico.pdf");
         paciente.setHistoricoFamiliarPdf(pdfBytes);
 
         em.persist(paciente);
         em.flush();
 
-        assertNotNull(paciente.getId());
+        assertNotNull(paciente.getUsuario());
+        assertNotNull(paciente.getUsuario().getId());
         assertNotNull(paciente.getHistoricoFamiliarPdf());
         assertTrue(paciente.getHistoricoFamiliarPdf().length > 0);
     }
 
-    private Paciente criarUsuario(String email, String cpf) {
+    private Usuario criarUsuario(String email, String cpf) {
+        Usuario usuario = new Usuario();
         Paciente paciente = new Paciente();
 
-        paciente.setNome("Beltrano da Silva");
-        paciente.setCpf(cpf);
-        paciente.setEmail(email);
-        paciente.setSenha("teste");
-        paciente.setTipo(TipoUsuario.PACIENTE);
+        usuario.setNome("Beltrano da Silva");
+        usuario.setCpf(cpf);
+        usuario.setEmail(email);
+        usuario.setSenha("teste123");
+        usuario.setTipo(TipoUsuario.PACIENTE);
+        
         paciente.setHistoricoFamiliar("Sem histórico familiar.");
-
         paciente.setHistoricoFamiliarPdf("12345".getBytes(StandardCharsets.UTF_8));
 
         Calendar c = Calendar.getInstance();
@@ -108,7 +118,10 @@ public class PacienteTest {
         c.set(Calendar.DAY_OF_MONTH, 25);
         paciente.setDataNascimento(c.getTime());
 
-        return paciente;
+        paciente.setUsuario(usuario);
+        usuario.setPaciente(paciente);
+        
+        return usuario;
     }
 
     private byte[] loadResource(String path) throws IOException {

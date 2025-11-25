@@ -7,16 +7,30 @@ package com.vivamamadsc.vivamamadsc;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Entity
-public class Paciente extends Usuario {
+@Table(name = "PACIENTE")
+public class Paciente {
+    
+    @Id
+    private Long id;
+    
+    @OneToOne(cascade = CascadeType.ALL)
+    @MapsId
+    @JoinColumn(name = "USUARIO_ID")
+    private Usuario usuario;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "DT_NASCIMENTO", nullable = true)
@@ -33,10 +47,25 @@ public class Paciente extends Usuario {
     @OneToMany(mappedBy = "paciente",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
-    private Set<Exame> exames = new HashSet<>();
+    private List<Exame> exames = new ArrayList<>();
 
     public Paciente() {
-        setTipo(TipoUsuario.PACIENTE);
+    }
+    
+    public Long getId() {
+        return id;
+    }
+    
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public Date getDataNascimento() {
@@ -63,22 +92,20 @@ public class Paciente extends Usuario {
         this.historicoFamiliar = historicoFamiliar;
     }
 
-    public Set<Exame> getExames() {
+    public List<Exame> getExames() {
         return exames;
     }
 
-    public void setExames(Set<Exame> exames) {
-        this.exames = exames;
-    }
-
-    public void adicionarExame(Exame exame) {
+    public void addExames(Exame exame) {
+        if (exame == null)
+            return;
         exames.add(exame);
-        exame.setPaciente(this);
+        exame.addPaciente(this);
     }
 
-    public void removerExame(Exame exame) {
+    public void removeExame(Exame exame) {
         exames.remove(exame);
-        exame.setPaciente(null);
+        exame.removePaciente();
     }
 
 }

@@ -18,7 +18,7 @@ import java.util.Date;
 
 /**
  *
- * @author necta
+ * @author Neto
  */
 @Entity
 public class Exame {
@@ -80,9 +80,17 @@ public class Exame {
     public Paciente getPaciente() {
         return paciente;
     }
-
-    public void setPaciente(Paciente paciente) {
+    
+    void setPaciente(Paciente paciente) {
         this.paciente = paciente;
+    }
+
+    public void addPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
+    
+    public void removePaciente() {
+        this.paciente = null;
     }
 
     public byte[] getImagem() {
