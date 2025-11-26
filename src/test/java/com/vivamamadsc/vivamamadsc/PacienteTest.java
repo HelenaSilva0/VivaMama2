@@ -4,7 +4,6 @@
  */
 package com.vivamamadsc.vivamamadsc;
 
-import jakarta.persistence.CacheRetrieveMode;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
@@ -14,11 +13,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
-import static junit.framework.Assert.assertNull;
 import static junit.framework.Assert.assertTrue;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -93,56 +89,6 @@ public class PacienteTest {
         assertNotNull(paciente.getHistoricoFamiliarPdf());
         assertTrue(paciente.getHistoricoFamiliarPdf().length > 0);
     }
-    
-//    @Test
-//    public void atualizarPaciente() {
-//        String novoNome = "Zigoto Do Agreste";
-//        String novoEmail = "zigoto@gmail.com";
-//
-//        Paciente paciente = em.find(Paciente.class, 3L);
-//        paciente.setNome(novoNome);
-//        paciente.setEmail(novoEmail);
-//        em.flush();
-//        Map<String, Object> properties = new HashMap<>();
-//        properties.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-//
-//        paciente = em.find(Paciente.class, 3L, properties);
-//
-//        assertEquals(novoNome, paciente.getNome());
-//        assertEquals(novoEmail, paciente.getEmail());
-//    }    
-//
-//    @Test
-//    public void atualizarPacienteMerge() {
-//        String novoNome = "Zigoto Do Agreste";
-//        String novoEmail = "zigoto@gmail.com";
-//
-//        Paciente paciente = em.find(Paciente.class, 1L);
-//        paciente.setNome(novoNome);
-//        paciente.setEmail(novoEmail);
-//
-//        em.clear();
-//
-//        paciente = (Paciente) em.merge(paciente);
-//        Map<String, Object> properties = new HashMap<>();
-//        properties.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-//
-//        paciente = em.find(Paciente.class, 1L, properties);
-//
-//        assertEquals(novoNome, paciente.getNome());
-//        assertEquals(novoEmail, paciente.getEmail());
-//    }
-//
-//    @Test
-//    public void removerPaciente() {
-//        Paciente paciente = em.find(Paciente.class, 3L);
-//
-//        em.remove(paciente);
-//        em.flush();
-//        em.clear();
-//        Paciente pacienteRemovido = em.find(Paciente.class, 3L);
-//        assertNull(pacienteRemovido);
-//    }
 
     private Paciente criarPaciente(String email, String cpf) {
         Paciente paciente = new Paciente();

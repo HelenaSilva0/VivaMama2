@@ -73,7 +73,17 @@
         DT_NASCIMENTO="1998-04-23" 
         HISTORICOFAMILIAR="Sem histórico familiar."
         HISTORICO_FAMILIAR_PDF="MTIzNDU="
-    />    
+    /> 
+    
+    <USUARIO 
+        NOME="Jupico da Silva" 
+        CPF="77777777777" 
+        DTYPE="Medico" 
+        EMAIL="jupico@gmail.com" 
+        SENHA="teste" 
+        TIPO="MEDICO"
+    />
+    <MEDICO ID="5" />   
     
     <CRM NUMERO="SP123456" ESTADO="SP" MEDICO_ID="2"/>
     <!--<CRM ID="2" NUMERO="SP789102" ESTADO="SP" MEDICO_ID="2"/>-->
