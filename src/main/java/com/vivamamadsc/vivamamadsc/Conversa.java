@@ -17,10 +17,10 @@ import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 /**
  *
@@ -53,7 +53,7 @@ public class Conversa {
             joinColumns = @JoinColumn(name = "conversa_id"),
             inverseJoinColumns = @JoinColumn(name = "usuario_id")
     )
-    private Set<Usuario> participantes = new HashSet<>();
+    private List<Usuario> participantes = new ArrayList<>();
 
     // construtores, getters e setters
     public Conversa() {
@@ -87,12 +87,8 @@ public class Conversa {
         this.ativa = ativa;
     }
 
-    public Set<Usuario> getParticipantes() {
+    public List<Usuario> getParticipantes() {
         return participantes;
-    }
-
-    public void setParticipantes(Set<Usuario> participantes) {
-        this.participantes = participantes;
     }
 
     public void adicionarParticipante(Usuario u) {

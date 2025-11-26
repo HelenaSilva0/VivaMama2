@@ -45,6 +45,36 @@
     />
     <MEDICO ID="2" />
     
+    <USUARIO 
+        NOME="Fulaninho da Silva" 
+        CPF="33333333333" 
+        DTYPE="Paciente" 
+        EMAIL="fulaninho@gmail.com" 
+        SENHA="teste123" 
+        TIPO="PACIENTE"
+    />
+    <PACIENTE 
+        ID="3" 
+        DT_NASCIMENTO="1990-04-23" 
+        HISTORICOFAMILIAR="Sem histórico familiar."
+        HISTORICO_FAMILIAR_PDF="MTIzNDU="
+    />    
+    
+    <USUARIO 
+        NOME="Miriapode da Silva" 
+        CPF="44444444444" 
+        DTYPE="Paciente" 
+        EMAIL="miriapode@gmail.com" 
+        SENHA="teste123" 
+        TIPO="PACIENTE"
+    />
+    <PACIENTE 
+        ID="4" 
+        DT_NASCIMENTO="1998-04-23" 
+        HISTORICOFAMILIAR="Sem histórico familiar."
+        HISTORICO_FAMILIAR_PDF="MTIzNDU="
+    />    
+    
     <CRM NUMERO="SP123456" ESTADO="SP" MEDICO_ID="2"/>
     <!--<CRM ID="2" NUMERO="SP789102" ESTADO="SP" MEDICO_ID="2"/>-->
     

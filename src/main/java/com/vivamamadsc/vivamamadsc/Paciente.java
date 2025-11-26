@@ -63,13 +63,14 @@ public class Paciente extends Usuario {
         this.historicoFamiliar = historicoFamiliar;
     }
 
-        public List<Exame> getExames() {
+    public List<Exame> getExames() {
         return exames;
     }
 
     public void addExames(Exame exame) {
-        if (exame == null)
+        if (exame == null) {
             return;
+        }
         exames.add(exame);
         exame.addPaciente(this);
     }
