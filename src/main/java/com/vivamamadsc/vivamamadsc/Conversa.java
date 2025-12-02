@@ -4,6 +4,7 @@
  */
 package com.vivamamadsc.vivamamadsc;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotBlank;
@@ -54,6 +56,9 @@ public class Conversa {
             inverseJoinColumns = @JoinColumn(name = "usuario_id")
     )
     private List<Usuario> participantes = new ArrayList<>();
+    
+    @OneToMany(mappedBy = "conversa", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Mensagem> mensagens = new ArrayList<>();
 
     // construtores, getters e setters
     public Conversa() {
@@ -97,6 +102,14 @@ public class Conversa {
 
     public void removerParticipante(Usuario u) {
         this.participantes.remove(u);
+    }
+    
+    public List<Mensagem> getMensagens() {
+        return mensagens;
+    }
+
+    public void setMensagens(List<Mensagem> mensagens) {
+        this.mensagens = mensagens;
     }
 
     @Override
