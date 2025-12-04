@@ -77,7 +77,7 @@
     
     <USUARIO 
         NOME="Jupico da Silva" 
-        CPF="77777777777" 
+        CPF="55555555555" 
         DTYPE="Medico" 
         EMAIL="jupico@gmail.com" 
         SENHA="teste123" 
@@ -95,9 +95,21 @@
     />
     <MEDICO ID="6" />
     
+    <USUARIO 
+        NOME="Ricardo Silva" 
+        CPF="77777777777" 
+        DTYPE="Medico" 
+        EMAIL="ricardo@gmail.com" 
+        SENHA="teste123" 
+        TIPO="MEDICO"
+    />
+    <MEDICO ID="7" />
+    
     <CRM NUMERO="SP123456" ESTADO="SP" MEDICO_ID="2"/>
     
     <CRM NUMERO="PE123456" ESTADO="PE" MEDICO_ID="6"/>
+
+    <CRM NUMERO="RO123456" ESTADO="PE" MEDICO_ID="7"/>
     <!--<CRM ID="2" NUMERO="SP789102" ESTADO="SP" MEDICO_ID="2"/>-->
     
     <!-- ESPECIALIDADES -->
@@ -125,7 +137,7 @@
         LIDA="false"
     />
 
-<CONVERSA 
+    <CONVERSA 
         ASSUNTO="Conversa inicial" 
         CRIADO_EM="2025-12-02 10:00:00" 
         ATIVA="true"
@@ -138,6 +150,30 @@
     <MENSAGEM 
         CONVERSA_ID="2" 
         REMETENTE_ID="2" 
+        TEXTO="Olá, seus exames chegaram. Podemos conversar?" 
+        ENVIADO_EM="2025-12-02 10:02:00" 
+        LIDA="false"
+    />
+    <MENSAGEM 
+        CONVERSA_ID="2" 
+        REMETENTE_ID="1" 
+        TEXTO="Olá, seus exames chegaram. Podemos conversar?" 
+        ENVIADO_EM="2025-12-02 10:02:00" 
+        LIDA="false"
+    />
+    
+    <CONVERSA 
+        ASSUNTO="Conversa inicial" 
+        CRIADO_EM="2025-12-02 10:00:00" 
+        ATIVA="true"
+    />
+    
+    <CONVERSA_PARTICIPANTES CONVERSA_ID="3" USUARIO_ID="3"/>
+    <CONVERSA_PARTICIPANTES CONVERSA_ID="3" USUARIO_ID="5"/>
+    
+    <MENSAGEM 
+        CONVERSA_ID="3" 
+        REMETENTE_ID="3" 
         TEXTO="Olá, seus exames chegaram. Podemos conversar?" 
         ENVIADO_EM="2025-12-02 10:02:00" 
         LIDA="false"

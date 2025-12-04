@@ -57,14 +57,14 @@ public class MensagemTestSegundaEntrega {
 
     @Test
     public void atualizarMensagem() {
-        Mensagem obj = em.find(Mensagem.class, 1L);
+        Mensagem obj = em.find(Mensagem.class, 3L);
         obj.setTexto("Mensagem atualizada.");
         em.flush();
 
         Map<String, Object> properties = new HashMap<>();
         properties.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
 
-        obj = em.find(Mensagem.class, 1L, properties);
+        obj = em.find(Mensagem.class, 3L, properties);
 
         assertEquals("Mensagem atualizada.", obj.getTexto());
     }

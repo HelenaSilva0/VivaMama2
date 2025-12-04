@@ -12,6 +12,7 @@ import jakarta.persistence.Persistence;
 import java.util.HashMap;
 import java.util.Map;
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertNull;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -21,11 +22,10 @@ import org.junit.Test;
 
 /**
  *
- * @author helena
+ * @author Emilly
  */
+public class CrmTestSegundaEntrega {
 
-
-public class ConversaTestSegundaEntrega {
     private static EntityManagerFactory emf;
     private static EntityManager em;
     private EntityTransaction et;
@@ -57,26 +57,26 @@ public class ConversaTestSegundaEntrega {
     }
 
     @Test
-    public void atualizarConversa() {
-        Conversa obj = em.find(Conversa.class, 1L);
-        obj.setAssunto("Assunto Atualizado");
-        obj.setAtiva(false);
+    public void atualizarCrm() {
+        Crm obj = em.find(Crm.class, 3L);
+        obj.setNumero("RS999999");
+        obj.setEstado("RS");
         em.flush();
 
         Map<String, Object> properties = new HashMap<>();
         properties.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
 
-        obj = em.find(Conversa.class, 1L, properties);
+        obj = em.find(Crm.class, 3L, properties);
 
-        assertEquals("Assunto Atualizado", obj.getAssunto());
-        assertEquals(false, obj.isAtiva());
+        assertEquals("RS999999", obj.getNumero());
+        assertEquals("RS", obj.getEstado());
     }
 
     @Test
-    public void atualizarConversaMerge() {
-        Conversa obj = em.find(Conversa.class, 1L);
-        obj.setAssunto("Assunto Atualizado Com Merge");
-        obj.setAtiva(false);
+    public void atualizarCrmMerge() {
+        Crm obj = em.find(Crm.class, 1L);
+        obj.setNumero("RS888888");
+        obj.setEstado("RS");
 
         em.clear();
         obj = em.merge(obj);
@@ -84,24 +84,28 @@ public class ConversaTestSegundaEntrega {
         Map<String, Object> properties = new HashMap<>();
         properties.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
 
-        obj = em.find(Conversa.class, 1L, properties);
+        obj = em.find(Crm.class, 1L, properties);
 
-        assertEquals("Assunto Atualizado Com Merge", obj.getAssunto());
-        assertEquals(false, obj.isAtiva());
+        assertEquals("RS888888", obj.getNumero());
+        assertEquals("RS", obj.getEstado());
     }
 
     @Test
-    public void removerConversa() {
-        Conversa obj = em.find(Conversa.class, 2L);
-        
-        obj.getMensagens().forEach(m -> em.remove(m));
-        em.remove(obj);
-        
-        em.remove(obj);
+    public void removerCrm() {
+
+        Crm crm = em.find(Crm.class, 2L);
+        // quebrar relacionamento com médico
+        Medico medico = crm.getMedico();
+        if (medico != null) {
+            medico.setCrm(null);
+        }
+
+        em.remove(crm);
         em.flush();
         em.clear();
-        Conversa objRemovido = em.find(Conversa.class, 2L);
+
+        Crm objRemovido = em.find(Crm.class, 2L);
         assertNull(objRemovido);
     }
-}
 
+}

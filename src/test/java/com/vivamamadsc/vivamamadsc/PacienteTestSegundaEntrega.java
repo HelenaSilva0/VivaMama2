@@ -56,14 +56,14 @@ public class PacienteTestSegundaEntrega {
         String novoNome = "Gameta Do Agreste";
         String novoEmail = "gameta@gmail.com";
 
-        Paciente paciente = em.find(Paciente.class, 3L);
+        Paciente paciente = em.find(Paciente.class, 1L);
         paciente.setNome(novoNome);
         paciente.setEmail(novoEmail);
         em.flush();
         Map<String, Object> properties = new HashMap<>();
         properties.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
 
-        paciente = em.find(Paciente.class, 3L, properties);
+        paciente = em.find(Paciente.class, 1L, properties);
 
         assertEquals(novoNome, paciente.getNome());
         assertEquals(novoEmail, paciente.getEmail());
