@@ -59,7 +59,9 @@ public class PacienteTestSegundaEntrega {
         Paciente paciente = em.find(Paciente.class, 1L);
         paciente.setNome(novoNome);
         paciente.setEmail(novoEmail);
+        
         em.flush();
+        
         Map<String, Object> properties = new HashMap<>();
         properties.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
 
@@ -81,6 +83,7 @@ public class PacienteTestSegundaEntrega {
         em.clear();
 
         paciente = (Paciente) em.merge(paciente);
+        
         Map<String, Object> properties = new HashMap<>();
         properties.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
 
@@ -97,6 +100,7 @@ public class PacienteTestSegundaEntrega {
         em.remove(paciente);
         em.flush();
         em.clear();
+        
         Paciente pacienteRemovido = em.find(Paciente.class, 4L);
         assertNull(pacienteRemovido);
     }

@@ -115,6 +115,8 @@
     <!-- ESPECIALIDADES -->
     <ESPECIALIDADE NOME="ginecologista"/>
     <ESPECIALIDADE NOME="mastologista"/>
+    <ESPECIALIDADE NOME="oncologia"/>
+    <ESPECIALIDADE NOME="cirurgia plástica"/>
     
     <MEDICO_ESPECIALIDADE MEDICO_ID="2" ESPECIALIDADE_ID="2"/>
 
@@ -185,6 +187,22 @@
         DATA_EXAME="2025-01-10"
         RESULTADO_RESUMO="Exame de rotina sem alterações."
         PACIENTE_ID="1"
+        IMAGEM="ZmFrZS1pbWFnZQ=="/>
+    
+    <!-- Exame do paciente 4 com imagem (BLOB Base64) -->
+    <EXAME
+        TIPO="Ultrassonografia das Mamas"
+        DATA_EXAME="2025-02-10"
+        RESULTADO_RESUMO="Exame de rotina sem alterações."
+        PACIENTE_ID="4"
+        IMAGEM="ZmFrZS1pbWFnZQ=="/>
+    
+    <!-- Exame do paciente 3 com imagem (BLOB Base64) -->
+    <EXAME
+        TIPO="Ressonância Magnética das Mamas"
+        DATA_EXAME="2025-03-10"
+        RESULTADO_RESUMO="Exame de rotina sem alterações."
+        PACIENTE_ID="3"
         IMAGEM="ZmFrZS1pbWFnZQ=="/>
 </dataset>
 

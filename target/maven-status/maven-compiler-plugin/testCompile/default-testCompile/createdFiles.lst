@@ -3,8 +3,10 @@ com\vivamamadsc\vivamamadsc\PacienteTest.class
 com\vivamamadsc\vivamamadsc\ConversaTestSegundaEntrega.class
 com\vivamamadsc\vivamamadsc\ExameTest.class
 com\vivamamadsc\vivamamadsc\MensagemTestSegundaEntrega.class
+com\vivamamadsc\vivamamadsc\EspecialidadeTestSegundaEntrega.class
 com\vivamamadsc\vivamamadsc\MedicoTest.class
 com\vivamamadsc\vivamamadsc\CrmTestSegundaEntrega.class
+com\vivamamadsc\vivamamadsc\ExameTestSegundaEntrega.class
 com\vivamamadsc\vivamamadsc\PacienteTestSegundaEntrega.class
 com\vivamamadsc\vivamamadsc\EspecialidadeTest.class
 com\vivamamadsc\vivamamadsc\MedicoTestSegundaEntrega.class
