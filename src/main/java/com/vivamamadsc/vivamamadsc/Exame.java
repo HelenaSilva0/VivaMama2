@@ -82,7 +82,7 @@ public class Exame {
         return paciente;
     }
 
-    void setPaciente(Paciente paciente) {
+    public void setPaciente(Paciente paciente) {
         this.paciente = paciente;
     }
 

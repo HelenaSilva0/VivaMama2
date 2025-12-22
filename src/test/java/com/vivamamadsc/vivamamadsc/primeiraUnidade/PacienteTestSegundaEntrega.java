@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.vivamamadsc.vivamamadsc;
+package com.vivamamadsc.vivamamadsc.primeiraUnidade;
 
+import com.vivamamadsc.vivamamadsc.Paciente;
 import jakarta.persistence.CacheRetrieveMode;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -19,13 +20,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-/**
- *
- * @author helena
- */
+public class PacienteTestSegundaEntrega {
 
-
-public class ConversaTestSegundaEntrega {
     private static EntityManagerFactory emf;
     private static EntityManager em;
     private EntityTransaction et;
@@ -55,50 +51,58 @@ public class ConversaTestSegundaEntrega {
         }
         em.close();
     }
-
+    
     @Test
-    public void atualizarConversa() {
-        Conversa obj = em.find(Conversa.class, 1L);
-        obj.setAssunto("Assunto Atualizado");
-        obj.setAtiva(false);
-        em.flush();
+    public void atualizarPaciente() {
+        String novoNome = "Gameta Do Agreste";
+        String novoEmail = "gameta@gmail.com";
 
-        Map<String, Object> properties = new HashMap<>();
-        properties.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-
-        obj = em.find(Conversa.class, 1L, properties);
-
-        assertEquals("Assunto Atualizado", obj.getAssunto());
-        assertEquals(false, obj.isAtiva());
-    }
-
-    @Test
-    public void atualizarConversaMerge() {
-        Conversa obj = em.find(Conversa.class, 3L);
-        obj.setAssunto("Assunto Atualizado Com Merge");
-        obj.setAtiva(false);
-
-        em.clear();
-        obj = em.merge(obj);
-
-        Map<String, Object> properties = new HashMap<>();
-        properties.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-
-        obj = em.find(Conversa.class, 3L, properties);
-
-        assertEquals("Assunto Atualizado Com Merge", obj.getAssunto());
-        assertEquals(false, obj.isAtiva());
-    }
-
-    @Test
-    public void removerConversa() {
-        Conversa obj = em.find(Conversa.class, 2L);
+        Paciente paciente = em.find(Paciente.class, 1L);
+        paciente.setNome(novoNome);
+        paciente.setEmail(novoEmail);
         
-        em.remove(obj);
+        em.flush();
+        
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+
+        paciente = em.find(Paciente.class, 1L, properties);
+
+        assertEquals(novoNome, paciente.getNome());
+        assertEquals(novoEmail, paciente.getEmail());
+    }    
+
+    @Test
+    public void atualizarPacienteMerge() {
+        String novoNome = "Zigoto Do Agreste";
+        String novoEmail = "zigoto@gmail.com";
+
+        Paciente paciente = em.find(Paciente.class, 3L);
+        paciente.setNome(novoNome);
+        paciente.setEmail(novoEmail);
+
+        em.clear();
+
+        paciente = (Paciente) em.merge(paciente);
+        
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+
+        paciente = em.find(Paciente.class, 3L, properties);
+
+        assertEquals(novoNome, paciente.getNome());
+        assertEquals(novoEmail, paciente.getEmail());
+    }
+
+    @Test
+    public void removerPaciente() {
+        Paciente paciente = em.find(Paciente.class, 4L);
+
+        em.remove(paciente);
         em.flush();
         em.clear();
-        Conversa objRemovido = em.find(Conversa.class, 2L);
-        assertNull(objRemovido);
+        
+        Paciente pacienteRemovido = em.find(Paciente.class, 4L);
+        assertNull(pacienteRemovido);
     }
 }
-
