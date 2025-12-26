@@ -10,11 +10,19 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToOne;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@NamedQueries({
+    @NamedQuery(
+        name = "Medico.PorNome",
+        query = "SELECT m FROM Medico m WHERE m.nome LIKE :nome"
+    )
+})
 public class Medico extends Usuario {
 
 //    @NotBlank(message = "CRM é obrigatório")

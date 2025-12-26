@@ -4,7 +4,6 @@
  */
 package com.vivamamadsc.vivamamadsc.segundaUnidade;
 
-import com.vivamamadsc.vivamamadsc.Medico;
 import com.vivamamadsc.vivamamadsc.Paciente;
 import com.vivamamadsc.vivamamadsc.primeiraUnidade.DbUnitUtil;
 import jakarta.persistence.EntityManager;
@@ -26,7 +25,7 @@ import org.junit.Test;
  *
  * @author Neto Pereira
  */
-public class MedicoJPQLTest {
+public class PacienteJPQLTest {
 
     private static EntityManagerFactory emf;
     private static EntityManager em;
@@ -61,61 +60,61 @@ public class MedicoJPQLTest {
     }
 
     @Test
-    public void testBuscarMedicoPorId() {
-        Medico medico = em.createQuery(
-                "SELECT m FROM Medico m WHERE m.id = :id", Medico.class)
-                .setParameter("id", 2L)
+    public void testBuscarPacientePorIdJPQL() {
+        Paciente paciente = em.createQuery(
+                "SELECT m FROM Paciente m WHERE m.id = :id", Paciente.class)
+                .setParameter("id", 1L)
                 .getSingleResult();
 
-        assertNotNull(medico);
-        assertEquals("Fulano da Silva", medico.getNome());
+        assertNotNull(paciente);
+        assertEquals("Ciclano da Silva", paciente.getNome());
     }
 
     @Test
-    public void testBuscarTodosMedicos() {
-        List<Medico> medicos = em.createQuery(
-                "SELECT m FROM Medico m", Medico.class
+    public void testBuscarTodosPacientes() {
+        List<Paciente> pacientes = em.createQuery(
+                "SELECT m FROM Medico m", Paciente.class
         ).getResultList();
 
-        assertFalse(medicos.isEmpty());
+        assertFalse(pacientes.isEmpty());
 
     }
-    
+
     @Test
-    public void testAtualizarMedico() {
-        TypedQuery<Medico> query = em.createNamedQuery("Medico.PorNome", Medico.class);
+    public void testAtualizarPaciente() {
+        TypedQuery<Paciente> query = em.createNamedQuery("Paciente.PorNome", Paciente.class);
 
-        query.setParameter("nome", "Fulano da Silva");
+        query.setParameter("nome", "Ciclano da Silva");
 
-        Medico medico = query.getSingleResult();
+        Paciente paciente = query.getSingleResult();
 
-        assertNotNull(medico);
+        assertNotNull(paciente);
 
-        medico.setNome("Barry Allen");
+        paciente.setNome("Klaus Meine");
 
         em.flush(); // Atualização vai rolar aqui
 
         assertEquals(0, query.getResultList().size());
 
         // Verificando se realmente atualizou
-        query.setParameter("nome", "Barry Allen");
+        query.setParameter("nome", "Klaus Meine");
 
-        medico = query.getSingleResult();
+        paciente = query.getSingleResult();
 
-        assertNotNull(medico);
+        assertNotNull(paciente);
     }
 
     @Test
     public void testRemoverPaciente() {
-        TypedQuery<Medico> query = em.createNamedQuery("Medico.PorNome", Medico.class);
+        TypedQuery<Paciente> query = em.createNamedQuery("Paciente.PorNome", Paciente.class);
         
-        query.setParameter("nome", "Ricardo Silva");
+        query.setParameter("nome", "Miriapode da Silva");
         
-        Medico medico = query.getSingleResult();
+        Paciente paciente = query.getSingleResult();
 
-        assertNotNull(medico);
+        assertNotNull(paciente);
         
-        em.remove(medico);
+        em.remove(paciente);
         em.flush();
         
         assertEquals(0, query.getResultList().size());

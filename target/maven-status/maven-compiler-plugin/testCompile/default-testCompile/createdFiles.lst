@@ -4,6 +4,7 @@ com\vivamamadsc\vivamamadsc\primeiraUnidade\MensagemTestSegundaEntrega.class
 com\vivamamadsc\vivamamadsc\primeiraUnidade\CrmTestSegundaEntrega.class
 com\vivamamadsc\vivamamadsc\primeiraUnidade\ConversaTest.class
 com\vivamamadsc\vivamamadsc\primeiraUnidade\EspecialidadeTest.class
+com\vivamamadsc\vivamamadsc\segundaUnidade\ExameJPQLTest.class
 com\vivamamadsc\vivamamadsc\primeiraUnidade\MedicoTest.class
 com\vivamamadsc\vivamamadsc\primeiraUnidade\MedicoTestSegundaEntrega.class
 com\vivamamadsc\vivamamadsc\segundaUnidade\MedicoJPQLTest.class
@@ -12,5 +13,10 @@ com\vivamamadsc\vivamamadsc\primeiraUnidade\DbUnitUtil.class
 com\vivamamadsc\vivamamadsc\primeiraUnidade\ExameTest.class
 com\vivamamadsc\vivamamadsc\primeiraUnidade\PacienteTestSegundaEntrega.class
 com\vivamamadsc\vivamamadsc\primeiraUnidade\MensagemTest.class
+com\vivamamadsc\vivamamadsc\segundaUnidade\EspecialidadeJPQLTest.class
+com\vivamamadsc\vivamamadsc\segundaUnidade\ConversaJPQLTest.class
+com\vivamamadsc\vivamamadsc\segundaUnidade\PacienteJPQLTest.class
 com\vivamamadsc\vivamamadsc\primeiraUnidade\PacienteTest.class
+com\vivamamadsc\vivamamadsc\segundaUnidade\CrmJPQLTest.class
 com\vivamamadsc\vivamamadsc\primeiraUnidade\EspecialidadeTestSegundaEntrega.class
+com\vivamamadsc\vivamamadsc\segundaUnidade\MensagemJPQLTest.class

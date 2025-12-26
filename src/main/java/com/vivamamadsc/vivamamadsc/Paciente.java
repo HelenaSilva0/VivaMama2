@@ -8,6 +8,8 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Lob;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -16,6 +18,12 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@NamedQueries({
+    @NamedQuery(
+        name = "Paciente.PorNome",
+        query = "SELECT p FROM Paciente p WHERE p.nome LIKE :nome"
+    )
+})
 public class Paciente extends Usuario {
 
     @Temporal(TemporalType.DATE)
