@@ -96,7 +96,7 @@ public class ConversaJPQLTest {
 
         List<Conversa> conversas = em.createQuery(cq).getResultList();
 
-        assertNotNull(conversas);
+        //testem o tamanho da lista
         assertFalse(conversas.isEmpty());
         assertTrue(conversas.stream().anyMatch(x -> x.getAssunto().toLowerCase().contains("inicial")));
     }

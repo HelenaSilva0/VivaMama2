@@ -100,7 +100,7 @@ public class PacienteJPQLTest {
 
         List<Paciente> resultado = em.createQuery(cq).getResultList();
 
-        assertFalse(resultado.isEmpty());
+        //assertFalse(resultado.isEmpty());
         assertEquals(resultado.size(), 1);
 
         em.close();

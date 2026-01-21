@@ -107,7 +107,7 @@ public class ExameJPQLTest {
 
         List<Exame> exames = em.createQuery(cq).getResultList();
 
-        assertNotNull(exames);
+        assertNotNull(exames); //não está testando...
 
         em.close();
     }
@@ -126,8 +126,11 @@ public class ExameJPQLTest {
 
         List<Exame> exames = em.createQuery(cq).getResultList();
 
+        //testar o tamanho da lista
         assertFalse(exames.isEmpty());
 
+        assertTrue(exames.size() > 0);
+        
         em.close();
     }
 

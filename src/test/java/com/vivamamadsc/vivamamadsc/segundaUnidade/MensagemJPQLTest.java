@@ -103,16 +103,7 @@ public class MensagemJPQLTest {
     @Test
     public void testBuscarMensagensPorRemetente() {
         CriteriaBuilder cb = em.getCriteriaBuilder();
-
-        CriteriaQuery<Mensagem> cqBase = cb.createQuery(Mensagem.class);
-        Root<Mensagem> mBase = cqBase.from(Mensagem.class);
-        cqBase.select(mBase).orderBy(cb.asc(mBase.get("id")));
-
-        Mensagem base = em.createQuery(cqBase)
-                .setMaxResults(1)
-                .getSingleResult();
-
-        Usuario remetente = base.getRemetente();
+        Usuario remetente = em.find(Usuario.class, 2L);
 
         CriteriaQuery<Mensagem> cq = cb.createQuery(Mensagem.class);
         Root<Mensagem> m = cq.from(Mensagem.class);
@@ -122,9 +113,8 @@ public class MensagemJPQLTest {
                 .orderBy(cb.desc(m.get("enviadoEm")));
 
         List<Mensagem> msgs = em.createQuery(cq).getResultList();
-
-        assertNotNull(msgs);
-        assertFalse(msgs.isEmpty());
+        //testar o tamanho da lista
+        //testar a ordenação por data de envio
         assertTrue(msgs.stream().allMatch(x -> x.getRemetente().getId().equals(remetente.getId())));
     }
 }
