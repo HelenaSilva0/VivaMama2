@@ -10,10 +10,17 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Join;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
+import java.time.LocalDate;
 import java.util.List;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.assertTrue;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -64,7 +71,7 @@ public class ExameJPQLTest {
                 "SELECT e FROM Exame e WHERE e.id = :id", Exame.class)
                 .setParameter("id", 1L)
                 .getSingleResult();
-        
+
         assertNotNull(ex);
         assertEquals("Mamografia", ex.getTipo());
     }
@@ -79,4 +86,69 @@ public class ExameJPQLTest {
 
         assertFalse(exames.isEmpty());
     }
+
+    @Test
+    public void deveBuscarExamesPorTipoEPeriodo() {
+        EntityManager em = emf.createEntityManager();
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+
+        CriteriaQuery<Exame> cq = cb.createQuery(Exame.class);
+        Root<Exame> exame = cq.from(Exame.class);
+
+        Predicate tipo = cb.equal(exame.get("tipo"), "Sangue");
+
+        Predicate periodo = cb.between(
+                exame.get("dataExame"),
+                java.sql.Date.valueOf(LocalDate.of(2025, 1, 1)),
+                java.sql.Date.valueOf(LocalDate.of(2025, 12, 31))
+        );
+
+        cq.where(cb.and(tipo, periodo));
+
+        List<Exame> exames = em.createQuery(cq).getResultList();
+
+        assertNotNull(exames);
+
+        em.close();
+    }
+
+    @Test
+    public void deveBuscarExamesPorPaciente() {
+        EntityManager em = emf.createEntityManager();
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+
+        CriteriaQuery<Exame> cq = cb.createQuery(Exame.class);
+        Root<Exame> exame = cq.from(Exame.class);
+
+        Join<Object, Object> paciente = exame.join("paciente");
+
+        cq.where(cb.equal(paciente.get("id"), 1L));
+
+        List<Exame> exames = em.createQuery(cq).getResultList();
+
+        assertFalse(exames.isEmpty());
+
+        em.close();
+    }
+
+    @Test
+    public void deveContarExamesDeUmPaciente() {
+        EntityManager em = emf.createEntityManager();
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+
+        CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+        Root<Exame> exame = cq.from(Exame.class);
+
+        Join<Object, Object> paciente = exame.join("paciente");
+
+        cq.select(cb.count(exame))
+                .where(cb.equal(paciente.get("id"), 1L));
+
+        Long total = em.createQuery(cq).getSingleResult();
+
+        assertTrue(total >= 0);
+
+        em.close();
+    }
+
 }
