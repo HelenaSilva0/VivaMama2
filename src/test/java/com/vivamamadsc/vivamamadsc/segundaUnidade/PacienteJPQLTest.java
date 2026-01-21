@@ -4,13 +4,18 @@
  */
 package com.vivamamadsc.vivamamadsc.segundaUnidade;
 
+import com.vivamamadsc.vivamamadsc.Exame;
 import com.vivamamadsc.vivamamadsc.Paciente;
 import com.vivamamadsc.vivamamadsc.primeiraUnidade.DbUnitUtil;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
-import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
+import jakarta.persistence.criteria.Subquery;
 import java.util.List;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
@@ -81,42 +86,47 @@ public class PacienteJPQLTest {
     }
 
     @Test
-    public void testAtualizarPaciente() {
-        TypedQuery<Paciente> query = em.createNamedQuery("Paciente.PorNome", Paciente.class);
+    public void deveBuscarPacientePorNomeParcialECpf() {
+        EntityManager em = emf.createEntityManager();
+        CriteriaBuilder cb = em.getCriteriaBuilder();
 
-        query.setParameter("nome", "Ciclano da Silva");
+        CriteriaQuery<Paciente> cq = cb.createQuery(Paciente.class);
+        Root<Paciente> paciente = cq.from(Paciente.class);
 
-        Paciente paciente = query.getSingleResult();
+        Predicate nome = (Predicate) cb.like(paciente.get("nome"), "%Miriapode%");
+        Predicate cpf = (Predicate) cb.equal(paciente.get("cpf"), "44444444444");
 
-        assertNotNull(paciente);
+        cq.where(cb.and(nome, cpf));
 
-        paciente.setNome("Klaus Meine");
+        List<Paciente> resultado = em.createQuery(cq).getResultList();
 
-        em.flush(); // Atualização vai rolar aqui
+        assertFalse(resultado.isEmpty());
+        assertEquals(resultado.size(), 1);
 
-        assertEquals(0, query.getResultList().size());
-
-        // Verificando se realmente atualizou
-        query.setParameter("nome", "Klaus Meine");
-
-        paciente = query.getSingleResult();
-
-        assertNotNull(paciente);
+        em.close();
     }
 
     @Test
-    public void testRemoverPaciente() {
-        TypedQuery<Paciente> query = em.createNamedQuery("Paciente.PorNome", Paciente.class);
-        
-        query.setParameter("nome", "Miriapode da Silva");
-        
-        Paciente paciente = query.getSingleResult();
+    public void deveBuscarPacientesQuePossuemExames() {
+        EntityManager em = emf.createEntityManager();
+        CriteriaBuilder cb = em.getCriteriaBuilder();
 
-        assertNotNull(paciente);
-        
-        em.remove(paciente);
-        em.flush();
-        
-        assertEquals(0, query.getResultList().size());
+        CriteriaQuery<Paciente> cq = cb.createQuery(Paciente.class);
+        Root<Paciente> paciente = cq.from(Paciente.class);
+
+        Subquery<Long> subquery = cq.subquery(Long.class);
+        Root<Exame> exame = subquery.from(Exame.class);
+
+        subquery.select(cb.literal(1L))
+                .where(cb.equal(exame.get("paciente"), paciente));
+
+        cq.select(paciente)
+                .where(cb.exists(subquery));
+
+        List<Paciente> pacientes = em.createQuery(cq).getResultList();
+
+        assertFalse(pacientes.isEmpty());
+
+        em.close();
     }
 }
