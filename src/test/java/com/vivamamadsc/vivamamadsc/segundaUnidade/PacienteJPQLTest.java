@@ -16,9 +16,11 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import jakarta.persistence.criteria.Subquery;
+import java.util.Date;
 import java.util.List;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertTrue;
 import static junit.framework.Assert.assertNotNull;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -64,6 +66,7 @@ public class PacienteJPQLTest {
         em.close();
     }
 
+    // TESTES ANTIGOS E SIMPLES COM JQPL
     @Test
     public void testBuscarPacientePorIdJPQL() {
         Paciente paciente = em.createQuery(
@@ -85,6 +88,7 @@ public class PacienteJPQLTest {
 
     }
 
+    // TESTES FRACOS E ANTIGOS COM CRITERIA
     @Test
     public void deveBuscarPacientePorNomeParcialECpf() {
         EntityManager em = emf.createEntityManager();
@@ -129,4 +133,84 @@ public class PacienteJPQLTest {
 
         em.close();
     }
+
+    // TESTES NOVO COM JPQL E CRITERIA
+    // JPQL
+    @Test
+    public void deveRetornarApenasPacientesComMaisDeUmExame() {
+        List<Paciente> pacientes = em.createQuery(
+                """
+                SELECT p
+                FROM Paciente p
+                WHERE (
+                    SELECT COUNT(e)
+                    FROM Exame e
+                    WHERE e.paciente = p
+                ) > 1
+                ORDER BY (
+                    SELECT MAX(e.dataExame)
+                    FROM Exame e
+                    WHERE e.paciente = p
+                ) DESC
+                """,
+                Paciente.class
+        ).getResultList();
+
+        assertFalse(pacientes.size() < 0);
+
+        for (Paciente paciente : pacientes) {
+            Long quantidadeExames = em.createQuery(
+                    """
+            SELECT COUNT(e)
+            FROM Exame e
+            WHERE e.paciente = :paciente
+            """,
+                    Long.class
+            )
+                    .setParameter("paciente", paciente)
+                    .getSingleResult();
+
+            assertTrue("Paciente " + paciente.getNome() + " deveria ter mais de um exame", quantidadeExames > 1);
+        }
+    }
+
+    public @Test
+    void deveOrdenarPorDataDoExameMaisRecenteDesc() {
+        List<Paciente> pacientes = em.createQuery(
+                """
+                SELECT p
+                FROM Paciente p
+                WHERE (
+                    SELECT COUNT(e)
+                    FROM Exame e
+                    WHERE e.paciente = p
+                ) > 1
+                ORDER BY (
+                    SELECT MAX(e.dataExame)
+                    FROM Exame e
+                    WHERE e.paciente = p
+                ) DESC
+                """,
+                Paciente.class
+        ).getResultList();
+
+        assertTrue(pacientes.size() >= 2);
+
+        Paciente primeiro = pacientes.get(0);
+        Paciente segundo = pacientes.get(1);
+
+        Date maxPrimeiro = dataMaisRecente(primeiro);
+        Date maxSegundo = dataMaisRecente(segundo);
+
+        assertTrue("Paciente com exame mais recente deve vir primeiro", 
+                maxPrimeiro.after(maxSegundo));
+    }
+
+    private Date dataMaisRecente(Paciente paciente) {
+        return paciente.getExames().stream()
+                .map(Exame::getDataExame)
+                .max(Date::compareTo)
+                .orElseThrow();
+    }
+
 }
