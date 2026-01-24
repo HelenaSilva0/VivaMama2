@@ -11,8 +11,11 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Expression;
+import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import jakarta.persistence.criteria.Subquery;
@@ -202,8 +205,39 @@ public class PacienteJPQLTest {
         Date maxPrimeiro = dataMaisRecente(primeiro);
         Date maxSegundo = dataMaisRecente(segundo);
 
-        assertTrue("Paciente com exame mais recente deve vir primeiro", 
+        assertTrue("Paciente com exame mais recente deve vir primeiro",
                 maxPrimeiro.after(maxSegundo));
+    }
+
+    // CRITERIA
+    @Test
+    public void deveRetornarIdsDePacientesComMaisDeUmExameCriteria() {
+
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+
+        CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+
+        Root<Paciente> paciente = cq.from(Paciente.class);
+        Join<Paciente, Exame> exameJoin = paciente.join("exames");
+
+        cq.select(paciente.get("id"))
+                .groupBy(paciente.get("id"))
+                .having(cb.gt(cb.count(exameJoin), 1L));
+
+        List<Long> idsPacientes = em.createQuery(cq).getResultList();
+
+        // ---------- ASSERTS ----------
+        assertTrue(idsPacientes.size() > 0);
+
+        for (Long id : idsPacientes) {
+            Long totalExames = em.createQuery(
+                    "SELECT COUNT(e) FROM Exame e WHERE e.paciente.id = :id",
+                    Long.class
+            ).setParameter("id", id)
+                    .getSingleResult();
+
+            assertTrue(totalExames > 1);
+        }
     }
 
     private Date dataMaisRecente(Paciente paciente) {
