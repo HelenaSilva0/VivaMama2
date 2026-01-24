@@ -185,7 +185,8 @@
     <!--Novas especialidades-->
     
     <MEDICO_ESPECIALIDADE MEDICO_ID="2" ESPECIALIDADE_ID="2"/>
-
+    <MEDICO_ESPECIALIDADE MEDICO_ID="2" ESPECIALIDADE_ID="1"/>
+    
     <!-- conversa com id=1 entre usuario 1 (paciente) e usuario 2 (medico) -->
     <CONVERSA 
         ASSUNTO="Conversa inicial" 
