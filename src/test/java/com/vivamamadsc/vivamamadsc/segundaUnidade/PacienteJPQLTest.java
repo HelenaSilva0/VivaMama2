@@ -72,13 +72,13 @@ public class PacienteJPQLTest {
                 .getSingleResult();
 
         assertNotNull(paciente);
-        assertEquals("Ciclano da Silva", paciente.getNome());
+        assertEquals("Maria da Silva", paciente.getNome());
     }
 
     @Test
     public void testBuscarTodosPacientes() {
         List<Paciente> pacientes = em.createQuery(
-                "SELECT m FROM Medico m", Paciente.class
+                "SELECT p FROM Paciente p", Paciente.class
         ).getResultList();
 
         assertFalse(pacientes.isEmpty());

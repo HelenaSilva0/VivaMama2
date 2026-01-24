@@ -73,7 +73,7 @@ public class PacienteTest {
     public void consultarPaciente() {
         Paciente paciente = em.find(Paciente.class, 1L);
         assertEquals("ciclano@gmail.com", paciente.getEmail());
-        assertEquals("Ciclano da Silva", paciente.getNome());
+        assertEquals("Maria da Silva", paciente.getNome());
     }
 
     @Test

@@ -5,6 +5,7 @@
 package com.vivamamadsc.vivamamadsc.segundaUnidade;
 
 import com.vivamamadsc.vivamamadsc.Exame;
+import com.vivamamadsc.vivamamadsc.Usuario;
 import com.vivamamadsc.vivamamadsc.primeiraUnidade.DbUnitUtil;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -151,6 +152,28 @@ public class ExameJPQLTest {
 
         assertTrue(total >= 0);
 
+        em.close();
+    }
+    
+    @Test
+    public void deveBuscarQuantidadeDeExamesPorNomeDoPaciente() {
+        EntityManager em = emf.createEntityManager();
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+
+        CriteriaQuery<Exame> cq = cb.createQuery(Exame.class);
+        Root<Exame> exame = cq.from(Exame.class);
+
+        Join<Exame, Usuario> paciente = exame.join("paciente");
+
+        cq.select(exame)
+                .where(cb.like(
+                        cb.lower(paciente.get("nome")),
+                        "%maria%"
+                ));
+
+        List<Exame> exames = em.createQuery(cq).getResultList();
+
+        assertEquals(3, exames.size());
         em.close();
     }
 

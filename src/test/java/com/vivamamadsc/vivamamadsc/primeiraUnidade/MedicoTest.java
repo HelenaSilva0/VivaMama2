@@ -60,8 +60,8 @@ public class MedicoTest {
     @Test
     public void testPersistenciaMedico() {
         Medico medico = new Medico();
-        medico.setNome("Dra. Ana");
-        medico.setEmail("ana@teste.com");
+        medico.setNome("Dra. Gerusa");
+        medico.setEmail("gerusa@teste.com");
         medico.setSenha("123456");
         medico.setCpf("10101010101");
 
@@ -72,23 +72,11 @@ public class MedicoTest {
 
         medico.setCrm(crm);
 
-//        assertNotNull(medico.getId());
-
         Especialidade esp = new Especialidade();
         esp.setNome("Mastologia");
         em.persist(esp);
-//        
-//        Medico medico = new Medico();
-//        medico.setNome("Dr. João Lima");
-//        medico.setCpf("12345678901");
-//        medico.setEmail("joao.lima@clinica.com");
-//        medico.setSenha("senha123");
-//        medico.setCrm("PE12345");
+        
         medico.addEspecialidade(esp);
-//
-//        em.persist(medico);
-//        em.flush();
-//
 
         em.persist(medico);
 
