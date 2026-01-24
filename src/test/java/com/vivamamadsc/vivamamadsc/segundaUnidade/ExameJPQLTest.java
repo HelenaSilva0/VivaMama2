@@ -5,6 +5,7 @@
 package com.vivamamadsc.vivamamadsc.segundaUnidade;
 
 import com.vivamamadsc.vivamamadsc.Exame;
+import com.vivamamadsc.vivamamadsc.Paciente;
 import com.vivamamadsc.vivamamadsc.Usuario;
 import com.vivamamadsc.vivamamadsc.primeiraUnidade.DbUnitUtil;
 import jakarta.persistence.EntityManager;
@@ -17,6 +18,7 @@ import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
@@ -131,7 +133,7 @@ public class ExameJPQLTest {
         assertFalse(exames.isEmpty());
 
         assertTrue(exames.size() > 0);
-        
+
         em.close();
     }
 
@@ -154,7 +156,7 @@ public class ExameJPQLTest {
 
         em.close();
     }
-    
+
     @Test
     public void deveBuscarQuantidadeDeExamesPorNomeDoPaciente() {
         EntityManager em = emf.createEntityManager();
@@ -173,7 +175,112 @@ public class ExameJPQLTest {
 
         List<Exame> exames = em.createQuery(cq).getResultList();
 
-        assertEquals(3, exames.size());
+        assertEquals(5, exames.size());
+        em.close();
+    }
+
+    // TESTES NOVO COM JPQL E CRITERIA
+    // JPQL
+    @Test
+    public void deveBuscarQuantidadeDeExamesPorTipoDeUmPacienteAposData() {
+        List<String> tiposValidosDeExame = List.of(
+                "Mamografia", "Ultrassonografia Mamária", "Ressonância Magnética das Mamas",
+                "Mamografia Digital", "Biópsia Guiada por USG", "Biópsia de Mama"
+        );
+
+        List<Object[]> resultados = em.createQuery(
+                "SELECT e.tipo, COUNT(e) "
+                + "FROM Exame e "
+                + "JOIN e.paciente p "
+                + "WHERE p.id = :idPaciente "
+                + "AND e.dataExame >= :data "
+                + "GROUP BY e.tipo "
+                + "HAVING COUNT(e) > 0",
+                Object[].class
+        )
+                .setParameter("idPaciente", 1L)
+                .setParameter("data", java.sql.Date.valueOf("2024-01-01"))
+                .getResultList();
+
+        assertTrue(resultados.size() > 0);
+
+        for (Object[] linha : resultados) {
+            String tipo = (String) linha[0];
+            Long quantidade = (Long) linha[1];
+
+            assertTrue(!tipo.isBlank());
+            assertTrue(quantidade > 0);
+            assertTrue(tiposValidosDeExame.contains(tipo));
+
+            Long totalExamesDoTipo = em.createQuery(
+                    "SELECT COUNT(e) FROM Exame e "
+                    + "WHERE e.paciente.id = :idPaciente "
+                    + "AND e.tipo = :tipo "
+                    + "AND e.dataExame >= :data",
+                    Long.class
+            )
+                    .setParameter("idPaciente", 1L)
+                    .setParameter("tipo", tipo)
+                    .setParameter("data", java.sql.Date.valueOf("2024-01-01"))
+                    .getSingleResult();
+
+            assertEquals("Erro na contagem para o tipo: " + tipo, totalExamesDoTipo, quantidade);
+        }
+    }
+
+    // CRITERIA
+    @Test
+    public void deveBuscarExamesPorTipoPeriodoENomeDoPacienteCriteria() {
+        EntityManager em = emf.createEntityManager();
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+
+        CriteriaQuery<Exame> cq = cb.createQuery(Exame.class);
+        Root<Exame> exame = cq.from(Exame.class);
+        Join<Exame, Paciente> paciente = exame.join("paciente");
+
+        String tipoExameEsperado = "Mamografia";
+        String trechoNomePaciente = "Maria";
+        Date dataInicio = java.sql.Date.valueOf("2023-01-01");
+        Date dataFim = java.sql.Date.valueOf("2025-12-31");
+
+        Predicate porTipo = cb.equal(exame.get("tipo"), tipoExameEsperado);
+        Predicate porPeriodo = cb.between(exame.get("dataExame"), dataInicio, dataFim);
+        Predicate porNomePaciente = cb.like(
+                cb.lower(paciente.get("nome")),
+                "%" + trechoNomePaciente.toLowerCase() + "%"
+        );
+
+        cq.select(exame)
+                .where(cb.and(porTipo, porPeriodo, porNomePaciente))
+                .orderBy(cb.desc(exame.get("dataExame")));
+
+        List<Exame> exames = em.createQuery(cq).getResultList();
+
+        assertTrue("Deveria retornar ao menos um exame", exames.size() > 0);
+
+        Date dataAnterior = null;
+
+        for (Exame e : exames) {
+            assertEquals(tipoExameEsperado, e.getTipo());
+
+            assertFalse(e.getDataExame().before(dataInicio));
+            assertFalse(e.getDataExame().after(dataFim));
+
+            assertNotNull(e.getPaciente());
+            assertTrue(
+                    e.getPaciente().getNome().toLowerCase().contains(trechoNomePaciente.toLowerCase())
+            );
+
+            if (dataAnterior != null) {
+                assertFalse(
+                        "A lista não está ordenada por data decrescente",
+                        e.getDataExame().after(dataAnterior)
+                );
+            }
+
+            dataAnterior = e.getDataExame();
+        }
+
         em.close();
     }
 

@@ -273,7 +273,7 @@
         IMAGEM="ZmFrZS1pbWFnZQ=="/>
     
     <EXAME
-        TIPO="Ultrassonografia das Mamas"
+        TIPO="Ultrassonografia Mamária"
         DATA_EXAME="2025-04-10"
         RESULTADO_RESUMO="Exame de rotina sem alterações."
         PACIENTE_ID="3"
@@ -285,24 +285,23 @@
     <EXAME TIPO="Ressonância Magnética das Mamas" DATA_EXAME="2025-06-01" RESULTADO_RESUMO="Sem realce suspeito." PACIENTE_ID="10" IMAGEM="ZmFrZS1pbWFnZQ=="/>
     <EXAME TIPO="Mamografia" DATA_EXAME="2025-06-05" RESULTADO_RESUMO="Achado suspeito BI-RADS 4." PACIENTE_ID="11" IMAGEM="ZmFrZS1pbWFnZQ=="/>
     <EXAME TIPO="Biópsia de Mama" DATA_EXAME="2025-06-10" RESULTADO_RESUMO="Lesão benigna." PACIENTE_ID="11" IMAGEM="ZmFrZS1pbWFnZQ=="/>
-
     <EXAME TIPO="Mamografia" DATA_EXAME="2025-06-12" RESULTADO_RESUMO="Exame normal." PACIENTE_ID="12" IMAGEM="ZmFrZS1pbWFnZQ=="/>
     <EXAME TIPO="Ultrassonografia Mamária" DATA_EXAME="2025-06-15" RESULTADO_RESUMO="Espessamento fibroglandular." PACIENTE_ID="13" IMAGEM="ZmFrZS1pbWFnZQ=="/>
     <EXAME TIPO="Mamografia Digital" DATA_EXAME="2025-06-20" RESULTADO_RESUMO="BI-RADS 1." PACIENTE_ID="14" IMAGEM="ZmFrZS1pbWFnZQ=="/>
     <EXAME TIPO="Ressonância Magnética das Mamas" DATA_EXAME="2025-06-25" RESULTADO_RESUMO="Área de realce assimétrico." PACIENTE_ID="15" IMAGEM="ZmFrZS1pbWFnZQ=="/>
     <EXAME TIPO="Biópsia Guiada por USG" DATA_EXAME="2025-07-01" RESULTADO_RESUMO="Neoplasia maligna confirmada." PACIENTE_ID="15" IMAGEM="ZmFrZS1pbWFnZQ=="/>
-
     <EXAME TIPO="Mamografia" DATA_EXAME="2025-07-05" RESULTADO_RESUMO="Calcificações benignas." PACIENTE_ID="16" IMAGEM="ZmFrZS1pbWFnZQ=="/>
     <EXAME TIPO="Ultrassonografia Mamária" DATA_EXAME="2025-07-10" RESULTADO_RESUMO="Sem alterações." PACIENTE_ID="17" IMAGEM="ZmFrZS1pbWFnZQ=="/>
     <EXAME TIPO="Mamografia Digital" DATA_EXAME="2025-07-12" RESULTADO_RESUMO="BI-RADS 3." PACIENTE_ID="8" IMAGEM="ZmFrZS1pbWFnZQ=="/>
     <EXAME TIPO="Ressonância Magnética das Mamas" DATA_EXAME="2025-07-15" RESULTADO_RESUMO="Achado indeterminado." PACIENTE_ID="9" IMAGEM="ZmFrZS1pbWFnZQ=="/>
     <EXAME TIPO="Mamografia" DATA_EXAME="2025-07-18" RESULTADO_RESUMO="Sem alterações." PACIENTE_ID="10" IMAGEM="ZmFrZS1pbWFnZQ=="/>
-
     <EXAME TIPO="Ultrassonografia Mamária" DATA_EXAME="2025-07-20" RESULTADO_RESUMO="Cisto complexo." PACIENTE_ID="12" IMAGEM="ZmFrZS1pbWFnZQ=="/>
     <EXAME TIPO="Biópsia de Mama" DATA_EXAME="2025-07-22" RESULTADO_RESUMO="Lesão benigna." PACIENTE_ID="13" IMAGEM="ZmFrZS1pbWFnZQ=="/>
     <EXAME TIPO="Mamografia" DATA_EXAME="2025-07-25" RESULTADO_RESUMO="BI-RADS 2." PACIENTE_ID="14" IMAGEM="ZmFrZS1pbWFnZQ=="/>
     <EXAME TIPO="Ultrassonografia Mamária" DATA_EXAME="2025-07-28" RESULTADO_RESUMO="Sem alterações." PACIENTE_ID="16" IMAGEM="ZmFrZS1pbWFnZQ=="/>
     <EXAME TIPO="Mamografia Digital" DATA_EXAME="2025-07-30" RESULTADO_RESUMO="Exame normal." PACIENTE_ID="17" IMAGEM="ZmFrZS1pbWFnZQ=="/>
+    <EXAME TIPO="Mamografia" DATA_EXAME="2025-07-30" RESULTADO_RESUMO="Exame de rotina sem alterações." PACIENTE_ID="3" IMAGEM="ZmFrZS1pbWFnZQ=="/>
+    <EXAME TIPO="Mamografia" DATA_EXAME="2025-12-30" RESULTADO_RESUMO="Achado suspeito BI-RADS 1." PACIENTE_ID="3" IMAGEM="ZmFrZS1pbWFnZQ=="/>
 
     <!--Novos Exames-->
     
