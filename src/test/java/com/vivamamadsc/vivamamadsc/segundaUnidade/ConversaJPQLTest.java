@@ -5,6 +5,7 @@
 package com.vivamamadsc.vivamamadsc.segundaUnidade;
 
 import com.vivamamadsc.vivamamadsc.Conversa;
+import com.vivamamadsc.vivamamadsc.Mensagem;
 import com.vivamamadsc.vivamamadsc.Usuario;
 import com.vivamamadsc.vivamamadsc.primeiraUnidade.DbUnitUtil;
 import jakarta.persistence.EntityManager;
@@ -15,7 +16,13 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.Root;
+import java.sql.Timestamp;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNotNull;
@@ -64,7 +71,7 @@ public class ConversaJPQLTest {
         em.close();
     }
 //testes simples
-    
+
     @Test
     public void testBuscarConversaPorId() {
         Conversa c = em.createQuery(
@@ -75,8 +82,6 @@ public class ConversaJPQLTest {
         assertNotNull(c);
         assertEquals("Conversa inicial", c.getAssunto());
     }
-    
-    //testes novos
 
     @Test
     public void testBuscarTodasConversas() {
@@ -87,42 +92,31 @@ public class ConversaJPQLTest {
         assertFalse(c.isEmpty());
     }
 
+    //teste com criteria
+    
     @Test
     public void testBuscarConversasPorAssuntoLike() {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Conversa> cq = cb.createQuery(Conversa.class);
         Root<Conversa> c = cq.from(Conversa.class);
 
-        cq.select(c).where(
-                cb.like(cb.lower(c.get("assunto")), "%inicial%")
-        );
+        cq.select(c).where(cb.like(cb.lower(c.get("assunto")), "%inicial%"));
 
         List<Conversa> conversas = em.createQuery(cq).getResultList();
 
-        //testem o tamanho da lista
-        assertFalse(conversas.isEmpty());
-        assertTrue(conversas.stream().anyMatch(x -> x.getAssunto().toLowerCase().contains("inicial")));
+        assertNotNull(conversas);
+        assertEquals(3, conversas.size());
+        assertTrue(conversas.stream().allMatch(x
+                -> x.getAssunto() != null && x.getAssunto().toLowerCase().contains("inicial")
+        ));
     }
 
     @Test
     public void testBuscarConversasPorParticipante() {
         CriteriaBuilder cb = em.getCriteriaBuilder();
 
-        CriteriaQuery<Conversa> cqBase = cb.createQuery(Conversa.class);
-        Root<Conversa> cBase = cqBase.from(Conversa.class);
-
-        cBase.join("participantes");
-
-        cqBase.select(cBase).distinct(true);
-
-        List<Conversa> baseList = em.createQuery(cqBase)
-                .setMaxResults(1)
-                .getResultList();
-
-        assertFalse("Nenhuma conversa com participante foi encontrada no dataset.", baseList.isEmpty());
-
-        Conversa base = baseList.get(0);
-        Usuario u = base.getParticipantes().get(0);
+        Usuario u = em.find(Usuario.class, 1L);
+        assertNotNull("Usuário 1 não encontrado no dataset.", u);
 
         CriteriaQuery<Conversa> cq = cb.createQuery(Conversa.class);
         Root<Conversa> c = cq.from(Conversa.class);
@@ -135,7 +129,92 @@ public class ConversaJPQLTest {
         List<Conversa> conversasDoUsuario = em.createQuery(cq).getResultList();
 
         assertNotNull(conversasDoUsuario);
-        assertFalse(conversasDoUsuario.isEmpty());
-        assertTrue(conversasDoUsuario.stream().anyMatch(x -> x.getId().equals(base.getId())));
+        assertEquals(2, conversasDoUsuario.size());
+        assertTrue(conversasDoUsuario.stream().allMatch(conv
+                -> conv.getParticipantes().stream().anyMatch(part -> part.getId().equals(u.getId()))
+        ));
     }
+    
+    //teste com JPQL puro
+
+    @Test
+    public void testeJpqlAssuntosConversasCriadasPorData() {
+        Date inicio = Timestamp.valueOf("2025-08-01 00:00:00");
+        Date fim = Timestamp.valueOf("2025-08-11 00:00:00");
+
+        List<Conversa> conversas = em.createQuery(
+                "SELECT DISTINCT c "
+                + "FROM Conversa c "
+                + "JOIN c.participantes p "
+                + "WHERE c.criadoEm >= :inicio AND c.criadoEm < :fim "
+                + "ORDER BY c.criadoEm ASC",
+                Conversa.class
+        )
+                .setParameter("inicio", inicio)
+                .setParameter("fim", fim)
+                .getResultList();
+
+        List<String> assuntos = conversas.stream()
+                .map(Conversa::getAssunto)
+                .collect(Collectors.toList());
+
+        assertNotNull(assuntos);
+        assertEquals(5, assuntos.size());
+
+        assertEquals(Arrays.asList(
+                "Resultado de mamografia",
+                "Resultado de biópsia",
+                "Discussão de diagnóstico",
+                "Ressonância das mamas",
+                "Mamografia de rotina"
+        ), assuntos);
+    }
+
+
+
+    @Test
+    public void testJpqlConversaMensagensERemetentes() {
+        Long conversaId = 4L;
+
+        em.clear();
+
+        List<Conversa> result = em.createQuery(
+                "SELECT c "
+                + "FROM Conversa c "
+                + "JOIN FETCH c.mensagens m "
+                + "JOIN FETCH m.remetente r "
+                + "WHERE c.id = :cid",
+                Conversa.class
+        )
+                .setParameter("cid", conversaId)
+                .getResultList();
+
+        assertNotNull(result);
+        assertFalse(result.isEmpty());
+
+        Conversa conversa = result.get(0);
+
+        assertNotNull(conversa);
+        assertEquals(conversaId, conversa.getId());
+        assertEquals("Resultado de mamografia", conversa.getAssunto());
+
+        List<Mensagem> msgs = conversa.getMensagens();
+        assertNotNull(msgs);
+
+        long qtdMensagensDistintas = msgs.stream()
+                .map(Mensagem::getId)
+                .distinct()
+                .count();
+        assertEquals(5L, qtdMensagensDistintas);
+
+        Set<Long> remetentes = msgs.stream()
+                .map(m -> m.getRemetente().getId())
+                .collect(Collectors.toSet());
+        assertEquals(new HashSet<>(Arrays.asList(18L, 8L)), remetentes);
+
+        assertTrue(msgs.stream().anyMatch(m
+                -> "Apenas manter acompanhamento anual.".equals(m.getTexto())
+        ));
+    }
+
 }
