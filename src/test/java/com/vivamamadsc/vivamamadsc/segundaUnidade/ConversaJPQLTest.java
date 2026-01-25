@@ -31,7 +31,7 @@ import org.junit.Test;
  * @author Neto Pereira
  */
 public class ConversaJPQLTest {
-    
+
     private static EntityManagerFactory emf;
     private static EntityManager em;
     private EntityTransaction et;
@@ -63,18 +63,18 @@ public class ConversaJPQLTest {
         }
         em.close();
     }
-    
+
     @Test
     public void testBuscarConversaPorId() {
         Conversa c = em.createQuery(
-        "SELECT c FROM Conversa c WHERE c.id = :id", Conversa.class)
+                "SELECT c FROM Conversa c WHERE c.id = :id", Conversa.class)
                 .setParameter("id", 1L)
                 .getSingleResult();
-        
+
         assertNotNull(c);
         assertEquals("Conversa inicial", c.getAssunto());
     }
-    
+
     @Test
     public void testBuscarTodasConversas() {
         List<Conversa> c = em.createQuery(
@@ -83,7 +83,7 @@ public class ConversaJPQLTest {
 
         assertFalse(c.isEmpty());
     }
-    
+
     @Test
     public void testBuscarConversasPorAssuntoLike() {
         CriteriaBuilder cb = em.getCriteriaBuilder();
@@ -100,7 +100,7 @@ public class ConversaJPQLTest {
         assertFalse(conversas.isEmpty());
         assertTrue(conversas.stream().anyMatch(x -> x.getAssunto().toLowerCase().contains("inicial")));
     }
-    
+
     @Test
     public void testBuscarConversasPorParticipante() {
         CriteriaBuilder cb = em.getCriteriaBuilder();

@@ -30,7 +30,7 @@ import org.junit.Test;
  * @author Neto Pereira
  */
 public class MensagemJPQLTest {
-    
+
     private static EntityManagerFactory emf;
     private static EntityManager em;
     private EntityTransaction et;
@@ -62,18 +62,18 @@ public class MensagemJPQLTest {
         }
         em.close();
     }
-    
+
     @Test
-    public void testBuscarMensagemPorId(){
+    public void testBuscarMensagemPorId() {
         Mensagem msg = em.createQuery(
-        "SELECT m FROM Mensagem m WHERE m.id = :id", Mensagem.class)
+                "SELECT m FROM Mensagem m WHERE m.id = :id", Mensagem.class)
                 .setParameter("id", 1L)
                 .getSingleResult();
-        
+
         assertNotNull(msg);
         assertEquals("Olá, seus exames chegaram. Podemos conversar?", msg.getTexto());
     }
-    
+
     @Test
     public void testBuscarTodasMensagens() {
         List<Mensagem> msgs = em.createQuery(
@@ -82,7 +82,7 @@ public class MensagemJPQLTest {
 
         assertFalse(msgs.isEmpty());
     }
-    
+
     @Test
     public void testBuscarMensagensPorTextoLike() {
         CriteriaBuilder cb = em.getCriteriaBuilder();
@@ -99,7 +99,7 @@ public class MensagemJPQLTest {
         assertFalse(msgs.isEmpty());
         assertTrue(msgs.stream().anyMatch(x -> x.getTexto().toLowerCase().contains("exames")));
     }
-    
+
     @Test
     public void testBuscarMensagensPorRemetente() {
         CriteriaBuilder cb = em.getCriteriaBuilder();
