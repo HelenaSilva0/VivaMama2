@@ -28,7 +28,7 @@ import org.junit.Test;
 
 /**
  *
- * @author Neto Pereira
+ * @author Helena
  */
 public class ConversaJPQLTest {
 
@@ -63,7 +63,8 @@ public class ConversaJPQLTest {
         }
         em.close();
     }
-
+//testes simples
+    
     @Test
     public void testBuscarConversaPorId() {
         Conversa c = em.createQuery(
@@ -74,6 +75,8 @@ public class ConversaJPQLTest {
         assertNotNull(c);
         assertEquals("Conversa inicial", c.getAssunto());
     }
+    
+    //testes novos
 
     @Test
     public void testBuscarTodasConversas() {

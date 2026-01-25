@@ -58,7 +58,7 @@ public class PacienteTest {
 
     @Test
     public void persistirUsuario() {
-        Paciente usuario = criarPaciente("beltrano@gmail.com", "12345678777");
+        Paciente usuario = criarPaciente("beltrano@gmail.com", "72962327060");
 
         em.persist(usuario);
         em.flush(); //forÃ§a que a persistÃªncia realizada vÃ¡ para o banco neste momento.
@@ -78,7 +78,7 @@ public class PacienteTest {
 
     @Test
     public void persistirPacienteComPdfDeArquivo() throws Exception {
-        Paciente paciente = criarPaciente("birigui@teste.com", "09876543219");
+        Paciente paciente = criarPaciente("birigui@teste.com", "67111104048");
 
         // carrega o PDF da pasta src/test/resources/pdf
         byte[] pdfBytes = loadResource("/pdf/historico.pdf");

@@ -63,7 +63,7 @@ public class MedicoTest {
         medico.setNome("Dra. Gerusa");
         medico.setEmail("gerusa@teste.com");
         medico.setSenha("123456");
-        medico.setCpf("10101010101");
+        medico.setCpf("08073872072");
 
         Crm crm = new Crm();
         crm.setNumero("SP123456");

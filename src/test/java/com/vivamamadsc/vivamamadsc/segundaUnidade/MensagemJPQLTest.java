@@ -27,7 +27,7 @@ import org.junit.Test;
 
 /**
  *
- * @author Neto Pereira
+ * @author Helena
  */
 public class MensagemJPQLTest {
 
@@ -63,6 +63,7 @@ public class MensagemJPQLTest {
         em.close();
     }
 
+    //testes simples
     @Test
     public void testBuscarMensagemPorId() {
         Mensagem msg = em.createQuery(
@@ -82,7 +83,9 @@ public class MensagemJPQLTest {
 
         assertFalse(msgs.isEmpty());
     }
-
+    
+    //testes novos 
+    
     @Test
     public void testBuscarMensagensPorTextoLike() {
         CriteriaBuilder cb = em.getCriteriaBuilder();

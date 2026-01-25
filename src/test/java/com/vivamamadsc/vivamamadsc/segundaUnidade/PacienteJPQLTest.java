@@ -99,7 +99,7 @@ public class PacienteJPQLTest {
         Root<Paciente> paciente = cq.from(Paciente.class);
 
         Predicate nome = (Predicate) cb.like(paciente.get("nome"), "%Miriapode%");
-        Predicate cpf = (Predicate) cb.equal(paciente.get("cpf"), "44444444444");
+        Predicate cpf = (Predicate) cb.equal(paciente.get("cpf"), "87772267045");
 
         cq.where(cb.and(nome, cpf));
 
