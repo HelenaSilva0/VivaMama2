@@ -47,9 +47,18 @@ public class Mensagem {
     @Column(name = "texto", columnDefinition = "CLOB")
     private String texto;
 
+    @NotNull
+    @jakarta.validation.constraints.PastOrPresent
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "enviado_em", nullable = false)
-    private Date enviadoEm = new Date();
+    @Column(name = "enviado_em", nullable = false, updatable = false)
+    private Date enviadoEm;
+
+    @jakarta.persistence.PrePersist
+    public void prePersist() {
+        if (enviadoEm == null) {
+            enviadoEm = new Date();
+        }
+    }
 
     @Column(name = "lida", nullable = false)
     private boolean lida = false;
@@ -58,35 +67,82 @@ public class Mensagem {
     @Column(name = "nome_anexo")
     private String nomeAnexo;
 
+    @jakarta.validation.constraints.AssertTrue(
+            message = "Se houver anexo, o nome do anexo é obrigatório (e se não houver anexo, o nome deve estar vazio)"
+    )
+    public boolean isAnexoConsistente() {
+        boolean temAnexo = anexo != null && anexo.length > 0;
+        boolean temNome = nomeAnexo != null && !nomeAnexo.isBlank();
+        return temAnexo == temNome;
+    }
+
     @Lob
     @Column(name = "anexo", columnDefinition = "BLOB")
     private byte[] anexo;
 
-    public Mensagem() {}
+    public Mensagem() {
+    }
 
-    public Long getId() { return id; }
+    public Long getId() {
+        return id;
+    }
 
-    public Conversa getConversa() { return conversa; }
-    public void setConversa(Conversa conversa) { this.conversa = conversa; }
+    public Conversa getConversa() {
+        return conversa;
+    }
 
-    public Usuario getRemetente() { return remetente; }
-    public void setRemetente(Usuario remetente) { this.remetente = remetente; }
+    public void setConversa(Conversa conversa) {
+        this.conversa = conversa;
+    }
 
-    public String getTexto() { return texto; }
-    public void setTexto(String texto) { this.texto = texto; }
+    public Usuario getRemetente() {
+        return remetente;
+    }
 
-    public Date getEnviadoEm() { return enviadoEm; }
-    public void setEnviadoEm(Date enviadoEm) { this.enviadoEm = enviadoEm; }
+    public void setRemetente(Usuario remetente) {
+        this.remetente = remetente;
+    }
 
-    public boolean isLida() { return lida; }
-    public void setLida(boolean lida) { this.lida = lida; }
+    public String getTexto() {
+        return texto;
+    }
 
-    public String getNomeAnexo() { return nomeAnexo; }
-    public void setNomeAnexo(String nomeAnexo) { this.nomeAnexo = nomeAnexo; }
+    public void setTexto(String texto) {
+        this.texto = texto;
+    }
 
-    public byte[] getAnexo() { return anexo; }
-    public void setAnexo(byte[] anexo) { this.anexo = anexo; }
-    
+    public Date getEnviadoEm() {
+        return enviadoEm;
+    }
+
+    public void setEnviadoEm(Date enviadoEm) {
+        this.enviadoEm = enviadoEm;
+    }
+
+    public boolean isLida() {
+        return lida;
+    }
+
+    public void setLida(boolean lida) {
+        this.lida = lida;
+    }
+
+    public String getNomeAnexo() {
+        return nomeAnexo;
+    }
+
+    public void setNomeAnexo(String nomeAnexo) {
+        this.nomeAnexo = nomeAnexo;
+    }
+
+    public byte[] getAnexo() {
+        return anexo;
+    }
+
+    public void setAnexo(byte[] anexo) {
+        this.anexo = anexo;
+    }
+
     @Override
 
     public boolean equals(Object o) {

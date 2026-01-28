@@ -16,6 +16,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -53,9 +54,12 @@ public class Conversa {
     @JoinTable(
             name = "CONVERSA_PARTICIPANTES",
             joinColumns = @JoinColumn(name = "conversa_id"),
-            inverseJoinColumns = @JoinColumn(name = "usuario_id")
-    )
-    private List<Usuario> participantes = new ArrayList<>();
+            inverseJoinColumns = @JoinColumn(name = "usuario_id"),
+    uniqueConstraints = @UniqueConstraint(columnNames = {"conversa_id", "usuario_id"})
+)
+            
+    @Size(min = 1, message = "A conversa deve ter pelo menos 1 participante")
+    private List<@NotNull Usuario> participantes = new ArrayList<>();
     
     @OneToMany(mappedBy = "conversa", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Mensagem> mensagens = new ArrayList<>();
@@ -97,12 +101,14 @@ public class Conversa {
     }
 
     public void adicionarParticipante(Usuario u) {
-        this.participantes.add(u);
-    }
+         if (u == null) throw new IllegalArgumentException("Participante não pode ser null");
+    if (!this.participantes.contains(u)) this.participantes.add(u);
+}
 
     public void removerParticipante(Usuario u) {
-        this.participantes.remove(u);
-    }
+        if (u == null) return;
+    this.participantes.remove(u);
+}
     
     public List<Mensagem> getMensagens() {
         return mensagens;

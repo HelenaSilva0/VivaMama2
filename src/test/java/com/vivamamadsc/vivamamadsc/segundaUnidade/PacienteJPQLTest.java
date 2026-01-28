@@ -92,7 +92,6 @@ public class PacienteJPQLTest {
     // TESTES FRACOS E ANTIGOS COM CRITERIA
     @Test
     public void deveBuscarPacientePorNomeParcialECpf() {
-        EntityManager em = emf.createEntityManager();
         CriteriaBuilder cb = em.getCriteriaBuilder();
 
         CriteriaQuery<Paciente> cq = cb.createQuery(Paciente.class);
@@ -108,12 +107,10 @@ public class PacienteJPQLTest {
         //assertFalse(resultado.isEmpty());
         assertEquals(resultado.size(), 1);
 
-        em.close();
     }
 
     @Test
     public void deveBuscarPacientesQuePossuemExames() {
-        EntityManager em = emf.createEntityManager();
         CriteriaBuilder cb = em.getCriteriaBuilder();
 
         CriteriaQuery<Paciente> cq = cb.createQuery(Paciente.class);
@@ -132,7 +129,6 @@ public class PacienteJPQLTest {
 
         assertFalse(pacientes.isEmpty());
 
-        em.close();
     }
 
     // TESTES NOVO COM JPQL E CRITERIA

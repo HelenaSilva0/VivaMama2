@@ -94,7 +94,6 @@ public class MedicoJPQLTest {
     // TESTES FRACOS E ANTIGOS COM CRITERIA
     @Test
     public void deveBuscarMedicoPorNomeParcial() {
-        EntityManager em = emf.createEntityManager();
         CriteriaBuilder cb = em.getCriteriaBuilder();
 
         CriteriaQuery<Medico> cq = cb.createQuery(Medico.class);
@@ -105,13 +104,10 @@ public class MedicoJPQLTest {
 
         List<Medico> resultado = em.createQuery(cq).getResultList();
         assertFalse(resultado.isEmpty());
-
-        em.close();
     }
 
     @Test
     public void deveBuscarMedicosQuePossuemCrm() {
-        EntityManager em = emf.createEntityManager();
         CriteriaBuilder cb = em.getCriteriaBuilder();
 
         CriteriaQuery<Medico> cq = cb.createQuery(Medico.class);
@@ -129,7 +125,6 @@ public class MedicoJPQLTest {
         List<Medico> medicos = em.createQuery(cq).getResultList();
         assertFalse(medicos.isEmpty());
 
-        em.close();
     }
 
     // TESTE NOVO JPQL (subquery COUNT) + teste de lista (especialidades)
@@ -177,7 +172,6 @@ public class MedicoJPQLTest {
     // TESTE NOVO CRITERIA (EXISTS subquery) + teste de lista (especialidades)
     @Test
     public void deveBuscarMedicosQuePossuemEspecialidades_Criteria() {
-        EntityManager em = emf.createEntityManager();
         CriteriaBuilder cb = em.getCriteriaBuilder();
 
         CriteriaQuery<Medico> cq = cb.createQuery(Medico.class);
@@ -201,6 +195,5 @@ public class MedicoJPQLTest {
             assertFalse(m.getEspecialidades().isEmpty());
         }
 
-        em.close();
     }
 }

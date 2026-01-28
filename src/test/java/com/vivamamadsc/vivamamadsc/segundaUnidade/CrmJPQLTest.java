@@ -94,7 +94,6 @@ public class CrmJPQLTest {
     // TESTES FRACOS E ANTIGOS COM CRITERIA
     @Test
     public void deveBuscarCrmPorNumeroParcial_Criteria() {
-        EntityManager em = emf.createEntityManager();
         CriteriaBuilder cb = em.getCriteriaBuilder();
 
         CriteriaQuery<Crm> cq = cb.createQuery(Crm.class);
@@ -106,12 +105,10 @@ public class CrmJPQLTest {
         List<Crm> resultado = em.createQuery(cq).getResultList();
         assertFalse(resultado.isEmpty());
 
-        em.close();
     }
 
     @Test
     public void deveBuscarCrmsPorEstado_Criteria() {
-        EntityManager em = emf.createEntityManager();
         CriteriaBuilder cb = em.getCriteriaBuilder();
 
         CriteriaQuery<Crm> cq = cb.createQuery(Crm.class);
@@ -123,7 +120,6 @@ public class CrmJPQLTest {
         List<Crm> resultado = em.createQuery(cq).getResultList();
         assertFalse(resultado.isEmpty());
 
-        em.close();
     }
 
     // TESTE NOVO JPQL (subquery COUNT) + valida médico associado
@@ -153,7 +149,6 @@ public class CrmJPQLTest {
     // TESTE NOVO CRITERIA (EXISTS subquery) + valida médico não nulo
     @Test
     public void deveBuscarCrmsComMedico_Criteria() {
-        EntityManager em = emf.createEntityManager();
         CriteriaBuilder cb = em.getCriteriaBuilder();
 
         CriteriaQuery<Crm> cq = cb.createQuery(Crm.class);
@@ -175,6 +170,5 @@ public class CrmJPQLTest {
             assertNotNull(c.getMedico());
         }
 
-        em.close();
     }
 }

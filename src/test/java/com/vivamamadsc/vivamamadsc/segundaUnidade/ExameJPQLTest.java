@@ -92,7 +92,6 @@ public class ExameJPQLTest {
 
     @Test
     public void deveBuscarExamesPorTipoEPeriodo() {
-        EntityManager em = emf.createEntityManager();
         CriteriaBuilder cb = em.getCriteriaBuilder();
 
         CriteriaQuery<Exame> cq = cb.createQuery(Exame.class);
@@ -112,12 +111,10 @@ public class ExameJPQLTest {
 
         assertNotNull(exames); //não está testando...
 
-        em.close();
     }
 
     @Test
     public void deveBuscarExamesPorPaciente() {
-        EntityManager em = emf.createEntityManager();
         CriteriaBuilder cb = em.getCriteriaBuilder();
 
         CriteriaQuery<Exame> cq = cb.createQuery(Exame.class);
@@ -134,12 +131,10 @@ public class ExameJPQLTest {
 
         assertTrue(exames.size() > 0);
 
-        em.close();
     }
 
     @Test
     public void deveContarExamesDeUmPaciente() {
-        EntityManager em = emf.createEntityManager();
         CriteriaBuilder cb = em.getCriteriaBuilder();
 
         CriteriaQuery<Long> cq = cb.createQuery(Long.class);
@@ -154,12 +149,10 @@ public class ExameJPQLTest {
 
         assertTrue(total >= 0);
 
-        em.close();
     }
 
     @Test
     public void deveBuscarQuantidadeDeExamesPorNomeDoPaciente() {
-        EntityManager em = emf.createEntityManager();
         CriteriaBuilder cb = em.getCriteriaBuilder();
 
         CriteriaQuery<Exame> cq = cb.createQuery(Exame.class);
@@ -176,7 +169,6 @@ public class ExameJPQLTest {
         List<Exame> exames = em.createQuery(cq).getResultList();
 
         assertEquals(5, exames.size());
-        em.close();
     }
 
     // TESTES NOVO COM JPQL E CRITERIA
@@ -231,7 +223,6 @@ public class ExameJPQLTest {
     // CRITERIA
     @Test
     public void deveBuscarExamesPorTipoPeriodoENomeDoPacienteCriteria() {
-        EntityManager em = emf.createEntityManager();
         CriteriaBuilder cb = em.getCriteriaBuilder();
 
         CriteriaQuery<Exame> cq = cb.createQuery(Exame.class);
@@ -281,7 +272,6 @@ public class ExameJPQLTest {
             dataAnterior = e.getDataExame();
         }
 
-        em.close();
     }
 
 }
