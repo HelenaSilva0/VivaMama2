@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,10 +20,12 @@ public class Vivamamadsc {
 
     private static final Logger LOG = Logger.getLogger(Vivamamadsc.class.getName());
 
-    private static final EntityManagerFactory emf
-            = Persistence.createEntityManagerFactory("vivamamadsc");
+    private static  EntityManagerFactory emf;
 
     public static void main(String[] args) throws IOException {
+        
+         Locale.setDefault(new Locale("pt", "BR"));
+        emf = Persistence.createEntityManagerFactory("vivamamadsc");
 
         try {
             Long idPaciente = persistirPaciente();
@@ -89,7 +92,7 @@ public class Vivamamadsc {
 
     private static void preencherPaciente(Paciente p) throws IOException {
         p.setNome("Fulano da Silva");
-        p.setCpf("98765432100");
+        p.setCpf("81405578203");
         p.setEmail("fulano@gmail.com");
         p.setSenha("senha");
 //        p.setHistoricoFamiliar(" avo com cancer de mama.");
@@ -99,7 +102,7 @@ public class Vivamamadsc {
     private static void preencherMedico(Medico m, Set<Especialidade> especialidades) throws IOException {
         
         m.setNome("Dra. Maria");
-        m.setCpf("12345678901");
+        m.setCpf("67151285027");
         m.setEmail("medicofulano@gmail.com");
         m.setSenha("senha");
 //        m.setCrm("123456");

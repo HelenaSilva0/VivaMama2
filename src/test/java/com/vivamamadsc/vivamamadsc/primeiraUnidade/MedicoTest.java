@@ -62,27 +62,27 @@ public class MedicoTest {
         Medico medico = new Medico();
         medico.setNome("Dra. Gerusa");
         medico.setEmail("gerusa@teste.com");
-        medico.setSenha("123456");
-        medico.setCpf("08073872072");
+
+        medico.setSenha("Senha@123");
+        medico.setCpf("53878553056");
 
         Crm crm = new Crm();
         crm.setNumero("SP123456");
         crm.setEstado("SP");
         crm.setMedico(medico);
-
         medico.setCrm(crm);
 
         Especialidade esp = new Especialidade();
         esp.setNome("Mastologia");
         em.persist(esp);
-        
+
         medico.addEspecialidade(esp);
 
         em.persist(medico);
 
         em.flush();
         em.clear();
-        
+
         assertNotNull(medico.getId());
     }
 

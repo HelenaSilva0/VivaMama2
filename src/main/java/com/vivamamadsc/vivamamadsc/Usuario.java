@@ -13,7 +13,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
-import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -29,25 +28,25 @@ public abstract class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Nome é obrigatório")
-    @Size(max = 150, message = "Nome deve ter no máximo 150 caracteres")
+    @NotBlank(message = "{usuario.nome.obrigatorio}")
+    @Size(max = 150, message = "{usuario.nome.max}")
     @Column(nullable = false, length = 150)
     private String nome;
 
-    @NotBlank(message = "CPF é obrigatório")
-    @Pattern(regexp = "\\d{11}", message = "CPF deve conter exatamente 11 dígitos numéricos")
+    @NotBlank(message = "{usuario.cpf.obrigatorio}")
+    @Pattern(regexp = "\\d{11}", message = "{usuario.cpf.formato}")
     @Column(name = "CPF", unique = true, nullable = false, length = 11)
     private String cpf;
 
-    @NotBlank(message = "E-mail é obrigatório")
-    @Email(message = "E-mail inválido")
-    @Pattern(regexp = "^\\S+@\\S+\\.[^\\s]+$", message = "E-mail não pode conter espaços")
-    @Size(max = 150, message = "E-mail deve ter no máximo 150 caracteres")
+    @NotBlank(message = "{usuario.email.obrigatorio}")
+    @Email(message = "{usuario.email.invalido}")
+    @Size(max = 150, message = "{usuario.email.max}")
+    @Pattern(regexp = "^\\S+@\\S+\\.[^\\s]+$", message = "{usuario.email.sem_espacos}")
     @Column(unique = true, nullable = false, length = 150)
     private String email;
 
-    @NotBlank(message = "Senha é obrigatória")
-    @Size(min = 8, max = 60, message = "Senha deve ter entre 8 e 60 caracteres")
+    @NotBlank(message = "{usuario.senha.obrigatoria}")
+    @Size(min = 8, max = 60, message = "{usuario.senha.tamanho}")
     @Column(nullable = false, length = 60)
     private String senha;
 
@@ -104,7 +103,7 @@ public abstract class Usuario {
         this.tipo = tipo;
     }
 
-    @AssertTrue(message = "CPF inválido")
+    @jakarta.validation.constraints.AssertTrue(message = "{usuario.cpf.invalido}")
     public boolean isCpfValido() {
         if (cpf == null) {
             return false;
@@ -143,22 +142,21 @@ public abstract class Usuario {
         return (mod == 10) ? 0 : mod;
     }
 
-    @AssertTrue(message = "Senha fraca: use 8+ caracteres, com maiúscula, minúscula, número e símbolo (sem espaços).") // MODIFICADO
+@jakarta.validation.constraints.AssertTrue(message = "{usuario.senha.forte}")
     public boolean isSenhaValida() {
         if (senha == null) {
             return false;
         }
 
-        // Permite hash bcrypt (60 chars) OU senha forte em texto lembrando que sua coluna é length=60.
-        if (senha.matches("^\\$2[aby]\\$\\d{2}\\$[./A-Za-z0-9]{53}$")) { // MODIFICADO: aceita senha já hasheada (bcrypt)
+        if (senha.matches("^\\$2[aby]\\$\\d{2}\\$[./A-Za-z0-9]{53}$")) { 
             return true;
         }
 
         if (senha.length() < 8 || senha.length() > 60) {
-            return false; // MODIFICADO
+            return false; 
         }
         if (senha.chars().anyMatch(Character::isWhitespace)) {
-            return false; // MODIFICADO: sem espaços
+            return false; 
         }
         boolean temMaiuscula = false, temMinuscula = false, temNumero = false, temSimbolo = false;
         for (int i = 0; i < senha.length(); i++) {

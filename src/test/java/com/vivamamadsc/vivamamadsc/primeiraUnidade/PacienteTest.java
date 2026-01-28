@@ -98,7 +98,7 @@ public class PacienteTest {
         paciente.setNome("Beltrano da Silva");
         paciente.setCpf(cpf);
         paciente.setEmail(email);
-        paciente.setSenha("teste");
+        paciente.setSenha("Senha@123");
         paciente.setTipo(TipoUsuario.PACIENTE);
         paciente.setHistoricoFamiliar("Sem histórico familiar.");
 

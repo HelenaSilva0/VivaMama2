@@ -6,7 +6,7 @@
         CPF="59445228014" 
         DTYPE="Paciente" 
         EMAIL="ciclano@gmail.com" 
-        SENHA="teste123" 
+        SENHA="Teste@123" 
         TIPO="PACIENTE"
     />
     <PACIENTE 
@@ -22,7 +22,7 @@
         CPF="78738480000" 
         DTYPE="Medico" 
         EMAIL="fulano@gmail.com" 
-        SENHA="teste123" 
+        SENHA="Teste@123" 
         TIPO="MEDICO"
     />
     <MEDICO ID="2" />
@@ -34,7 +34,7 @@
         CPF="75789039006" 
         DTYPE="Paciente" 
         EMAIL="fulaninho@gmail.com" 
-        SENHA="teste123" 
+        SENHA="Teste@123" 
         TIPO="PACIENTE"
     />
     <PACIENTE 
@@ -49,7 +49,7 @@
         CPF="87772267045" 
         DTYPE="Paciente" 
         EMAIL="miriapode@gmail.com" 
-        SENHA="teste123" 
+        SENHA="Teste@123" 
         TIPO="PACIENTE"
     />
     <PACIENTE 
@@ -64,7 +64,7 @@
         CPF="83655902042" 
         DTYPE="Medico" 
         EMAIL="jupico@gmail.com" 
-        SENHA="teste123" 
+        SENHA="Teste@123" 
         TIPO="MEDICO"
     />
     <MEDICO ID="5" />   
@@ -74,7 +74,7 @@
         CPF="98249020073" 
         DTYPE="Medico" 
         EMAIL="ameba@gmail.com" 
-        SENHA="teste123" 
+        SENHA="Teste@123" 
         TIPO="MEDICO"
     />
     <MEDICO ID="6" />
@@ -86,7 +86,7 @@
         CPF="33492712002" 
         DTYPE="Medico" 
         EMAIL="ricardo@gmail.com" 
-        SENHA="teste123" 
+        SENHA="Teste@123" 
         TIPO="MEDICO"
     />
     <MEDICO ID="7" />
@@ -95,74 +95,74 @@
     
     <!--Novos usuarios-->
     <!--Pacientes-->
-    <USUARIO NOME="Ana Paula Souza" CPF="15262939007" DTYPE="Paciente" EMAIL="ana@gmail.com" SENHA="teste123" TIPO="PACIENTE"/>
+    <USUARIO NOME="Ana Paula Souza" CPF="15262939007" DTYPE="Paciente" EMAIL="ana@gmail.com" SENHA="Teste@123" TIPO="PACIENTE"/>
     <PACIENTE ID="8" DT_NASCIMENTO="1985-06-12" HISTORICOFAMILIAR="Mãe com câncer de mama." HISTORICO_FAMILIAR_PDF="MTIzNDU="/>
 
-    <USUARIO NOME="Beatriz Lima" CPF="61873789033" DTYPE="Paciente" EMAIL="bia@gmail.com" SENHA="teste123" TIPO="PACIENTE"/>
+    <USUARIO NOME="Beatriz Lima" CPF="61873789033" DTYPE="Paciente" EMAIL="bia@gmail.com" SENHA="Teste@123" TIPO="PACIENTE"/>
     <PACIENTE ID="9" DT_NASCIMENTO="1992-09-01" HISTORICOFAMILIAR="Sem histórico." HISTORICO_FAMILIAR_PDF="MTIzNDU="/>
 
-    <USUARIO NOME="Carla Menezes" CPF="58630629088" DTYPE="Paciente" EMAIL="carla@gmail.com" SENHA="teste123" TIPO="PACIENTE"/>
+    <USUARIO NOME="Carla Menezes" CPF="58630629088" DTYPE="Paciente" EMAIL="carla@gmail.com" SENHA="Teste@123" TIPO="PACIENTE"/>
     <PACIENTE ID="10" DT_NASCIMENTO="1978-11-20" HISTORICOFAMILIAR="Avó materna com câncer." HISTORICO_FAMILIAR_PDF="MTIzNDU="/>
 
-    <USUARIO NOME="Daniela Rocha" CPF="62973348030" DTYPE="Paciente" EMAIL="daniela@gmail.com" SENHA="teste123" TIPO="PACIENTE"/>
+    <USUARIO NOME="Daniela Rocha" CPF="62973348030" DTYPE="Paciente" EMAIL="daniela@gmail.com" SENHA="Teste@123" TIPO="PACIENTE"/>
     <PACIENTE ID="11" DT_NASCIMENTO="1989-03-15" HISTORICOFAMILIAR="Sem histórico." HISTORICO_FAMILIAR_PDF="MTIzNDU="/>
 
-    <USUARIO NOME="Elisa Torres" CPF="10415467004" DTYPE="Paciente" EMAIL="elisa@gmail.com" SENHA="teste123" TIPO="PACIENTE"/>
+    <USUARIO NOME="Elisa Torres" CPF="10415467004" DTYPE="Paciente" EMAIL="elisa@gmail.com" SENHA="Teste@123" TIPO="PACIENTE"/>
     <PACIENTE ID="12" DT_NASCIMENTO="1995-08-07" HISTORICOFAMILIAR="Tia com câncer de mama." HISTORICO_FAMILIAR_PDF="MTIzNDU="/>
 
-    <USUARIO NOME="Fernanda Alves" CPF="41647902029" DTYPE="Paciente" EMAIL="fernanda@gmail.com" SENHA="teste123" TIPO="PACIENTE"/>
+    <USUARIO NOME="Fernanda Alves" CPF="41647902029" DTYPE="Paciente" EMAIL="fernanda@gmail.com" SENHA="Teste@123" TIPO="PACIENTE"/>
     <PACIENTE ID="13" DT_NASCIMENTO="1983-12-02" HISTORICOFAMILIAR="Sem histórico." HISTORICO_FAMILIAR_PDF="MTIzNDU="/>
 
-    <USUARIO NOME="Gabriela Pires" CPF="24780153077" DTYPE="Paciente" EMAIL="gabriela@gmail.com" SENHA="teste123" TIPO="PACIENTE"/>
+    <USUARIO NOME="Gabriela Pires" CPF="24780153077" DTYPE="Paciente" EMAIL="gabriela@gmail.com" SENHA="Teste@123" TIPO="PACIENTE"/>
     <PACIENTE ID="14" DT_NASCIMENTO="2000-05-18" HISTORICOFAMILIAR="Sem histórico." HISTORICO_FAMILIAR_PDF="MTIzNDU="/>
 
-    <USUARIO NOME="Helena Costa" CPF="07457880097" DTYPE="Paciente" EMAIL="helena@gmail.com" SENHA="teste123" TIPO="PACIENTE"/>
+    <USUARIO NOME="Helena Costa" CPF="07457880097" DTYPE="Paciente" EMAIL="helena@gmail.com" SENHA="Teste@123" TIPO="PACIENTE"/>
     <PACIENTE ID="15" DT_NASCIMENTO="1975-10-30" HISTORICOFAMILIAR="Mãe e avó com câncer." HISTORICO_FAMILIAR_PDF="MTIzNDU="/>
 
-    <USUARIO NOME="Isabela Farias" CPF="05980165037" DTYPE="Paciente" EMAIL="isabela@gmail.com" SENHA="teste123" TIPO="PACIENTE"/>
+    <USUARIO NOME="Isabela Farias" CPF="05980165037" DTYPE="Paciente" EMAIL="isabela@gmail.com" SENHA="Teste@123" TIPO="PACIENTE"/>
     <PACIENTE ID="16" DT_NASCIMENTO="1998-01-09" HISTORICOFAMILIAR="Sem histórico." HISTORICO_FAMILIAR_PDF="MTIzNDU="/>
 
-    <USUARIO NOME="Juliana Prado" CPF="71477058079" DTYPE="Paciente" EMAIL="juliana@gmail.com" SENHA="teste123" TIPO="PACIENTE"/>
+    <USUARIO NOME="Juliana Prado" CPF="71477058079" DTYPE="Paciente" EMAIL="juliana@gmail.com" SENHA="Teste@123" TIPO="PACIENTE"/>
     <PACIENTE ID="17" DT_NASCIMENTO="1987-07-25" HISTORICOFAMILIAR="Irmã com câncer de mama." HISTORICO_FAMILIAR_PDF="MTIzNDU="/>
 
     <!--Médicos-->
-    <USUARIO NOME="Dr. André Martins" CPF="46176388066" DTYPE="Medico" EMAIL="andre@gmail.com" SENHA="teste123" TIPO="MEDICO"/>
+    <USUARIO NOME="Dr. André Martins" CPF="46176388066" DTYPE="Medico" EMAIL="andre@gmail.com" SENHA="Teste@123" TIPO="MEDICO"/>
     <MEDICO ID="18"/>
     <CRM NUMERO="SP654321" ESTADO="SP" MEDICO_ID="18"/>
 
-    <USUARIO NOME="Dra. Bianca Ramos" CPF="21707060037" DTYPE="Medico" EMAIL="bianca@gmail.com" SENHA="teste123" TIPO="MEDICO"/>
+    <USUARIO NOME="Dra. Bianca Ramos" CPF="21707060037" DTYPE="Medico" EMAIL="bianca@gmail.com" SENHA="Teste@123" TIPO="MEDICO"/>
     <MEDICO ID="19"/>
     <CRM NUMERO="RJ123789" ESTADO="RJ" MEDICO_ID="19"/>
 
-    <USUARIO NOME="Dr. Carlos Nogueira" CPF="94292974063" DTYPE="Medico" EMAIL="carlos@gmail.com" SENHA="teste123" TIPO="MEDICO"/>
+    <USUARIO NOME="Dr. Carlos Nogueira" CPF="94292974063" DTYPE="Medico" EMAIL="carlos@gmail.com" SENHA="Teste@123" TIPO="MEDICO"/>
     <MEDICO ID="20"/>
     <CRM NUMERO="MG456123" ESTADO="MG" MEDICO_ID="20"/>
 
-    <USUARIO NOME="Dra. Denise Lobo" CPF="62044631016" DTYPE="Medico" EMAIL="denise@gmail.com" SENHA="teste123" TIPO="MEDICO"/>
+    <USUARIO NOME="Dra. Denise Lobo" CPF="62044631016" DTYPE="Medico" EMAIL="denise@gmail.com" SENHA="Teste@123" TIPO="MEDICO"/>
     <MEDICO ID="21"/>
     <CRM NUMERO="BA789456" ESTADO="BA" MEDICO_ID="21"/>
 
-    <USUARIO NOME="Dr. Eduardo Freitas" CPF="98008848073" DTYPE="Medico" EMAIL="eduardo@gmail.com" SENHA="teste123" TIPO="MEDICO"/>
+    <USUARIO NOME="Dr. Eduardo Freitas" CPF="98008848073" DTYPE="Medico" EMAIL="eduardo@gmail.com" SENHA="Teste@123" TIPO="MEDICO"/>
     <MEDICO ID="22"/>
     <CRM NUMERO="RS321654" ESTADO="RS" MEDICO_ID="22"/>
 
-    <USUARIO NOME="Dra. Flávia Mendes" CPF="16674982075" DTYPE="Medico" EMAIL="flavia@gmail.com" SENHA="teste123" TIPO="MEDICO"/>
+    <USUARIO NOME="Dra. Flávia Mendes" CPF="16674982075" DTYPE="Medico" EMAIL="flavia@gmail.com" SENHA="Teste@123" TIPO="MEDICO"/>
     <MEDICO ID="23"/>
     <CRM NUMERO="SC987321" ESTADO="SC" MEDICO_ID="23"/>
 
-    <USUARIO NOME="Dr. Gustavo Peixoto" CPF="53779492008" DTYPE="Medico" EMAIL="gustavo@gmail.com" SENHA="teste123" TIPO="MEDICO"/>
+    <USUARIO NOME="Dr. Gustavo Peixoto" CPF="53779492008" DTYPE="Medico" EMAIL="gustavo@gmail.com" SENHA="Teste@123" TIPO="MEDICO"/>
     <MEDICO ID="24"/>
     <CRM NUMERO="PR159753" ESTADO="PR" MEDICO_ID="24"/>
 
-    <USUARIO NOME="Dra. Helena Guedes" CPF="92702930093" DTYPE="Medico" EMAIL="helena.med@gmail.com" SENHA="teste123" TIPO="MEDICO"/>
+    <USUARIO NOME="Dra. Helena Guedes" CPF="92702930093" DTYPE="Medico" EMAIL="helena.med@gmail.com" SENHA="Teste@123" TIPO="MEDICO"/>
     <MEDICO ID="25"/>
     <CRM NUMERO="CE852741" ESTADO="CE" MEDICO_ID="25"/>
 
-    <USUARIO NOME="Dr. Igor Barros" CPF="04632870021" DTYPE="Medico" EMAIL="igor@gmail.com" SENHA="teste123" TIPO="MEDICO"/>
+    <USUARIO NOME="Dr. Igor Barros" CPF="04632870021" DTYPE="Medico" EMAIL="igor@gmail.com" SENHA="Teste@123" TIPO="MEDICO"/>
     <MEDICO ID="26"/>
     <CRM NUMERO="GO369258" ESTADO="GO" MEDICO_ID="26"/>
 
-    <USUARIO NOME="Dra. Juliana Reis" CPF="58594961090" DTYPE="Medico" EMAIL="juliana.med@gmail.com" SENHA="teste123" TIPO="MEDICO"/>
+    <USUARIO NOME="Dra. Juliana Reis" CPF="58594961090" DTYPE="Medico" EMAIL="juliana.med@gmail.com" SENHA="Teste@123" TIPO="MEDICO"/>
     <MEDICO ID="27"/>
     <CRM NUMERO="DF741852" ESTADO="DF" MEDICO_ID="27"/>
 
