@@ -13,6 +13,8 @@ import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,14 +28,17 @@ import java.util.List;
 })
 public class Paciente extends Usuario {
 
+    @Past(message = "{paciente.dataNascimento.passada}") 
     @Temporal(TemporalType.DATE)
     @Column(name = "DT_NASCIMENTO", nullable = true)
     private Date dataNascimento;
 
+    @Size(max = 5_242_880, message = "{paciente.historicoPdf.max}")
     @Lob
     @Column(name = "HISTORICO_FAMILIAR_PDF")
     private byte[] historicoFamiliarPdf;
 
+    @Size(max = 5000, message = "{paciente.historicoTexto.max}")
     @Lob
     @Column(name = "HISTORICOFAMILIAR")
     private String historicoFamiliar;

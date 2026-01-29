@@ -37,18 +37,19 @@ public class Mensagem {
     private Conversa conversa;
 
     // remetente (pode ser Paciente ou Medico pois é Usuario)
-    @NotNull(message = "Remetente é obrigatório")
+    @NotNull(message = "{mensagem.remetente.obrigatorio}")
     @ManyToOne(optional = false)
     @JoinColumn(name = "remetente_id", nullable = false)
     private Usuario remetente;
 
-    @NotBlank(message = "Texto da mensagem é obrigatório")
+    @NotBlank(message = "{mensagem.texto.obrigatorio}")
+    @Size(max = 5000, message = "{mensagem.texto.max}")
     @Lob
     @Column(name = "texto", columnDefinition = "CLOB")
     private String texto;
 
-    @NotNull
-    @jakarta.validation.constraints.PastOrPresent
+    @NotNull(message = "{mensagem.enviadoEm.obrigatorio}")
+    @jakarta.validation.constraints.PastOrPresent(message = "{mensagem.enviadoEm.passadoOuPresente}")
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "enviado_em", nullable = false, updatable = false)
     private Date enviadoEm;
@@ -63,12 +64,12 @@ public class Mensagem {
     @Column(name = "lida", nullable = false)
     private boolean lida = false;
 
-    @Size(max = 255, message = "Nome do anexo deve ter no máximo 255 caracteres")
+    @Size(max = 255, message = "{mensagem.nomeAnexo.max}")
     @Column(name = "nome_anexo")
     private String nomeAnexo;
 
     @jakarta.validation.constraints.AssertTrue(
-            message = "Se houver anexo, o nome do anexo é obrigatório (e se não houver anexo, o nome deve estar vazio)"
+            message = "{mensagem.anexo.consistente}"
     )
     public boolean isAnexoConsistente() {
         boolean temAnexo = anexo != null && anexo.length > 0;
@@ -78,6 +79,7 @@ public class Mensagem {
 
     @Lob
     @Column(name = "anexo", columnDefinition = "BLOB")
+    @Size(max = 5_242_880, message = "{mensagem.anexo.max}")
     private byte[] anexo;
 
     public Mensagem() {

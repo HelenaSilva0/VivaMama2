@@ -36,12 +36,12 @@ public class Conversa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Assunto é obrigatório")
-    @Size(max = 200, message = "Assunto deve ter no máximo 200 caracteres")
+    @NotBlank(message = "{conversa.assunto.obrigatorio}")
+    @Size(max = 200, message = "{conversa.assunto.max}")   
     @Column(name = "ASSUNTO", nullable = false, length = 200)
     private String assunto;
 
-    @NotNull(message = "Data de criação é obrigatória")
+    @NotNull(message = "{conversa.criadoEm.obrigatorio}")
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "criado_em", nullable = false)
     private Date criadoEm = new Date();
@@ -58,8 +58,8 @@ public class Conversa {
     uniqueConstraints = @UniqueConstraint(columnNames = {"conversa_id", "usuario_id"})
 )
             
-    @Size(min = 1, message = "A conversa deve ter pelo menos 1 participante")
-    private List<@NotNull Usuario> participantes = new ArrayList<>();
+    @Size(min = 1, message = "{conversa.participantes.min}") 
+    private List<@NotNull(message = "{conversa.participantes.item.obrigatorio}") Usuario> participantes = new ArrayList<>();
     
     @OneToMany(mappedBy = "conversa", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Mensagem> mensagens = new ArrayList<>();

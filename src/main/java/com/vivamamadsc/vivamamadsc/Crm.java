@@ -10,6 +10,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import java.util.Objects;
 
 /**
@@ -23,9 +27,20 @@ public class Crm {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "{crm.numero.obrigatorio}")
+    @Size(max = 12, message = "{crm.numero.max}")
+    @Pattern(
+        regexp = "^[A-Z]{2}[0-9]{1,10}$",
+        message = "{crm.numero.formato}"            // MODIFICADO
+    )
+    @Size(max = 10, message = "{crm.numero.max}")
     private String numero;
+    
+    @NotBlank(message = "{crm.estado.obrigatorio}") 
+    @Pattern(regexp = "^[A-Z]{2}$", message = "{crm.estado.formato}")
     private String estado;
 
+    @NotNull(message = "{crm.medico.obrigatorio}")
     @OneToOne
     @JoinColumn(name = "medico_id", unique = true)
     private Medico medico;

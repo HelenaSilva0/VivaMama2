@@ -13,6 +13,8 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,19 +27,20 @@ import java.util.List;
 })
 public class Medico extends Usuario {
 
-//    @NotBlank(message = "CRM é obrigatório")
-//    @Size(max = 20, message = "CRM deve ter no máximo 20 caracteres")
+    @NotNull(message = "{medico.crm.obrigatorio}")
 //    @Column(name = "CRM", unique = true, nullable = false, length = 20)
     @OneToOne(mappedBy = "medico", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Crm crm;
 
+    @Size(min = 1, message = "{medico.especialidades.min}")
     @ManyToMany
     @JoinTable(
             name = "MEDICO_ESPECIALIDADE",
             joinColumns = @JoinColumn(name = "MEDICO_ID"),
             inverseJoinColumns = @JoinColumn(name = "ESPECIALIDADE_ID")
     )
-    private List<Especialidade> especialidades = new ArrayList<>();
+    private List<@NotNull(message = "{medico.especialidades.item.obrigatorio}") Especialidade> especialidades
+            = new ArrayList<>();
 
     public Medico() {
         setTipo(TipoUsuario.MEDICO);

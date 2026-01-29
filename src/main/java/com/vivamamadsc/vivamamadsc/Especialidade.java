@@ -29,8 +29,8 @@ public class Especialidade {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Nome da especialidade é obrigatório")
-    @Size(max = 100, message = "Nome da especialidade deve ter no máximo 100 caracteres")
+    @NotBlank(message = "{especialidade.nome.obrigatorio}")     
+    @Size(max = 100, message = "{especialidade.nome.max}")
     @Column(name = "NOME", nullable = false, length = 100)
     private String nome;
 
