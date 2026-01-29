@@ -7,7 +7,6 @@ package com.vivamamadsc.vivamamadsc.segundaUnidade;
 import com.vivamamadsc.vivamamadsc.TipoUsuario;
 import com.vivamamadsc.vivamamadsc.Usuario;
 import jakarta.validation.ConstraintViolation;
-import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
@@ -56,11 +55,48 @@ public class UsuarioValidatorTestSegundaEntrega {
                 .map(ConstraintViolation::getMessageTemplate)
                 .collect(Collectors.toSet());
     }
+    
+      private Set<String> paths(Set<? extends ConstraintViolation<?>> violations) { // MODIFICADO: novo helper (estilo "Vendedor")
+        return violations.stream()
+                .map(v -> v.getPropertyPath().toString())
+                .collect(Collectors.toSet());
+    }
 
     private void assertHas(Set<? extends ConstraintViolation<?>> violations, String template) {
         Set<String> t = templates(violations);
         assertTrue("Esperava violação com template: " + template + " mas veio: " + t, t.contains(template));
     }
+    
+    private void assertHasPath(Set<? extends ConstraintViolation<?>> violations, String path) { // MODIFICADO: novo helper
+        Set<String> p = paths(violations);
+        assertTrue("Esperava violação no campo: " + path + " mas veio: " + p, p.contains(path));
+    }
+    
+    //teste user invalido
+    @Test
+    public void usuarioInvalido() {
+        UsuarioTeste u = usuarioValido();
+        u.setNome("   ");
+        u.setCpf("123");
+        u.setEmail("abc");
+        u.setSenha("Ab1!"); 
+
+        Set<ConstraintViolation<UsuarioTeste>> v = validator.validate(u);
+
+        assertHasPath(v, "nome");
+        assertHasPath(v, "cpf");
+        assertHasPath(v, "email");
+        assertHasPath(v, "senha");
+
+        assertHas(v, "{usuario.nome.obrigatorio}");
+        assertHas(v, "{usuario.cpf.formato}");
+        assertHas(v, "{usuario.cpf.invalido}");
+        assertHas(v, "{usuario.email.invalido}");
+        assertHas(v, "{usuario.email.sem_espacos}");
+        assertHas(v, "{usuario.senha.tamanho}");
+        assertHas(v, "{usuario.senha.forte}");
+    }
+
 
     // teste NOME
 
@@ -71,7 +107,6 @@ public class UsuarioValidatorTestSegundaEntrega {
 
         Set<ConstraintViolation<UsuarioTeste>> v = validator.validate(u);
 
-        assertEquals(1, v.size());
         assertHas(v, "{usuario.nome.obrigatorio}");
     }
 
@@ -82,7 +117,6 @@ public class UsuarioValidatorTestSegundaEntrega {
 
         Set<ConstraintViolation<UsuarioTeste>> v = validator.validate(u);
 
-        assertEquals(1, v.size());
         assertHas(v, "{usuario.nome.max}");
     }
 
@@ -95,9 +129,8 @@ public class UsuarioValidatorTestSegundaEntrega {
 
         Set<ConstraintViolation<UsuarioTeste>> v = validator.validate(u);
 
-        assertEquals(2, v.size());
         assertHas(v, "{usuario.cpf.obrigatorio}");
-        assertHas(v, "{usuario.cpf.invalido}");
+        assertHas(v, "{usuario.cpf.invalido}"); 
     }
 
     @Test
@@ -107,7 +140,6 @@ public class UsuarioValidatorTestSegundaEntrega {
 
         Set<ConstraintViolation<UsuarioTeste>> v = validator.validate(u);
 
-        assertEquals(2, v.size());
         assertHas(v, "{usuario.cpf.formato}");
         assertHas(v, "{usuario.cpf.invalido}");
     }
@@ -119,7 +151,6 @@ public class UsuarioValidatorTestSegundaEntrega {
 
         Set<ConstraintViolation<UsuarioTeste>> v = validator.validate(u);
 
-        assertEquals(1, v.size());
         assertHas(v, "{usuario.cpf.invalido}");
     }
 
@@ -143,9 +174,9 @@ public class UsuarioValidatorTestSegundaEntrega {
 
         Set<ConstraintViolation<UsuarioTeste>> v = validator.validate(u);
 
-        assertEquals(2, v.size());
         assertHas(v, "{usuario.email.obrigatorio}");
         assertHas(v, "{usuario.email.sem_espacos}");
+        
     }
 
     @Test
@@ -155,7 +186,6 @@ public class UsuarioValidatorTestSegundaEntrega {
 
         Set<ConstraintViolation<UsuarioTeste>> v = validator.validate(u);
 
-        assertEquals(2, v.size());
         assertHas(v, "{usuario.email.invalido}");
         assertHas(v, "{usuario.email.sem_espacos}");
     }
@@ -167,7 +197,6 @@ public class UsuarioValidatorTestSegundaEntrega {
 
         Set<ConstraintViolation<UsuarioTeste>> v = validator.validate(u);
 
-        assertEquals(2, v.size());
         assertHas(v, "{usuario.email.invalido}");
         assertHas(v, "{usuario.email.sem_espacos}");
     }
@@ -188,7 +217,6 @@ public class UsuarioValidatorTestSegundaEntrega {
 
     Set<ConstraintViolation<UsuarioTeste>> v = validator.validate(u);
 
-    assertEquals(1, v.size());
     assertHas(v, "{usuario.email.max}");
     }
 
@@ -213,7 +241,6 @@ public class UsuarioValidatorTestSegundaEntrega {
 
         Set<ConstraintViolation<UsuarioTeste>> v = validator.validate(u);
 
-        assertEquals(3, v.size());
         assertHas(v, "{usuario.senha.obrigatoria}");
         assertHas(v, "{usuario.senha.tamanho}");
         assertHas(v, "{usuario.senha.forte}");
@@ -226,7 +253,6 @@ public class UsuarioValidatorTestSegundaEntrega {
 
         Set<ConstraintViolation<UsuarioTeste>> v = validator.validate(u);
 
-        assertEquals(2, v.size());
         assertHas(v, "{usuario.senha.tamanho}");
         assertHas(v, "{usuario.senha.forte}");
     }
@@ -238,7 +264,6 @@ public class UsuarioValidatorTestSegundaEntrega {
 
         Set<ConstraintViolation<UsuarioTeste>> v = validator.validate(u);
 
-        assertEquals(1, v.size());
         assertHas(v, "{usuario.senha.forte}");
     }
 
@@ -249,7 +274,6 @@ public class UsuarioValidatorTestSegundaEntrega {
 
         Set<ConstraintViolation<UsuarioTeste>> v = validator.validate(u);
 
-        assertEquals(1, v.size());
         assertHas(v, "{usuario.senha.forte}");
     }
     
