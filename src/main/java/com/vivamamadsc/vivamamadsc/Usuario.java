@@ -142,21 +142,21 @@ public abstract class Usuario {
         return (mod == 10) ? 0 : mod;
     }
 
-@jakarta.validation.constraints.AssertTrue(message = "{usuario.senha.forte}")
+    @jakarta.validation.constraints.AssertTrue(message = "{usuario.senha.forte}")
     public boolean isSenhaValida() {
         if (senha == null) {
             return false;
         }
 
-        if (senha.matches("^\\$2[aby]\\$\\d{2}\\$[./A-Za-z0-9]{53}$")) { 
+        if (senha.matches("^\\$2[aby]\\$\\d{2}\\$[./A-Za-z0-9]{53}$")) {
             return true;
         }
 
         if (senha.length() < 8 || senha.length() > 60) {
-            return false; 
+            return false;
         }
         if (senha.chars().anyMatch(Character::isWhitespace)) {
-            return false; 
+            return false;
         }
         boolean temMaiuscula = false, temMinuscula = false, temNumero = false, temSimbolo = false;
         for (int i = 0; i < senha.length(); i++) {
