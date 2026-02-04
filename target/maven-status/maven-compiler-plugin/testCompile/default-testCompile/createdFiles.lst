@@ -18,6 +18,7 @@ com\vivamamadsc\vivamamadsc\primeiraUnidade\EspecialidadeTest.class
 com\vivamamadsc\vivamamadsc\segundaUnidade\ExameJPQLTest.class
 com\vivamamadsc\vivamamadsc\primeiraUnidade\MedicoTest.class
 com\vivamamadsc\vivamamadsc\primeiraUnidade\MedicoTestSegundaEntrega.class
+com\vivamamadsc\vivamamadsc\segundaUnidade\CrmValidatorTestSegundaEntrega.class
 com\vivamamadsc\vivamamadsc\segundaUnidade\MedicoJPQLTest.class
 com\vivamamadsc\vivamamadsc\primeiraUnidade\CrmTest.class
 com\vivamamadsc\vivamamadsc\primeiraUnidade\DbUnitUtil.class
