@@ -6,32 +6,24 @@ package com.vivamamadsc.vivamamadsc.segundaUnidade;
 
 import com.vivamamadsc.vivamamadsc.Conversa;
 import com.vivamamadsc.vivamamadsc.Usuario;
+import com.vivamamadsc.vivamamadsc.base.BaseTest;
 import jakarta.validation.ConstraintViolation;
-import jakarta.validation.Validation;
-import jakarta.validation.Validator;
-import jakarta.validation.ValidatorFactory;
+import jakarta.validation.ConstraintViolationException;
 import java.util.Date;
-import java.util.Locale;
 import java.util.Set;
 import java.util.stream.Collectors;
+import static junit.framework.Assert.assertNull;
 import static junit.framework.Assert.assertTrue;
-import org.junit.BeforeClass;
+import static junit.framework.Assert.fail;
 import org.junit.Test;
 
 /**
  *
  * @author helena
  */
-public class ConversaValidatorTestSegundaEntrega {
-    private static Validator validator;
+public class ConversaValidatorTestSegundaEntrega extends BaseTest {
 
-    private static class UsuarioTeste extends Usuario { }
-
-    @BeforeClass
-    public static void setup() {
-        Locale.setDefault(new Locale("pt", "BR"));
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        validator = factory.getValidator();
+    private static class UsuarioTeste extends Usuario {
     }
 
     private Conversa conversaValida() {
@@ -53,8 +45,59 @@ public class ConversaValidatorTestSegundaEntrega {
         assertTrue("Esperava violação com template: " + template + " mas veio: " + t, t.contains(template));
     }
 
-    // teste ASSUNTO
+    private ConstraintViolationException unwrapCVE(Throwable ex) {
+        Throwable cur = ex;
+        while (cur != null) {
+            if (cur instanceof ConstraintViolationException constraintViolationException) {
+                return constraintViolationException;
+            }
+            cur = cur.getCause();
+        }
+        return null;
+    }
+    
+    //teste GERAL
 
+    @Test(expected = ConstraintViolationException.class)
+    public void persistirConversaInvalidaDeveDispararBeanValidationNoFlush() {
+        Conversa c = conversaValida();
+
+        c.setAssunto("   ");              
+        c.getParticipantes().clear(); 
+        c.setCriadoEm(null);       
+
+        try {
+            em.persist(c);
+            em.flush();
+            fail("Era esperado ConstraintViolationException no flush()");
+        } catch (RuntimeException ex) {
+            ConstraintViolationException cve = unwrapCVE(ex);
+            if (cve == null) {
+                throw ex;
+            }
+
+            Set<ConstraintViolation<?>> v = cve.getConstraintViolations();
+
+            Set<String> t = v.stream()
+                    .map(ConstraintViolation::getMessageTemplate)
+                    .collect(Collectors.toSet());
+
+            assertTrue("Esperava {conversa.assunto.obrigatorio}, veio: " + t,
+                    t.contains("{conversa.assunto.obrigatorio}"));
+
+            assertTrue("Esperava {conversa.participantes.min}, veio: " + t,
+                    t.contains("{conversa.participantes.min}"));
+
+            if (t.contains("{conversa.criadoEm.obrigatorio}")) {
+                assertTrue(t.contains("{conversa.criadoEm.obrigatorio}"));
+            }
+
+             assertNull(c.getId());
+            throw cve;
+        }
+    }
+
+    // teste ASSUNTO
     @Test
     public void assuntoDeveSerObrigatorio_notBlank() {
         Conversa c = conversaValida();
@@ -76,7 +119,6 @@ public class ConversaValidatorTestSegundaEntrega {
     }
 
     // teste CRIADO EM
-
     @Test
     public void criadoEmDeveSerObrigatorio() {
         Conversa c = conversaValida();
@@ -88,7 +130,6 @@ public class ConversaValidatorTestSegundaEntrega {
     }
 
     // teste PARTICIPANTES
-
     @Test
     public void deveTerPeloMenosUmParticipante() {
         Conversa c = conversaValida();
@@ -102,7 +143,7 @@ public class ConversaValidatorTestSegundaEntrega {
     @Test
     public void participantesNaoPodemConterNull() {
         Conversa c = conversaValida();
-        c.getParticipantes().add(null); 
+        c.getParticipantes().add(null);
 
         Set<ConstraintViolation<Conversa>> v = validator.validate(c);
 

@@ -31,7 +31,7 @@ public class Mensagem {
     private Long id;
 
     // conversa que contém a mensagem
-    @NotNull(message = "Conversa é obrigatória")
+    @NotNull(message = "{mensagem.conversa.obrigatoria}")
     @ManyToOne(optional = false)
     @JoinColumn(name = "conversa_id", nullable = false)
     private Conversa conversa;

@@ -7,35 +7,31 @@ package com.vivamamadsc.vivamamadsc.segundaUnidade;
 import com.vivamamadsc.vivamamadsc.Conversa;
 import com.vivamamadsc.vivamamadsc.Mensagem;
 import com.vivamamadsc.vivamamadsc.Usuario;
+import com.vivamamadsc.vivamamadsc.base.BaseTest;
 import jakarta.validation.ConstraintViolation;
-import jakarta.validation.Validation;
-import jakarta.validation.Validator;
-import jakarta.validation.ValidatorFactory;
+import jakarta.validation.ConstraintViolationException;
 import java.util.Date;
-import java.util.Locale;
 import java.util.Set;
 import java.util.stream.Collectors;
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertNull;
 import static junit.framework.Assert.assertTrue;
-import org.junit.BeforeClass;
+import static junit.framework.Assert.fail;
 import org.junit.Test;
 
 /**
  *
  * @author helena
  */
-public class MensagemValidatorTestSegundaEntrega {
+public class MensagemValidatorTestSegundaEntrega extends BaseTest {
 
-    private static Validator validator;
+    private static class MensagemTeste extends Mensagem {
+    }
 
-    private static class MensagemTeste extends Mensagem { }
-    private static class ConversaTeste extends Conversa { }
-    private static class UsuarioTeste extends Usuario { }
+    private static class ConversaTeste extends Conversa {
+    }
 
-    @BeforeClass
-    public static void setup() {
-        Locale.setDefault(new Locale("pt", "BR"));
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        validator = factory.getValidator();
+    private static class UsuarioTeste extends Usuario {
     }
 
     private MensagemTeste mensagemValida() {
@@ -57,10 +53,61 @@ public class MensagemValidatorTestSegundaEntrega {
         Set<String> t = templates(violations);
         assertTrue("Esperava violação com template: " + template + " mas veio: " + t, t.contains(template));
     }
+    
+    //teste GERAL
 
-    // -------------------------
+    @Test(expected = ConstraintViolationException.class)
+    public void DeveDispararTodasAsValidacoes() {
+        Mensagem m = new Mensagem(); 
+
+        m.setConversa(null);
+        m.setRemetente(null); 
+        m.setTexto("   "); 
+        m.setEnviadoEm(new Date(System.currentTimeMillis() + 60_000)); 
+
+        m.setNomeAnexo(" ".repeat(256));     
+        m.setAnexo(new byte[5_242_881]);    
+
+        try {
+            em.persist(m);
+            em.flush();
+            fail("Era esperado ConstraintViolationException no flush()");
+        } catch (ConstraintViolationException ex) {
+            Set<ConstraintViolation<?>> v = ex.getConstraintViolations();
+
+            Set<String> paths = v.stream()
+                    .map(cv -> cv.getPropertyPath().toString())
+                    .collect(Collectors.toSet());
+
+            Set<String> templates = v.stream()
+                    .map(ConstraintViolation::getMessageTemplate)
+                    .collect(Collectors.toSet());
+
+            assertTrue(paths.contains("conversa"));
+            assertTrue(paths.contains("remetente"));
+            assertTrue(paths.contains("texto"));
+            assertTrue(paths.contains("enviadoEm"));
+            assertTrue(paths.contains("nomeAnexo"));
+            assertTrue(paths.contains("anexo"));
+            assertTrue(paths.contains("anexoConsistente"));
+
+            // mensagens/templates esperados
+            assertTrue(templates.contains("{mensagem.conversa.obrigatoria}")); 
+            assertTrue(templates.contains("{mensagem.remetente.obrigatorio}"));
+            assertTrue(templates.contains("{mensagem.texto.obrigatorio}"));
+            assertTrue(templates.contains("{mensagem.enviadoEm.passadoOuPresente}"));
+            assertTrue(templates.contains("{mensagem.nomeAnexo.max}"));
+            assertTrue(templates.contains("{mensagem.anexo.max}"));
+            assertTrue(templates.contains("{mensagem.anexo.consistente}"));
+
+            assertEquals(7, v.size());
+            assertNull(m.getId());
+
+            throw ex;
+        }
+    }
+
     // CONVERSA
-    // -------------------------
     @Test
     public void conversaDeveSerObrigatoria() {
         MensagemTeste m = mensagemValida();
@@ -69,7 +116,7 @@ public class MensagemValidatorTestSegundaEntrega {
         Set<ConstraintViolation<MensagemTeste>> v = validator.validate(m);
 
         assertTrue("Esperava mensagem de erro da conversa. Veio: " + v,
-                v.stream().anyMatch(cv -> "Conversa é obrigatória".equals(cv.getMessage())));
+                v.stream().anyMatch(cv -> "{mensagem.conversa.obrigatoria}".equals(cv.getMessage())));
     }
 
     // teste REMETENTE
@@ -105,7 +152,6 @@ public class MensagemValidatorTestSegundaEntrega {
     }
 
     // teste ENVIADO EM
-
     @Test
     public void enviadoEmDeveSerObrigatorio() {
         MensagemTeste m = mensagemValida();
@@ -188,10 +234,10 @@ public class MensagemValidatorTestSegundaEntrega {
         MensagemTeste m = mensagemValida();
         byte[] grande = new byte[5_242_881];
         m.setAnexo(grande);
-        m.setNomeAnexo("grande.bin"); 
+        m.setNomeAnexo("grande.bin");
 
         Set<ConstraintViolation<MensagemTeste>> v = validator.validate(m);
 
         assertHas(v, "{mensagem.anexo.max}");
-    }  
+    }
 }

@@ -56,7 +56,7 @@ public class UsuarioValidatorTestSegundaEntrega {
                 .collect(Collectors.toSet());
     }
     
-      private Set<String> paths(Set<? extends ConstraintViolation<?>> violations) { // MODIFICADO: novo helper (estilo "Vendedor")
+      private Set<String> paths(Set<? extends ConstraintViolation<?>> violations) { 
         return violations.stream()
                 .map(v -> v.getPropertyPath().toString())
                 .collect(Collectors.toSet());
@@ -67,7 +67,7 @@ public class UsuarioValidatorTestSegundaEntrega {
         assertTrue("Esperava violação com template: " + template + " mas veio: " + t, t.contains(template));
     }
     
-    private void assertHasPath(Set<? extends ConstraintViolation<?>> violations, String path) { // MODIFICADO: novo helper
+    private void assertHasPath(Set<? extends ConstraintViolation<?>> violations, String path) { 
         Set<String> p = paths(violations);
         assertTrue("Esperava violação no campo: " + path + " mas veio: " + p, p.contains(path));
     }

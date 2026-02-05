@@ -22,7 +22,6 @@ import java.util.Objects;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Usuario {
-// adicionar cpf e modificar o teste de mensagem
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
