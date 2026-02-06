@@ -4,11 +4,16 @@ import com.vivamamadsc.vivamamadsc.Paciente;
 import com.vivamamadsc.vivamamadsc.base.BaseTest;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNull;
+import static junit.framework.Assert.assertTrue;
 import org.hamcrest.CoreMatchers;
 import static org.hamcrest.CoreMatchers.startsWith;
 import static org.junit.Assert.assertThat;
@@ -31,6 +36,12 @@ public class PacienteValidatorTestSegundaEntrega extends BaseTest {
             calendar.set(2030, Calendar.JANUARY, 1);
             paciente.setDataNascimento(calendar.getTime()); // data futura inválida (@Past)
 
+            String textoGrande = "A".repeat(9001);
+            paciente.setHistoricoFamiliar(textoGrande); // texto ultrapassa o limite máximo
+
+            byte[] pdfGrande = new byte[9_242_880];
+            paciente.setHistoricoFamiliarPdf(pdfGrande); // texto ultrapassa o limite máximo
+
             em.persist(paciente);
             em.flush();
         } catch (ConstraintViolationException ex) {
@@ -45,13 +56,50 @@ public class PacienteValidatorTestSegundaEntrega extends BaseTest {
                                 startsWith("class com.vivamamadsc.vivamamadsc.Paciente.email"),
                                 startsWith("class com.vivamamadsc.vivamamadsc.Paciente.cpf"),
                                 startsWith("class com.vivamamadsc.vivamamadsc.Paciente.senha"),
-                                startsWith("class com.vivamamadsc.vivamamadsc.Paciente.dataNascimento")
+                                startsWith("class com.vivamamadsc.vivamamadsc.Paciente.dataNascimento"),
+                                startsWith("class com.vivamamadsc.vivamamadsc.Paciente.historicoFamiliar"),
+                                startsWith("class com.vivamamadsc.vivamamadsc.Paciente.historicoFamiliarPdf")
                         )
                 );
             });
 
-            assertEquals(8, violations.size()); // ajuste se necessário
+            assertEquals(10, violations.size()); // ajuste se necessário
             assertNull(paciente.getId());
+
+            Map<String, List<String>> mensagensPorCampo = new HashMap<>();
+
+            ex.getConstraintViolations().forEach(v -> {
+                mensagensPorCampo
+                        .computeIfAbsent(
+                                v.getPropertyPath().toString(),
+                                k -> new ArrayList<>()
+                        )
+                        .add(v.getMessage());
+            });
+
+            assertEquals(10, ex.getConstraintViolations().size());
+
+            assertTrue(mensagensPorCampo.get("nome")
+                    .contains("{usuario.nome.obrigatorio}"));
+
+            assertTrue(mensagensPorCampo.get("email")
+                    .contains("{usuario.email.invalido}"));
+
+            assertTrue(mensagensPorCampo.get("cpf")
+                    .contains("{usuario.cpf.formato}"));
+
+            assertTrue(mensagensPorCampo.get("senha")
+                    .contains("{usuario.senha.tamanho}"));
+
+            assertTrue(mensagensPorCampo.get("dataNascimento")
+                    .contains("{paciente.dataNascimento.passada}"));
+
+            assertTrue(mensagensPorCampo.get("historicoFamiliar")
+                    .contains("{paciente.historicoTexto.max}"));
+
+            assertTrue(mensagensPorCampo.get("historicoFamiliarPdf")
+                    .contains("{paciente.historicoPdf.max}"));
+
             throw ex;
         }
     }
@@ -70,12 +118,12 @@ public class PacienteValidatorTestSegundaEntrega extends BaseTest {
             em.flush();
         } catch (ConstraintViolationException ex) {
 
-            ConstraintViolation<?> violation = ex.getConstraintViolations().iterator().next();
+            ConstraintViolation<?> violation = ex
+                    .getConstraintViolations()
+                    .iterator()
+                    .next();
 
-            assertEquals(
-                    "Senha deve ter entre 8 e 60 caracteres",
-                    violation.getMessage()
-            );
+            assertEquals("{usuario.senha.tamanho}", violation.getMessage());
 
             assertEquals(2, ex.getConstraintViolations().size());
 
