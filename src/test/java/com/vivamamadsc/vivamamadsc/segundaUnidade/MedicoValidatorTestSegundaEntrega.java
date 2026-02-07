@@ -1,91 +1,119 @@
 package com.vivamamadsc.vivamamadsc.segundaUnidade;
+
 import com.vivamamadsc.vivamamadsc.Crm;
 import com.vivamamadsc.vivamamadsc.Especialidade;
 import com.vivamamadsc.vivamamadsc.Medico;
+import com.vivamamadsc.vivamamadsc.base.BaseTest;
 import jakarta.validation.ConstraintViolation;
-import jakarta.validation.Validation;
-import jakarta.validation.Validator;
-import jakarta.validation.ValidatorFactory;
-import java.util.Locale;
+import jakarta.validation.ConstraintViolationException;
 import java.util.Set;
 import java.util.stream.Collectors;
-import static junit.framework.Assert.assertTrue;
-import org.junit.BeforeClass;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import org.junit.Test;
 
-
-
-/**
- *
- * @author Emilly Maria
- */
-public class MedicoValidatorTestSegundaEntrega {
-    private static Validator validator;
-
-    @BeforeClass
-    public static void setup() {
-        Locale.setDefault(new Locale("pt", "BR"));
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        validator = factory.getValidator();
-    }
+public class MedicoValidatorTestSegundaEntrega extends BaseTest {
 
     private Medico medicoValido() {
         Medico m = new Medico();
 
-        // CRM válido (e amarra o "volta" pq Crm exige medico != null)
+        m.setNome("Dra Ana");
+        m.setEmail("ana@teste.com");
+        m.setCpf("05980165037");
+        m.setSenha("Abc@12345");
+
+        // CRM válido
         Crm c = new Crm();
         c.setEstado("PE");
-        c.setNumero("PE123"); // seu regex exige 2 letras + 1..10 dígitos
+        c.setNumero("123");
         c.setMedico(m);
-
         m.setCrm(c);
 
-        // Especialidades: Medico só exige min=1 e item != null
-        m.getEspecialidades().add(new Especialidade());
+        // especialidade válida
+        Especialidade esp = new Especialidade();
+        esp.setNome("ginecologista");
+        m.getEspecialidades().add(esp);
 
         return m;
     }
 
-    private Set<String> templates(Set<? extends ConstraintViolation<?>> violations) {
-        return violations.stream()
-                .map(ConstraintViolation::getMessageTemplate)
-                .collect(Collectors.toSet());
+    private ConstraintViolationException unwrapCVE(Throwable ex) {
+        Throwable t = ex;
+        while (t != null) {
+            if (t instanceof ConstraintViolationException) return (ConstraintViolationException) t;
+            t = t.getCause();
+        }
+        return null;
     }
 
-    private void assertHas(Set<? extends ConstraintViolation<?>> violations, String template) {
-        Set<String> t = templates(violations);
-        assertTrue("Esperava violação com template: " + template + " mas veio: " + t, t.contains(template));
-    }
-
-    // --- testes CRM no Medico ---
+    // 1) CRM obrigatório + min de especialidades (lista vazia)
     @Test
-    public void crmDeveSerObrigatorio_notNull() {
+    public void persistirMedicoSemCrmESemEspecialidades_deveFalharNoFlush() {
         Medico m = medicoValido();
-        m.setCrm(null);
 
-        Set<ConstraintViolation<Medico>> v = validator.validate(m);
+        m.setCrm(null);                // {medico.crm.obrigatorio}
+        m.getEspecialidades().clear(); // {medico.especialidades.min}
 
-        assertHas(v, "{medico.crm.obrigatorio}");
+        try {
+            em.persist(m);
+            em.flush();
+            fail("Era esperado ConstraintViolationException no flush()");
+        } catch (RuntimeException ex) {
+
+            ConstraintViolationException cve = unwrapCVE(ex);
+            assertTrue("Não veio ConstraintViolationException. Veio: "
+                    + ex.getClass().getName()
+                    + " | cause: "
+                    + (ex.getCause() == null ? "null" : ex.getCause().getClass().getName())
+                    + " | msg: " + ex.getMessage(),
+                    cve != null);
+
+            Set<String> t = cve.getConstraintViolations().stream()
+                    .map(ConstraintViolation::getMessageTemplate)
+                    .collect(Collectors.toSet());
+
+            assertTrue("Esperava {medico.crm.obrigatorio}, veio: " + t,
+                    t.contains("{medico.crm.obrigatorio}"));
+
+            assertTrue("Esperava {medico.especialidades.min}, veio: " + t,
+                    t.contains("{medico.especialidades.min}"));
+
+            assertNull(m.getId());
+        }
     }
 
-    // --- testes ESPECIALIDADES ---
+    // 2) Item nulo (lista com 1 elemento null)
     @Test
-    public void deveTerPeloMenosUmaEspecialidade() {
+    public void persistirMedicoComEspecialidadeNula_deveFalharNoFlush() {
         Medico m = medicoValido();
+
+        // mantém tamanho >= 1, mas coloca null
         m.getEspecialidades().clear();
+        m.getEspecialidades().add(null); // {medico.especialidades.item.obrigatorio}
 
-        Set<ConstraintViolation<Medico>> v = validator.validate(m);
+        try {
+            em.persist(m);
+            em.flush();
+            fail("Era esperado ConstraintViolationException no flush()");
+        } catch (RuntimeException ex) {
 
-        assertHas(v, "{medico.especialidades.min}");
-    }
+            ConstraintViolationException cve = unwrapCVE(ex);
+            assertTrue("Não veio ConstraintViolationException. Veio: "
+                    + ex.getClass().getName()
+                    + " | cause: "
+                    + (ex.getCause() == null ? "null" : ex.getCause().getClass().getName())
+                    + " | msg: " + ex.getMessage(),
+                    cve != null);
 
-    @Test
-    public void especialidadesNaoPodemConterNull() {
-        Medico m = medicoValido();
-        m.getEspecialidades().add(null);
+            Set<String> t = cve.getConstraintViolations().stream()
+                    .map(ConstraintViolation::getMessageTemplate)
+                    .collect(Collectors.toSet());
 
-        Set<ConstraintViolation<Medico>> v = validator.validate(m);
+            assertTrue("Esperava {medico.especialidades.item.obrigatorio}, veio: " + t,
+                    t.contains("{medico.especialidades.item.obrigatorio}"));
 
-        assertHas(v, "{medico.especialidades.item.obrigatorio}");
+            assertNull(m.getId());
+        }
     }
 }
