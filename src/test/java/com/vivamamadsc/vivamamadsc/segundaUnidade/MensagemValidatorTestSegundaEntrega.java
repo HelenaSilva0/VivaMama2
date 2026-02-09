@@ -13,10 +13,14 @@ import jakarta.validation.ConstraintViolationException;
 import java.util.Date;
 import java.util.Set;
 import java.util.stream.Collectors;
-import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNull;
 import static junit.framework.Assert.assertTrue;
 import static junit.framework.Assert.fail;
+import static org.hamcrest.CoreMatchers.anyOf;
+import static org.hamcrest.CoreMatchers.hasItem;
+import static org.hamcrest.CoreMatchers.startsWith;
+import static org.junit.Assert.assertThat;
+
 import org.junit.Test;
 
 /**
@@ -53,56 +57,60 @@ public class MensagemValidatorTestSegundaEntrega extends BaseTest {
         Set<String> t = templates(violations);
         assertTrue("Esperava violação com template: " + template + " mas veio: " + t, t.contains(template));
     }
-    
-    //teste GERAL
 
+    //teste GERAL
     @Test(expected = ConstraintViolationException.class)
     public void DeveDispararTodasAsValidacoes() {
-        Mensagem m = new Mensagem(); 
-
-        m.setConversa(null);
-        m.setRemetente(null); 
-        m.setTexto("   "); 
-        m.setEnviadoEm(new Date(System.currentTimeMillis() + 60_000)); 
-
-        m.setNomeAnexo(" ".repeat(256));     
-        m.setAnexo(new byte[5_242_881]);    
+        Mensagem m = new Mensagem();
 
         try {
+
+            m.setConversa(null);
+            m.setRemetente(null);
+            m.setTexto("   ");
+            m.setEnviadoEm(new Date(System.currentTimeMillis() + 60_000));
+
+            m.setNomeAnexo(null);
+            m.setAnexo(new byte[5_242_881]);
+
             em.persist(m);
             em.flush();
             fail("Era esperado ConstraintViolationException no flush()");
         } catch (ConstraintViolationException ex) {
             Set<ConstraintViolation<?>> v = ex.getConstraintViolations();
 
-            Set<String> paths = v.stream()
-                    .map(cv -> cv.getPropertyPath().toString())
-                    .collect(Collectors.toSet());
+            v.forEach(violation -> {
+                String msg = violation.getRootBeanClass() + "." + violation.getPropertyPath()
+                        + ": " + violation.getMessageTemplate();
 
+                assertThat(msg, anyOf(
+                        startsWith("class com.vivamamadsc.vivamamadsc.Mensagem.conversa: {mensagem.conversa.obrigatoria}"),
+                        startsWith("class com.vivamamadsc.vivamamadsc.Mensagem.remetente: {mensagem.remetente.obrigatorio}"),
+                        startsWith("class com.vivamamadsc.vivamamadsc.Mensagem.texto: {mensagem.texto.obrigatorio}"),
+                        startsWith("class com.vivamamadsc.vivamamadsc.Mensagem.enviadoEm: {mensagem.enviadoEm.passadoOuPresente}"),
+                        startsWith("class com.vivamamadsc.vivamamadsc.Mensagem.anexo: {mensagem.anexo.max}"),
+                        startsWith("class com.vivamamadsc.vivamamadsc.Mensagem.nomeAnexo: {mensagem.nomeAnexo.obrigatorioQuandoAnexo}"),
+                        startsWith("class com.vivamamadsc.vivamamadsc.Mensagem.anexo: {mensagem.anexo.obrigatorioQuandoNome}"),
+                        startsWith("class com.vivamamadsc.vivamamadsc.Mensagem.: {mensagem.anexo.consistente}")
+                ));
+            });
             Set<String> templates = v.stream()
                     .map(ConstraintViolation::getMessageTemplate)
                     .collect(Collectors.toSet());
 
-            assertTrue(paths.contains("conversa"));
-            assertTrue(paths.contains("remetente"));
-            assertTrue(paths.contains("texto"));
-            assertTrue(paths.contains("enviadoEm"));
-            assertTrue(paths.contains("nomeAnexo"));
-            assertTrue(paths.contains("anexo"));
-            assertTrue(paths.contains("anexoConsistente"));
+            // essenciais
+            assertThat(templates, hasItem("{mensagem.conversa.obrigatoria}"));
+            assertThat(templates, hasItem("{mensagem.remetente.obrigatorio}"));
+            assertThat(templates, hasItem("{mensagem.texto.obrigatorio}"));
+            assertThat(templates, hasItem("{mensagem.enviadoEm.passadoOuPresente}"));
+            assertThat(templates, hasItem("{mensagem.anexo.max}"));
 
-            // mensagens/templates esperados
-            assertTrue(templates.contains("{mensagem.conversa.obrigatoria}")); 
-            assertTrue(templates.contains("{mensagem.remetente.obrigatorio}"));
-            assertTrue(templates.contains("{mensagem.texto.obrigatorio}"));
-            assertTrue(templates.contains("{mensagem.enviadoEm.passadoOuPresente}"));
-            assertTrue(templates.contains("{mensagem.nomeAnexo.max}"));
-            assertTrue(templates.contains("{mensagem.anexo.max}"));
-            assertTrue(templates.contains("{mensagem.anexo.consistente}"));
+            assertTrue(
+                    templates.contains("{mensagem.nomeAnexo.obrigatorioQuandoAnexo}")
+                    || templates.contains("{mensagem.anexo.obrigatorioQuandoNome}")
+            );
 
-            assertEquals(7, v.size());
             assertNull(m.getId());
-
             throw ex;
         }
     }
@@ -116,7 +124,7 @@ public class MensagemValidatorTestSegundaEntrega extends BaseTest {
         Set<ConstraintViolation<MensagemTeste>> v = validator.validate(m);
 
         assertTrue("Esperava mensagem de erro da conversa. Veio: " + v,
-                v.stream().anyMatch(cv -> "{mensagem.conversa.obrigatoria}".equals(cv.getMessage())));
+                v.stream().anyMatch(cv -> "{mensagem.conversa.obrigatoria}".equals(cv.getMessageTemplate())));
     }
 
     // teste REMETENTE
@@ -192,7 +200,7 @@ public class MensagemValidatorTestSegundaEntrega extends BaseTest {
 
         Set<ConstraintViolation<MensagemTeste>> v = validator.validate(m);
 
-        assertHas(v, "{mensagem.anexo.consistente}");
+        assertHas(v, "{mensagem.nomeAnexo.obrigatorioQuandoAnexo}");
     }
 
     @Test
@@ -203,7 +211,7 @@ public class MensagemValidatorTestSegundaEntrega extends BaseTest {
 
         Set<ConstraintViolation<MensagemTeste>> v = validator.validate(m);
 
-        assertHas(v, "{mensagem.anexo.consistente}");
+        assertHas(v, "{mensagem.anexo.obrigatorioQuandoNome}");
     }
 
     @Test

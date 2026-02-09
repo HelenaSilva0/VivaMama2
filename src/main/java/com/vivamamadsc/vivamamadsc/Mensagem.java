@@ -4,6 +4,7 @@
  */
 package com.vivamamadsc.vivamamadsc;
 
+import com.vivamamadsc.vivamamadsc.validation.AnexoConsistente;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,6 +24,7 @@ import java.util.Date;
  *
  * @author Neto Pereira
  */
+@AnexoConsistente
 @Entity
 public class Mensagem {
 
@@ -68,14 +70,14 @@ public class Mensagem {
     @Column(name = "nome_anexo")
     private String nomeAnexo;
 
-    @jakarta.validation.constraints.AssertTrue(
+    /*@jakarta.validation.constraints.AssertTrue(
             message = "{mensagem.anexo.consistente}"
     )
     public boolean isAnexoConsistente() {
         boolean temAnexo = anexo != null && anexo.length > 0;
         boolean temNome = nomeAnexo != null && !nomeAnexo.isBlank();
         return temAnexo == temNome;
-    }
+    }*/
 
     @Lob
     @Column(name = "anexo", columnDefinition = "BLOB")

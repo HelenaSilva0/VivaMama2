@@ -4,6 +4,7 @@
  */
 package com.vivamamadsc.vivamamadsc;
 
+import com.vivamamadsc.vivamamadsc.validation.ParticipantesValidos;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -29,6 +30,7 @@ import java.util.Objects;
  *
  * @author Neto Pereira
  */
+@ParticipantesValidos
 @Entity
 public class Conversa {
 

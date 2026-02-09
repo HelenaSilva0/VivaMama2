@@ -31,6 +31,7 @@ public class ConversaValidatorTestSegundaEntrega extends BaseTest {
         c.setAssunto("Assunto válido");
         c.setCriadoEm(new Date());
         c.getParticipantes().add(new UsuarioTeste());
+        c.getParticipantes().add(new UsuarioTeste());
         return c;
     }
 
@@ -55,16 +56,15 @@ public class ConversaValidatorTestSegundaEntrega extends BaseTest {
         }
         return null;
     }
-    
-    //teste GERAL
 
+    //teste GERAL
     @Test(expected = ConstraintViolationException.class)
     public void persistirConversaInvalidaDeveDispararBeanValidationNoFlush() {
         Conversa c = conversaValida();
 
-        c.setAssunto("   ");              
-        c.getParticipantes().clear(); 
-        c.setCriadoEm(null);       
+        c.setAssunto("   ");
+        c.getParticipantes().clear();
+        c.setCriadoEm(null);
 
         try {
             em.persist(c);
@@ -88,11 +88,7 @@ public class ConversaValidatorTestSegundaEntrega extends BaseTest {
             assertTrue("Esperava {conversa.participantes.min}, veio: " + t,
                     t.contains("{conversa.participantes.min}"));
 
-            if (t.contains("{conversa.criadoEm.obrigatorio}")) {
-                assertTrue(t.contains("{conversa.criadoEm.obrigatorio}"));
-            }
-
-             assertNull(c.getId());
+            assertNull(c.getId());
             throw cve;
         }
     }
@@ -148,5 +144,32 @@ public class ConversaValidatorTestSegundaEntrega extends BaseTest {
         Set<ConstraintViolation<Conversa>> v = validator.validate(c);
 
         assertHas(v, "{conversa.participantes.item.obrigatorio}");
+    }
+
+    @Test
+    public void conversaDeveTerPeloMenosDoisParticipantes() {
+        Conversa c = new Conversa();
+        c.setAssunto("Assunto válido");
+        c.setCriadoEm(new Date());
+        c.getParticipantes().add(new UsuarioTeste());
+
+        Set<ConstraintViolation<Conversa>> v = validator.validate(c);
+
+        assertHas(v, "{conversa.participantes.min2}");
+    }
+
+    @Test
+    public void conversaNaoDeveTerParticipantesDuplicados() {
+        Conversa c = new Conversa();
+        c.setAssunto("Assunto válido");
+        c.setCriadoEm(new Date());
+
+        UsuarioTeste u = new UsuarioTeste();
+        c.getParticipantes().add(u);
+        c.getParticipantes().add(u);
+
+        Set<ConstraintViolation<Conversa>> v = validator.validate(c);
+
+        assertHas(v, "{conversa.participantes.duplicados}");
     }
 }

@@ -4,6 +4,8 @@
  */
 package com.vivamamadsc.vivamamadsc;
 
+import com.vivamamadsc.vivamamadsc.validation.CpfValido;
+import com.vivamamadsc.vivamamadsc.validation.SenhaForte;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -31,7 +33,8 @@ public abstract class Usuario {
     @Size(max = 150, message = "{usuario.nome.max}")
     @Column(nullable = false, length = 150)
     private String nome;
-
+ 
+    @CpfValido
     @NotBlank(message = "{usuario.cpf.obrigatorio}")
     @Pattern(regexp = "\\d{11}", message = "{usuario.cpf.formato}")
     @Column(name = "CPF", unique = true, nullable = false, length = 11)
@@ -44,6 +47,7 @@ public abstract class Usuario {
     @Column(unique = true, nullable = false, length = 150)
     private String email;
 
+    @SenhaForte
     @NotBlank(message = "{usuario.senha.obrigatoria}")
     @Size(min = 8, max = 60, message = "{usuario.senha.tamanho}")
     @Column(nullable = false, length = 60)
@@ -141,7 +145,7 @@ public abstract class Usuario {
         return (mod == 10) ? 0 : mod;
     }
 
-    @jakarta.validation.constraints.AssertTrue(message = "{usuario.senha.forte}")
+   @jakarta.validation.constraints.AssertTrue(message = "{usuario.senha.forte}")
     public boolean isSenhaValida() {
         if (senha == null) {
             return false;
