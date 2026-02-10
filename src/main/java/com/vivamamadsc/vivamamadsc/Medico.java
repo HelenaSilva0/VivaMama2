@@ -4,6 +4,7 @@
  */
 package com.vivamamadsc.vivamamadsc;
 
+import com.vivamamadsc.vivamamadsc.validation.medico.MedicoValido;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -18,6 +19,9 @@ import jakarta.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+@MedicoValido
 @Entity
 @NamedQueries({
     @NamedQuery(

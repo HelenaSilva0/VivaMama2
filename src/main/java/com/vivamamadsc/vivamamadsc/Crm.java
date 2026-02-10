@@ -4,6 +4,7 @@
  */
 package com.vivamamadsc.vivamamadsc;
 
+import com.vivamamadsc.vivamamadsc.validation.crm.CrmValido;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,6 +22,7 @@ import java.util.Objects;
  * @author neto
  */
 
+@CrmValido
 @Entity
 public class Crm {
     @Id

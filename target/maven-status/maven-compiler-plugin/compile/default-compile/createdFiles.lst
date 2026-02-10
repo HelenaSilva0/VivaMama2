@@ -2,10 +2,12 @@ com\vivamamadsc\vivamamadsc\Paciente.class
 com\vivamamadsc\vivamamadsc\validation\exame\ExameValidator.class
 com\vivamamadsc\vivamamadsc\Especialidade.class
 com\vivamamadsc\vivamamadsc\validation\SenhaForteValidator.class
+com\vivamamadsc\vivamamadsc\validation\medico\MedicoValido.class
 com\vivamamadsc\vivamamadsc\validation\SenhaForte.class
 com\vivamamadsc\vivamamadsc\Vivamamadsc.class
 com\vivamamadsc\vivamamadsc\validation\AnexoConsistente.class
 com\vivamamadsc\vivamamadsc\validation\CpfValidoValidator.class
+com\vivamamadsc\vivamamadsc\validation\crm\CrmValidator.class
 com\vivamamadsc\vivamamadsc\validation\exame\ExameValido.class
 com\vivamamadsc\vivamamadsc\Crm.class
 com\vivamamadsc\vivamamadsc\Mensagem.class
@@ -17,7 +19,9 @@ com\vivamamadsc\vivamamadsc\TipoUsuario.class
 com\vivamamadsc\vivamamadsc\validation\PrimeiraLetraMaiuscula.class
 com\vivamamadsc\vivamamadsc\Medico.class
 com\vivamamadsc\vivamamadsc\validation\paciente\PacienteValido.class
+com\vivamamadsc\vivamamadsc\validation\medico\MedicoValidator.class
 com\vivamamadsc\vivamamadsc\validation\ParticipantesValidosValidator.class
+com\vivamamadsc\vivamamadsc\validation\crm\CrmValido.class
 com\vivamamadsc\vivamamadsc\validation\PrimeiraLetraMaiusculaValidator.class
 com\vivamamadsc\vivamamadsc\Usuario.class
 com\vivamamadsc\vivamamadsc\validation\AnexoConsistenteValidator.class
