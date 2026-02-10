@@ -71,7 +71,7 @@ public class ExameValidatorTestSegundaEntrega extends BaseTest {
                 );
             });
 
-            assertEquals(5, violations.size());
+            assertEquals(6, violations.size());
             assertNull(exame.getId());
 
             Map<String, List<String>> mensagensPorCampo = new HashMap<>();
@@ -93,7 +93,7 @@ public class ExameValidatorTestSegundaEntrega extends BaseTest {
 
             assertTrue(mensagensPorCampo.get("paciente")
                     .contains("{exame.paciente.obrigatorio}"));
-
+            
             assertTrue(mensagensPorCampo.get("resultadoResumo")
                     .contains("{exame.resultadoResumo.max}"));
 
@@ -120,15 +120,40 @@ public class ExameValidatorTestSegundaEntrega extends BaseTest {
 
         } catch (ConstraintViolationException ex) {
 
-            ConstraintViolation<?> violation = ex
-                    .getConstraintViolations()
-                    .iterator()
-                    .next();
+            Set<ConstraintViolation<?>> violations = ex.getConstraintViolations();
 
-            assertEquals("resultadoResumo", violation.getPropertyPath().toString());
-            assertEquals("{exame.resultadoResumo.max}", violation.getMessage());
+            violations.forEach(v -> {
+                assertThat(
+                        v.getRootBeanClass() + "." + v.getPropertyPath() + ": " + v.getMessage(),
+                        CoreMatchers.anyOf(
+                                startsWith("class com.vivamamadsc.vivamamadsc.Exame.resultadoResumo")
+                        )
+                );
+            });
 
-            assertEquals(1, ex.getConstraintViolations().size());
+            assertEquals(2, violations.size());
+
+            Map<String, List<String>> mensagensPorCampo = new HashMap<>();
+
+            violations.forEach(v -> {
+                mensagensPorCampo
+                        .computeIfAbsent(
+                                v.getPropertyPath().toString(),
+                                k -> new ArrayList<>()
+                        )
+                        .add(v.getMessage());
+            });
+
+            assertTrue(mensagensPorCampo.get("resultadoResumo")
+                    .contains("{exame.incompativel.com.tipo}"));
+            
+            assertTrue(mensagensPorCampo.get("resultadoResumo")
+                    .contains("{exame.resultadoResumo.max}"));
+
+            mensagensPorCampo.forEach((campo, mensagens) -> {
+                System.out.println("Campo: " + campo);
+                mensagens.forEach(msg -> System.out.println("  - " + msg));
+            });
 
             throw ex;
         }

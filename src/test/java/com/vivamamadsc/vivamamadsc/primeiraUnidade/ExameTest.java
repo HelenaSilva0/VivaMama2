@@ -75,7 +75,7 @@ public class ExameTest {
         Calendar c = Calendar.getInstance();
         c.set(2025, Calendar.FEBRUARY, 15);
         exame.setDataExame(c.getTime());
-        exame.setResultadoResumo("Controle anual.");
+        exame.setResultadoResumo("Controle anual de Mamografia controle.");
         exame.setPaciente(paciente);
         exame.setImagem("fake-image-novo".getBytes(StandardCharsets.UTF_8));
 
@@ -119,7 +119,7 @@ public class ExameTest {
         Exame exame = new Exame();
         exame.setTipo("Mamografia com imagem");
         exame.setDataExame(new Date());
-        exame.setResultadoResumo("Exame com imagem carregada do arquivo.");
+        exame.setResultadoResumo("Exame de Mamografia com imagem carregada do arquivo.");
         exame.setPaciente(paciente);
 
         // carrega a imagem da pasta src/test/resources/imagens
