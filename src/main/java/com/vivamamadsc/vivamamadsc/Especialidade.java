@@ -4,6 +4,7 @@
  */
 package com.vivamamadsc.vivamamadsc;
 
+import com.vivamamadsc.vivamamadsc.validation.PrimeiraLetraMaiuscula;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,8 +30,9 @@ public class Especialidade {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "{especialidade.nome.obrigatorio}")     
+    @NotBlank(message = "{especialidade.nome.obrigatorio}")      
     @Size(max = 100, message = "{especialidade.nome.max}")
+    @PrimeiraLetraMaiuscula(message = "O nome da especialidade deve começar com letra maiúscula") // <--- USO DA VALIDAÇÃO
     @Column(name = "NOME", nullable = false, length = 100)
     private String nome;
 
