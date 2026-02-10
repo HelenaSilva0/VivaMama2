@@ -4,7 +4,7 @@
  */
 package com.vivamamadsc.vivamamadsc;
 
-import com.vivamamadsc.vivamamadsc.validation.PrimeiraLetraMaiuscula;
+import com.vivamamadsc.vivamamadsc.validation.especialidade.PrimeiraLetraMaiuscula;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

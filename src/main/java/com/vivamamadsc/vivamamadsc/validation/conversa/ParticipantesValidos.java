@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.vivamamadsc.vivamamadsc.validation;
+package com.vivamamadsc.vivamamadsc.validation.conversa;
 
+import com.vivamamadsc.vivamamadsc.validation.conversa.ParticipantesValidosValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 import java.lang.annotation.Documented;
@@ -17,12 +18,12 @@ import java.lang.annotation.Target;
  * @author Helena
  */
 @Documented
-@Target({ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER})
+@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = CpfValidoValidator.class)
-public @interface CpfValido {
+@Constraint(validatedBy = ParticipantesValidosValidator.class)
+public @interface ParticipantesValidos {
 
-    String message() default "{usuario.cpf.invalido}";
+    String message() default "{conversa.participantes.invalidos}"; 
 
     Class<?>[] groups() default {};
 

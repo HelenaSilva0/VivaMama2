@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.vivamamadsc.vivamamadsc.validation;
+package com.vivamamadsc.vivamamadsc.validation.usuario;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
@@ -17,12 +17,12 @@ import java.lang.annotation.Target;
  * @author Helena
  */
 @Documented
-@Target(ElementType.TYPE)
+@Target({ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = ParticipantesValidosValidator.class)
-public @interface ParticipantesValidos {
+@Constraint(validatedBy = SenhaForteValidator.class)
+public @interface SenhaForte {
 
-    String message() default "{conversa.participantes.invalidos}"; 
+    String message() default "{usuario.senha.forte}";
 
     Class<?>[] groups() default {};
 

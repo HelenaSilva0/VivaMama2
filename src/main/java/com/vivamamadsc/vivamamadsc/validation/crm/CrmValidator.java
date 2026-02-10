@@ -21,10 +21,10 @@ public class CrmValidator implements ConstraintValidator<CrmValido, Crm> {
                     .addConstraintViolation();
             ok = false;
         } else {
-            String n = numero.trim();
+            String n = numero.trim().toUpperCase();
 
-            // max 10
-            if (n.length() > 10) {
+            // max 10 num e 2 letras
+            if (n.length() > 12) {
                 context.buildConstraintViolationWithTemplate("{crm.numero.max}")
                         .addPropertyNode("numero")
                         .addConstraintViolation();
@@ -32,7 +32,7 @@ public class CrmValidator implements ConstraintValidator<CrmValido, Crm> {
             }
 
             // formato (alinha com o que teu teste já viu: {crm.numero.formato})
-            if (!n.matches("^[0-9]{1,10}$")) {
+            if (!n.matches("^[A-Z]{2}[0-9]{1,10}$")) {
                 context.buildConstraintViolationWithTemplate("{crm.numero.formato}")
                         .addPropertyNode("numero")
                         .addConstraintViolation();

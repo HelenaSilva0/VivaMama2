@@ -1,8 +1,8 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.vivamamadsc.vivamamadsc.validation;
+package com.vivamamadsc.vivamamadsc.validation.usuario;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
@@ -17,12 +17,12 @@ import java.lang.annotation.Target;
  * @author Helena
  */
 @Documented
-@Target({ElementType.FIELD}) 
+@Target({ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = PrimeiraLetraMaiusculaValidator.class)
-public @interface PrimeiraLetraMaiuscula {
+@Constraint(validatedBy = CpfValidoValidator.class)
+public @interface CpfValido {
 
-    String message() default "{com.vivamamadsc.vivamamadsc.validation.PrimeiraLetraMaiuscula.message}";
+    String message() default "{usuario.cpf.invalido}";
 
     Class<?>[] groups() default {};
 

@@ -4,7 +4,7 @@
  */
 package com.vivamamadsc.vivamamadsc;
 
-import com.vivamamadsc.vivamamadsc.validation.ParticipantesValidos;
+import com.vivamamadsc.vivamamadsc.validation.conversa.ParticipantesValidos;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

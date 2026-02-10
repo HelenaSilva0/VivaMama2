@@ -4,8 +4,8 @@
  */
 package com.vivamamadsc.vivamamadsc;
 
-import com.vivamamadsc.vivamamadsc.validation.CpfValido;
-import com.vivamamadsc.vivamamadsc.validation.SenhaForte;
+import com.vivamamadsc.vivamamadsc.validation.usuario.CpfValido;
+import com.vivamamadsc.vivamamadsc.validation.usuario.SenhaForte;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

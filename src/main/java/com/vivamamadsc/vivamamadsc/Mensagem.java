@@ -4,7 +4,7 @@
  */
 package com.vivamamadsc.vivamamadsc;
 
-import com.vivamamadsc.vivamamadsc.validation.AnexoConsistente;
+import com.vivamamadsc.vivamamadsc.validation.mensagem.AnexoConsistente;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
